@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
-<title>INBLICK · Privata underrättelsebolag, satellitövervakning och Arktis</title>
+<title>INBLICK · Privata underrättelsebolag, satellitövervakning, Arktis och HEIST</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -140,12 +140,41 @@
 
   /* ── NAV ── */
   .section-nav { border-bottom: 1px solid #e0dbd0; background-color: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
-  .section-nav-inner { max-width: var(--col-wide); margin: 0 auto; padding: 0 40px; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .section-nav-inner {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 clamp(12px, 2vw, 32px);
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
   .section-nav-inner::-webkit-scrollbar { display: none; }
-  .section-nav a { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #888; text-decoration: none; border: none; padding: 14px 16px; border-right: 1px solid #e0dbd0; white-space: nowrap; display: block; transition: color 0.15s, background 0.15s, border-bottom 0.15s; border-bottom: 2px solid transparent; }
-  .section-nav a:first-child { padding-left: 0; }
+  .section-nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(8px, 0.52vw, 10px);
+    letter-spacing: clamp(0.06em, 0.10vw, 0.12em);
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: none;
+    border: none;
+    padding: 14px clamp(7px, 0.75vw, 13px);
+    border-right: 1px solid #e0dbd0;
+    white-space: nowrap;
+    display: block;
+    transition: color 0.15s, background 0.15s, border-bottom 0.15s;
+    border-bottom: 2px solid transparent;
+  }
+  .section-nav a:first-child { padding-left: clamp(7px, 0.75vw, 13px); }
   .section-nav a:last-child { border-right: none; }
   .section-nav a:hover, .section-nav a.active { color: #c41e24; border-bottom-color: #c41e24; background: rgba(196,30,36,0.04); }
+  @media (max-width: 1180px) {
+    .section-nav-inner { justify-content: flex-start; padding: 0 12px; }
+    .section-nav a { font-size: 8.5px; letter-spacing: 0.07em; padding: 12px 9px; }
+    .section-nav a:first-child { padding-left: 9px; }
+  }
 
   /* ── REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
@@ -268,7 +297,7 @@
       <div class="inblick-divider"></div>
       <div class="inblick-tagline">Säkerhetsanalys<br>Svensk OSINT</div>
     </a>
-    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.0</div>
+    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.2</div>
   </div>
 </header>
 
@@ -292,7 +321,7 @@
       <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
       <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
       <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
-      <div class="hero-byline-item"><strong>Version</strong>3.0</div>
+      <div class="hero-byline-item"><strong>Version</strong>3.2</div>
     </div>
   </div>
 </section>
@@ -366,7 +395,7 @@
     <a href="#arktis">Arktis</a>
     <a href="#andoya">Andøya-klustret</a>
     <a href="#datamaklare">Datamäklare</a>
-    <a href="#riskmatris">Riskbild</a>
+    <a href="#heist">HEIST</a>
     <a href="#sverige">Sverige</a>
     <a href="#slutsatser">Slutsatser</a>
     <a href="#referenser">Källor</a>
@@ -581,42 +610,28 @@
 
 </div><!-- /content-wrapper -->
 
-<!-- RISKMATRIS -->
-<section id="riskmatris" style="padding: 64px 0; border-top: 1px solid #e0dbd0; border-bottom: 1px solid #e0dbd0; background: #f9f7f3;">
-  <div style="max-width: var(--col-max); margin: 0 auto; padding: 0 40px;">
-    <div class="section-header">
-      <span class="section-num">08</span>
-      <h2 class="section-title">Riskbild</h2>
-    </div>
-    <div class="reveal">
-    <div class="risk-table-wrap">
-      <table class="risk-table">
-        <thead>
-          <tr>
-            <th>Hotvektor</th>
-            <th>Hotaktör</th>
-            <th>Status</th>
-            <th>Prioritet</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>NATO-beroende av privat analysplattform</td><td>Palantir (beroenderisk)</td><td><span class="status-tag">Bekräftat – MSS NATO mars 2025</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
-          <tr><td>Satellitmottagarinfrastruktur via frontbolag</td><td>Kina (MSS)</td><td><span class="status-tag">Bekräftad – PST/Andøya maj 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
-          <tr><td>Rekognosering av NATO CAOC och arktiskt luftrumskluster</td><td>Kina (HUMINT)</td><td><span class="status-tag">Misstänkt – Bodø maj 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
-          <tr><td>Cyberoperationer mot telekommunikationsinfrastruktur</td><td>Kina (Salt Typhoon)</td><td><span class="status-tag">Bekräftad – PST feb 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
-          <tr><td>Satellitbild-OSINT mot militärbaser och infrastruktur</td><td>Kina, Ryssland</td><td><span class="status-tag">Löpande risk – hög sannolikhet</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
-          <tr><td>Datamäklare-platsdata mot militärpersonal</td><td>Utländsk underrättelsetjänst</td><td><span class="status-tag">Bekräftad – CENTCOM maj 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
-          <tr><td>Förberedande spårning av objekt i etableringsfas</td><td>Okänd aktör</td><td><span class="status-tag">Observandum – Northsafe maj 2026</span></td><td><span class="prio-hog">Hög</span></td></tr>
-          <tr><td>GPS/GNSS-störningar mot arktisk rymdinfrastruktur</td><td>Ryssland</td><td><span class="status-tag">Bekräftad, eskalerande – Nkom 2026</span></td><td><span class="prio-hog">Hög</span></td></tr>
-          <tr><td>Maritim rekognosering via civila fartyg</td><td>Ryssland</td><td><span class="status-tag">Bedömd pågående – PST 2026</span></td><td><span class="prio-hog">Hög</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
-</section>
 
 <div class="content-wrapper">
+
+<!-- 08 HEIST -->
+<section id="heist" class="article-section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">HEIST: redundans när undervattenskablar skadas</h2>
+  </div>
+  <div class="reveal">
+  <p>HEIST, <em>Hybrid Space/Submarine Architecture Ensuring Infosec of Telecommunications</em>, är ett Nato-stött forsknings- och utvecklingssamarbete som syftar till att göra den globala internetinfrastrukturen mer robust genom att kombinera undervattenskablar och satellitkommunikation. Utgångspunkten är att undervattenskablar bär en mycket stor del av den interkontinentala datatrafiken och därför är en strategisk sårbarhet vid sabotage, olyckor eller naturkatastrofer. Projektets kärna är att kunna styra om trafik från skadade kablar till satellitsystem så att kritiska kommunikationsflöden kan upprätthållas även vid kabelbrott (<a href="https://www.bth.se/nyheter/nyhetsarkiv/2024-08-24-hogprioriterat-nato-projekt-till-bth-och-marine-technology-center-of-sweden">Blekinge Tekniska Högskola, 2024</a>; <a href="https://www.fhs.se/en/swedish-defence-university/news-archive/2024/2024-09-25-systems-science-for-defence-and-security-participates-in-nato-project-to-future-proof-global-internet-traffic.html">Försvarshögskolan, 2024</a>).</p>
+
+  <p>Projektet leds av Cornell University i USA och samlar forskare och experter från bland annat Johns Hopkins University, ETH Zürich, Bifröst University, Försvarshögskolan samt industriella och offentliga aktörer i flera Nato-länder. Finansiering sker delvis genom Natos program <em>Science for Peace and Security</em>. I Sverige har Blekinge Tekniska Högskola och Marine Technology Center of Sweden en viktig roll genom utvecklingen av en testbädd kopplad till Östersjön, där teknik för lokalisering av kabelbrott, sensorer i kablar och satellitbaserad trafikomdirigering ska demonstreras (<a href="https://www.infrastrukturnyheter.se/en/node/31045">Infrastrukturnyheter, 2025</a>; <a href="https://www.svt.se/nyheter/lokalt/blekinge/nytt-projekt-pa-blekinge-tekniska-hogskola-ska-skydda-kablarna-pa-ostersjon">SVT Nyheter, 2025</a>).</p>
+
+  <div class="fact-box">
+    <div class="fact-box-label">Analytisk betydelse</div>
+    <p>HEIST visar att satellitsegmentet inte bara är en underrättelse- och övervakningsförmåga, utan också en möjlig redundansfunktion för civil och militär kommunikation. Det gör projektet relevant för samma större hotbild som behandlas i rapporten: när undervattensinfrastruktur, rymdbaserade system och Nato:s digitala ledningsförmåga vävs samman blir robusthet, åtkomst, ägande och tillsyn en gemensam säkerhetsfråga.</p>
+  </div>
+
+  <p>Den tekniska inriktningen är att integrera markbundna nät och sjökablar med avancerad satellitkommunikation, inklusive optiska länkar, för att öka den kapacitet som satelliter kan erbjuda som reservväg vid större störningar. Om tekniken fungerar som avsett kan den minska effekten av fysiska angrepp mot undervattenskablar, men den flyttar samtidigt en del av beroendet till satellitsegmentet och till de aktörer som kontrollerar satellitkapacitet, markstationer, trafikprioritering och säkerhetsarkitektur (<a href="https://etn.se/index.php/nyheter/71307-natoprojekt-i-sverige-satellit-tar-over-nar-undervattenskabel-gar-av.html">Elektroniktidningen, 2025</a>; <a href="https://www.fhs.se/en/swedish-defence-university/research/our-researchers/research-projects/hybrid-space-submarine-architecture-ensuring-infosec-of-telecommunications.html">Swedish Defence University, 2025</a>).</p>
+  </div>
+</section>
 
 <!-- 09 SVERIGE -->
 <section id="sverige" class="article-section">
@@ -683,6 +698,12 @@
   <div class="references-inner">
     <div class="ref-header">Referenslista · Öppna och verifierade källor</div>
     <div class="ref-columns">
+      <div class="ref-item">Blekinge Tekniska Högskola. (2024, 23 augusti). <em>Högprioriterat Nato-projekt till BTH och Marine Technology Center of Sweden.</em> <a href="https://www.bth.se/nyheter/nyhetsarkiv/2024-08-24-hogprioriterat-nato-projekt-till-bth-och-marine-technology-center-of-sweden">bth.se</a></div>
+      <div class="ref-item">Elektroniktidningen. (2025, 21 december). <em>Natoprojekt i Sverige: Satellit tar över när undervattenskabel går av.</em> <a href="https://etn.se/index.php/nyheter/71307-natoprojekt-i-sverige-satellit-tar-over-nar-undervattenskabel-gar-av.html">etn.se</a></div>
+      <div class="ref-item">Försvarshögskolan. (2024, 24 september). <em>Systems Science for Defence and Security participates in NATO project to future-proof global internet traffic.</em> <a href="https://www.fhs.se/en/swedish-defence-university/news-archive/2024/2024-09-25-systems-science-for-defence-and-security-participates-in-nato-project-to-future-proof-global-internet-traffic.html">fhs.se</a></div>
+      <div class="ref-item">Infrastrukturnyheter. (2025, 13 januari). <em>HEIST – Karlskrona samlar världsledande experter för att skydda digital infrastruktur.</em> <a href="https://www.infrastrukturnyheter.se/en/node/31045">infrastrukturnyheter.se</a></div>
+      <div class="ref-item">SVT Nyheter. (2025, 16 januari). <em>Nytt projekt på Blekinge tekniska högskola ska skydda kablarna i Östersjön.</em> <a href="https://www.svt.se/nyheter/lokalt/blekinge/nytt-projekt-pa-blekinge-tekniska-hogskola-ska-skydda-kablarna-pa-ostersjon">svt.se</a></div>
+      <div class="ref-item">Swedish Defence University. (2025, 14 januari). <em>Hybrid Space/Submarine Architecture Ensuring Infosec of Telecommunications (HEIST).</em> <a href="https://www.fhs.se/en/swedish-defence-university/research/our-researchers/research-projects/hybrid-space-submarine-architecture-ensuring-infosec-of-telecommunications.html">fhs.se</a></div>
       <div class="ref-item">American Friends Service Committee. (u.å.). <em>What is Palantir?</em> <a href="https://afsc.org/palantir-explainer">afsc.org</a></div>
       <div class="ref-item">Atlas Institute for International Affairs. (2025). <em>The privatisation of persistent surveillance.</em> <a href="https://atlasinstitute.org/the-privatisation-of-persistent-surveillance-risks-and-opportunities-for-natos-space-strategy/">atlasinstitute.org</a></div>
       <div class="ref-item">Bank Info Security. (2026, 9 februari). <em>Norway says Salt Typhoon hackers hit vulnerable systems.</em> <a href="https://www.bankinfosecurity.com/norway-says-salt-typhoon-hackers-hit-vulnerable-systems-a-30721">bankinfosecurity.com</a></div>
@@ -762,7 +783,7 @@
 <footer>
   <div class="footer-logo">INBL<em>I</em>CK</div>
   <span>Svensk OSINT · Säkerhetsanalytisk rapportserie</span><br>
-  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.0
+  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.1
 </footer>
 
 <script>
