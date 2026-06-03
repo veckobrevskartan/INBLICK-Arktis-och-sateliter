@@ -23,8 +23,8 @@
     --gold:       #9a7100;
     --gold-pale:  #fdf8e8;
     --blue:       #1a3a6b;
-    --col-max:    860px;
-    --col-wide:   1120px;
+    --col-max:    1040px;
+    --col-wide:   1360px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -176,12 +176,33 @@
     .section-nav a:first-child { padding-left: 9px; }
   }
 
+  /* ── EMBEDDED MAP ── */
+  .map-section { padding: 38px 0 58px; }
+  .map-wide {
+    width: min(calc(100vw - 24px), 1440px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .embedded-map-frame {
+    display: block;
+    width: 100%;
+    height: min(82vh, 820px);
+    min-height: 650px;
+    border: 1px solid #e0dbd0;
+    background: #eef1ed;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+  }
+  @media (max-width: 780px) {
+    .map-wide { width: calc(100vw - 20px); }
+    .embedded-map-frame { height: 72vh; min-height: 500px; }
+  }
+
   /* ── REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
   /* ── CONTENT ── */
-  .content-wrapper { max-width: var(--col-max); margin: 0 auto; padding: 0 40px; }
+  .content-wrapper { max-width: var(--col-max); margin: 0 auto; padding: 0 24px; }
   .article-section { padding: 64px 0; border-bottom: 1px solid #e0dbd0; }
   .article-section:last-child { border-bottom: none; }
   .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 14px; border-bottom: 2px solid #0d0d0d; }
@@ -276,7 +297,7 @@
     .inblick-intro { padding: 22px 20px; }
     .hero { padding: 48px 20px 40px; }
     .assessment-inner { padding: 40px 20px; }
-    .content-wrapper { padding: 0 20px; }
+    .content-wrapper { padding: 0 16px; }
     .section-nav-inner { padding: 0 20px; }
     .references-section { padding: 40px 20px; }
     footer { padding: 28px 20px; }
@@ -297,7 +318,7 @@
       <div class="inblick-divider"></div>
       <div class="inblick-tagline">Säkerhetsanalys<br>Svensk OSINT</div>
     </a>
-    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.2</div>
+    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.3</div>
   </div>
 </header>
 
@@ -321,7 +342,7 @@
       <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
       <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
       <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
-      <div class="hero-byline-item"><strong>Version</strong>3.2</div>
+      <div class="hero-byline-item"><strong>Version</strong>3.3</div>
     </div>
   </div>
 </section>
@@ -414,6 +435,22 @@
   <div class="reveal">
   <p>Den kommersiella satellitkonstellation som vuxit fram under 2020-talet har fundamentalt förändrat vad privata aktörer kan se, analysera och monetarisera om enskilda individer, fordon och infrastruktur. Rapporten behandlar tre sammanflätade hottyper: (1) framväxten av privata underrättelseföretag med förmågor som tidigare tillhörde stater, (2) den strategiska kampen om arktisk rymdinfrastruktur – markstationer, uppskjutningsplatser och de satellitbanor som gör Arktis till ett kritiskt nav för global datanedladdning – och (3) datamäklarindustrins förmåga att i realtid kartlägga individer och militär personal.</p>
   <p>Rapporten bedömer att sammansmältningen av dessa tre dimensioner utgör en betydande och underuppskattad nationell säkerhetsrisk för Sverige och dess allierade, och att den politiska responsen är på ett sätt som sitter inbyggt i systemet eftersläpande i förhållande till teknologins utvecklingstakt. De norska händelserna under 2026 bekräftar bedömningens viktigaste tes med empirisk precision och visar att motståndareer redan agerar redan i den gråzon som uppstår när kommersiell och statlig säkerhetsinfrastruktur flyter ihop utan anpassning i myndigheter och regelverk.</p>
+  </div>
+</section>
+
+<!-- KARTA -->
+<section id="karta" class="article-section map-section">
+  <div class="reveal">
+    <div class="map-wide">
+      <iframe
+        class="embedded-map-frame"
+        src="https://veckobrevskartan.github.io/INBLICK-arktis-noder-karta/"
+        title="Interaktiv karta över händelser och strategiska noder i INBLICK-analysen"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </div>
   </div>
 </section>
 
