@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>INBLICK · Privata underrättelsebolag, satellitövervakning och Arktis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light only;
+    --ink:        #0d0d0d;
+    --ink-mid:    #2c2c2c;
+    --ink-light:  #555;
+    --ink-faint:  #888;
+    --paper:      #faf8f4;
+    --paper-warm: #f4f1eb;
+    --paper-rule: #e0dbd0;
+    --red:        #c41e24;
+    --red-pale:   #fdf0f0;
+    --gold:       #9a7100;
+    --gold-pale:  #fdf8e8;
+    --blue:       #1a3a6b;
+    --col-max:    860px;
+    --col-wide:   1120px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: #faf8f4 !important; }
+  body {
+    background-color: #faf8f4 !important;
+    color: #0d0d0d !important;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.82;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, #c41e24, #9a7100);
+    width: 0%; z-index: 1000; transition: width 0.1s linear;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead { background-color: #0d0d0d; border-bottom: 4px solid #c41e24; }
+  .masthead-inner {
+    max-width: var(--col-wide); margin: 0 auto; padding: 18px 40px 16px;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .inblick-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; border: none; }
+  .inblick-wordmark { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: #faf8f4; letter-spacing: 0.06em; line-height: 1; }
+  .inblick-wordmark em { color: #c41e24; font-style: normal; }
+  .inblick-divider { width: 1px; height: 30px; background: rgba(250,248,244,0.22); }
+  .inblick-tagline { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.17em; text-transform: uppercase; color: rgba(250,248,244,0.5); line-height: 1.4; }
+  .masthead-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,248,244,0.4); text-align: right; }
+
+  /* ── INBLICK INTRO ── */
+  .inblick-intro { background-color: #f4f1eb; border-bottom: 1px solid #e0dbd0; padding: 26px 40px; }
+  .inblick-intro-inner { max-width: var(--col-max); margin: 0 auto; display: flex; gap: 20px; align-items: flex-start; }
+  .inblick-intro-bar { width: 3px; min-height: 56px; background: #c41e24; flex-shrink: 0; margin-top: 3px; }
+  .inblick-intro-text { font-size: 15px; line-height: 1.72; color: #555; font-style: italic; }
+  .inblick-intro-text strong { font-style: normal; font-weight: 600; color: #2c2c2c; }
+
+  /* ── CLASSIFICATION ── */
+  .classification-banner { background-color: #c41e24; color: white; text-align: center; padding: 8px 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; }
+
+  /* ── HERO ── */
+  .hero { background-color: #0d0d0d; color: #faf8f4; padding: 80px 40px 68px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.025) 39px, rgba(255,255,255,0.025) 40px); pointer-events: none; }
+  .hero-inner { max-width: var(--col-max); margin: 0 auto; position: relative; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #c41e24; margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
+  .hero-kicker::before { content: ''; display: block; width: 28px; height: 2px; background: #c41e24; flex-shrink: 0; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900; line-height: 1.09; letter-spacing: -0.02em; margin-bottom: 28px; color: #faf8f4; }
+  .hero-deck { font-size: 18px; font-weight: 300; line-height: 1.65; color: rgba(250,248,244,0.72); max-width: 680px; margin-bottom: 40px; font-style: italic; }
+  .hero-byline { display: flex; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.13); padding-top: 20px; }
+  .hero-byline-item { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,248,244,0.45); }
+  .hero-byline-item strong { display: block; color: rgba(250,248,244,0.82); font-weight: 500; margin-bottom: 3px; font-size: 11px; }
+
+  /* ── ASSESSMENT SECTION ── */
+  .assessment-section { background-color: #f4f1eb; border-bottom: 4px solid #0d0d0d; }
+  .assessment-inner { max-width: var(--col-max); margin: 0 auto; padding: 56px 40px; }
+  .assessment-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #c41e24; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .assessment-label::after { content: ''; flex: 1; height: 1px; background: #c41e24; opacity: 0.25; }
+  .assessment-question { font-family: 'Playfair Display', serif; font-size: clamp(17px, 2.4vw, 22px); font-weight: 700; line-height: 1.48; color: #0d0d0d; margin-bottom: 36px; padding-left: 20px; border-left: 4px solid #c41e24; }
+
+  /* ── CONFIDENCE VISUALISATION ── */
+  .confidence-visual {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 32px;
+    background: white;
+    border: 1px solid #e0dbd0;
+  }
+  @media (max-width: 640px) { .confidence-visual { grid-template-columns: 1fr; } }
+  .conf-ring-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto; }
+  .conf-ring-wrap svg { width: 100%; height: 100%; }
+  .conf-ring-bg { fill: none; stroke: #e0dbd0; stroke-width: 12; }
+  .conf-ring-fill { fill: none; stroke: #c41e24; stroke-width: 12; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transform-origin: center; transform: rotate(-90deg); transition: stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1); }
+  .conf-ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .conf-pct { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900; color: #c41e24; line-height: 1; }
+  .conf-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #888; margin-top: 4px; }
+  .conf-meta { }
+  .verdict-badge { display: inline-block; background-color: #0d0d0d; color: #faf8f4; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; padding: 9px 20px; text-transform: uppercase; margin-bottom: 16px; }
+  .conf-scale { margin-top: 16px; }
+  .conf-scale-track { height: 6px; background: #e0dbd0; border-radius: 3px; position: relative; margin-bottom: 8px; }
+  .conf-scale-fill { height: 100%; background: linear-gradient(90deg, #f0a800, #c41e24); border-radius: 3px; width: 0%; transition: width 2s cubic-bezier(.4,0,.2,1) 0.3s; }
+  .conf-scale-marker { position: absolute; top: -4px; width: 14px; height: 14px; background: #c41e24; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: left 2s cubic-bezier(.4,0,.2,1) 0.3s; left: 0%; transform: translateX(-50%); }
+  .conf-scale-labels { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; }
+  .scale-levels { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+  .scale-level { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border: 1px solid #e0dbd0; color: #888; }
+  .scale-level.active { background: #c41e24; color: white; border-color: #c41e24; }
+
+  .assessment-body p { font-size: 17px; line-height: 1.84; color: #2c2c2c; margin-bottom: 20px; }
+  .assessment-body p:last-child { margin-bottom: 0; }
+
+  .uncertainty-box { background-color: white; border: 1px solid #e0dbd0; border-left: 4px solid #9a7100; padding: 24px 28px; margin-top: 32px; }
+  .uncertainty-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #9a7100; margin-bottom: 12px; }
+  .uncertainty-box p { font-size: 16px; color: #2c2c2c; line-height: 1.78; margin: 0; }
+
+  /* ── KEY QUOTES ── */
+  .key-quote { margin: 36px 0; padding: 0; border: none; }
+  .key-quote-text { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; font-weight: 400; line-height: 1.5; color: #0d0d0d; padding: 28px 32px; border-left: 5px solid #c41e24; background: #f4f1eb; margin-bottom: 0; }
+  .key-quote-source { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #888; padding: 10px 32px; background: #eceae4; border-left: 5px solid #e0dbd0; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: #e0dbd0; border: 1px solid #e0dbd0; margin: 32px 0; }
+  .stat-cell { background: white; padding: 22px 18px; text-align: center; }
+  .stat-val { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: #0d0d0d; line-height: 1; margin-bottom: 7px; }
+  .stat-val span { font-size: 18px; font-weight: 400; color: #888; }
+  .stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #888; line-height: 1.45; }
+
+  /* ── NAV ── */
+  .section-nav { border-bottom: 1px solid #e0dbd0; background-color: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+  .section-nav-inner { max-width: var(--col-wide); margin: 0 auto; padding: 0 40px; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  .section-nav a { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #888; text-decoration: none; border: none; padding: 14px 16px; border-right: 1px solid #e0dbd0; white-space: nowrap; display: block; transition: color 0.15s, background 0.15s, border-bottom 0.15s; border-bottom: 2px solid transparent; }
+  .section-nav a:first-child { padding-left: 0; }
+  .section-nav a:last-child { border-right: none; }
+  .section-nav a:hover, .section-nav a.active { color: #c41e24; border-bottom-color: #c41e24; background: rgba(196,30,36,0.04); }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── CONTENT ── */
+  .content-wrapper { max-width: var(--col-max); margin: 0 auto; padding: 0 40px; }
+  .article-section { padding: 64px 0; border-bottom: 1px solid #e0dbd0; }
+  .article-section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 14px; border-bottom: 2px solid #0d0d0d; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: #c41e24; min-width: 24px; flex-shrink: 0; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(21px, 3vw, 28px); font-weight: 700; line-height: 1.22; color: #0d0d0d; }
+  .subsection-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; color: #0d0d0d; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid #e0dbd0; }
+
+  p { margin-bottom: 20px; font-size: 17.5px; line-height: 1.82; color: #2c2c2c; }
+  p:last-child { margin-bottom: 0; }
+  a { color: #1a3a6b; text-decoration: none; border-bottom: 1px solid rgba(26,58,107,0.28); transition: color 0.15s, border-color 0.15s; }
+  a:hover { color: #c41e24; border-bottom-color: #c41e24; }
+  strong { font-weight: 600; color: #0d0d0d; }
+  em { font-style: italic; }
+
+  /* ── HIGHLIGHTED FACT BOX ── */
+  .fact-box { background: white; border: 1px solid #e0dbd0; border-left: 4px solid #1a3a6b; padding: 20px 24px; margin: 28px 0; }
+  .fact-box p { font-size: 15.5px; color: #2c2c2c; margin: 0; line-height: 1.72; }
+  .fact-box-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #1a3a6b; margin-bottom: 8px; }
+
+  /* ── INCIDENT CARDS ── */
+  .incident-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e0dbd0; border: 1px solid #e0dbd0; margin: 32px 0; }
+  @media (max-width: 640px) { .incident-grid { grid-template-columns: 1fr; } }
+  .incident-card { background: white; padding: 26px 24px; cursor: pointer; transition: background 0.15s; }
+  .incident-card:hover { background: #fdfcfa; }
+  .incident-card-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #c41e24; margin-bottom: 8px; }
+  .incident-card-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #0d0d0d; margin-bottom: 12px; line-height: 1.32; }
+  .incident-card p { font-size: 14px; line-height: 1.68; color: #555; margin-bottom: 14px; }
+  .incident-card-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .incident-link { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #1a3a6b; border: 1px solid rgba(26,58,107,0.25); padding: 3px 8px; text-decoration: none; transition: background 0.15s, color 0.15s; }
+  .incident-link:hover { background: #1a3a6b; color: white; border-color: #1a3a6b; }
+  .incident-card-status { display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 14px; }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; animation: pulse-dot 2s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.7; } }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 32px 0; position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, #c41e24, #e0dbd0); }
+  .timeline-item { position: relative; margin-bottom: 28px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -24px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: white; border: 2px solid #c41e24; }
+  .timeline-dot.active { background: #c41e24; }
+  .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #c41e24; margin-bottom: 4px; }
+  .timeline-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #0d0d0d; margin-bottom: 6px; line-height: 1.3; }
+  .timeline-body { font-size: 14.5px; color: #555; line-height: 1.68; }
+
+  /* ── RISK TABLE ── */
+  .risk-table-wrap { overflow-x: auto; margin: 32px 0; border: 1px solid #e0dbd0; -webkit-overflow-scrolling: touch; }
+  .risk-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .risk-table thead { background-color: #0d0d0d; }
+  .risk-table thead th { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; padding: 14px 16px; text-align: left; font-weight: 500; white-space: nowrap; color: #faf8f4; }
+  .risk-table tbody tr { border-bottom: 1px solid #e0dbd0; transition: background 0.15s; }
+  .risk-table tbody tr:hover { background: #f9f7f3; }
+  .risk-table tbody tr:nth-child(even) { background: #f9f7f3; }
+  .risk-table tbody tr:nth-child(even):hover { background: #f4f1eb; }
+  .risk-table tbody td { padding: 13px 16px; vertical-align: top; line-height: 1.5; color: #2c2c2c; font-size: 13px; }
+  .risk-table tbody td:first-child { font-weight: 400; color: #0d0d0d; }
+  .prio-kritisk { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: white; background-color: #c41e24; padding: 3px 8px; white-space: nowrap; }
+  .prio-hog { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #0d0d0d; background-color: #e8c840; padding: 3px 8px; white-space: nowrap; }
+  .status-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: #666; }
+
+  /* ── CONCLUSIONS ── */
+  .conclusion-list { list-style: none; margin: 28px 0; }
+  .conclusion-list li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; margin-bottom: 32px; align-items: start; }
+  .conclusion-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #c41e24; line-height: 1.15; text-align: right; }
+  .conclusion-body { padding-top: 4px; }
+  .conclusion-body strong { display: block; font-size: 17px; font-weight: 600; color: #0d0d0d; margin-bottom: 8px; line-height: 1.35; }
+  .conclusion-body p { font-size: 15.5px; color: #555; margin: 0; line-height: 1.75; }
+
+  /* ── REFERENCES ── */
+  .references-section { background-color: #f4f1eb; border-top: 2px solid #0d0d0d; padding: 56px 40px; }
+  .references-inner { max-width: var(--col-max); margin: 0 auto; }
+  .ref-header { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #888; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid #e0dbd0; }
+  .ref-columns { columns: 2; column-gap: 40px; }
+  @media (max-width: 640px) { .ref-columns { columns: 1; } }
+  .ref-item { break-inside: avoid; margin-bottom: 14px; font-size: 13px; line-height: 1.6; color: #555; }
+  .ref-item a { color: #1a3a6b; border-bottom-color: rgba(26,58,107,0.2); }
+  .source-note { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #aaa; border-left: 2px solid #e0dbd0; padding-left: 6px; margin-left: 4px; }
+
+  /* ── FOOTER ── */
+  footer { background-color: #0d0d0d; color: rgba(250,248,244,0.35); padding: 36px 40px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; line-height: 2.2; }
+  footer span { color: rgba(250,248,244,0.62); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; letter-spacing: 0.06em; color: rgba(250,248,244,0.75); margin-bottom: 8px; }
+  .footer-logo em { color: #c41e24; font-style: normal; }
+
+  /* ── TOOLTIP ── */
+  [data-tooltip] { position: relative; cursor: help; border-bottom: 1px dashed rgba(26,58,107,0.4); }
+  [data-tooltip]:hover::after { content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #0d0d0d; color: #faf8f4; padding: 6px 10px; font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; white-space: nowrap; z-index: 100; pointer-events: none; margin-bottom: 6px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .masthead-inner { padding: 14px 20px; }
+    .inblick-intro { padding: 22px 20px; }
+    .hero { padding: 48px 20px 40px; }
+    .assessment-inner { padding: 40px 20px; }
+    .content-wrapper { padding: 0 20px; }
+    .section-nav-inner { padding: 0 20px; }
+    .references-section { padding: 40px 20px; }
+    footer { padding: 28px 20px; }
+    .inblick-tagline, .inblick-divider, .masthead-meta { display: none; }
+    .conf-ring-wrap { width: 140px; height: 140px; }
+    .conclusion-list li { grid-template-columns: 36px 1fr; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="inblick-logo" href="#">
+      <div class="inblick-wordmark">INBL<em>I</em>CK</div>
+      <div class="inblick-divider"></div>
+      <div class="inblick-tagline">Säkerhetsanalys<br>Svensk OSINT</div>
+    </a>
+    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.0</div>
+  </div>
+</header>
+
+<div class="inblick-intro">
+  <div class="inblick-intro-inner">
+    <div class="inblick-intro-bar"></div>
+    <p class="inblick-intro-text">
+      <strong>INBLICK</strong> är Svensk OSINTs djupanalysserie – underrättelseanalytiska bedömningar av säkerhetspolitiska trender, hybridhot och kritisk infrastruktur. Serien riktar sig till säkerhetsanalytiker, beslutsfattare och kvalificerade läsare med intresse för öppen källanalys på strategisk nivå. Allt källmaterial är öppet och verifierbart. Bedömningsformatet följer etablerade analytiska standarder med explicita sannolikhetsnivåer och redovisade osäkerhetsfaktorer.
+    </p>
+  </div>
+</div>
+
+<div class="classification-banner">Öppen källanalys &nbsp;·&nbsp; Offentligt material &nbsp;·&nbsp; Ej sekretessbelagd</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Hotanalytisk bedömning &nbsp;·&nbsp; Arktis &nbsp;·&nbsp; Rymdsäkerhet &nbsp;·&nbsp; Privata underrättelsebolag</div>
+    <h1>Privata underrättelsebolag, satellitövervakning och Arktis</h1>
+    <p class="hero-deck">När kommersiella satellitsystem, privata analysplattformar och datamäklarnätverk flyter ihop med statlig underrättelseverksamhet – utan demokratisk tillsyn, utan reglering, och med motståndareer som redan opererar i den uppkomna gråzonen.</p>
+    <div class="hero-byline">
+      <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
+      <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
+      <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
+      <div class="hero-byline-item"><strong>Version</strong>3.0</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BEDÖMNING ══ -->
+<section class="assessment-section" id="bedomning">
+  <div class="assessment-inner">
+    <div class="assessment-label">Bedömningsfråga</div>
+    <blockquote class="assessment-question">
+      Kommer statlig underrättelseförmåga inom NATO-alliansen att vara så inbyggt beroende av kommersiella satellitsystem, privata analysplattformar och datamäklarnätverk att ingen demokratisk stat ensam kan genomföra ett fullskaligt underrättelseuppdrag utan privata aktörers medverkan – och kommer detta att ha inträffat innan år 2030 utan att åtföljande demokratisk tillsyn eller regulatoriska ramverk är på plats?
+    </blockquote>
+
+    <!-- CONFIDENCE VISUALISATION -->
+    <div class="confidence-visual" id="conf-block">
+      <div class="conf-ring-wrap">
+        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <circle class="conf-ring-bg" cx="70" cy="70" r="54"/>
+          <circle class="conf-ring-fill" id="conf-arc" cx="70" cy="70" r="54"/>
+        </svg>
+        <div class="conf-ring-text">
+          <div class="conf-pct" id="conf-pct-num">0</div>
+          <div class="conf-label">procent</div>
+        </div>
+      </div>
+      <div class="conf-meta">
+        <div class="verdict-badge">Bedömning: Troligt</div>
+        <p style="font-size:15px;color:#555;line-height:1.6;margin-bottom:14px;">Beroendet existerar redan. NATO, brittiska försvarsdepartement, franska DGSI och tyska delstatspoliser är på ett sätt som sitter inbyggt i systemet inbyggda i Palantirs nätverk. Ingen av USA:s NATO-allierade kan genomföra ett fullskaligt underrättelseuppdrag utan privata aktörers medverkan.</p>
+        <div class="conf-scale">
+          <div class="conf-scale-track">
+            <div class="conf-scale-fill" id="conf-scale-fill"></div>
+            <div class="conf-scale-marker" id="conf-scale-marker"></div>
+          </div>
+          <div class="conf-scale-labels">
+            <span>Osannolikt</span><span>Möjligt</span><span>Troligt</span><span>Bekräftat</span>
+          </div>
+        </div>
+        <div class="scale-levels">
+          <div class="scale-level">Osannolikt &lt;30%</div>
+          <div class="scale-level">Möjligt 30–60%</div>
+          <div class="scale-level">Troligt 60–85%</div>
+          <div class="scale-level active">Troligt 85%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="assessment-body">
+      <p>Beroendet är inte ett framtida tillstånd att förhindra – det är ett dokumenterat nutida faktum som accelererar. <a href="https://defensescoop.com/2025/04/14/nato-palantir-maven-smart-system-contract/">NATO:s Allied Command Operations antog i mars 2025 Palantirs Maven Smart System (MSS NATO)</a> som sin gemensamma AI-plattform för underrättelsefusion och målidentifiering – en av alliansens snabbaste anskaffningsprocesser, genomförd på sex månader. Beslutet är bindande för samtliga 32 allierade, inklusive Sverige. <a href="https://www.find-tender.service.gov.uk/Notice/083874-2025">Det brittiska försvarsministeriet tecknade i december 2025 ett nytt ramavtal med Palantir</a> värt 240 miljoner pund löpande till 2029, avseende beslutsunderlag för kritiska strategiska och praktiska uppdrag med upp till NATO-klassificerad data. <a href="https://www.malaymail.com/news/money/2025/12/16/us-tech-firm-palantir-secures-three-year-extension-with-french-spies/202143">Frankrikes DGSI förnyade i december 2025 sitt avtal med Palantir</a> – ett samarbete sedan 2016 – för ytterligare tre år. <a href="https://verfassungsblog.de/police-ai-tools/">De tyska delstaterna Baden-Württemberg och Nordrhein-Westfalen ändrade under 2025 sina polislagar</a> för att möjliggöra eller utöka den här typen av analysplattformar. I flera fall har själva användandet av Palantir dock inte haft tydlig lag- eller regeringsreglering som grund, utan vuxit fram genom <a href="https://www.tagesschau.de/inland/innenpolitik/palantir-baden-wuerttemberg-100.html">upphandlingar och kontrakt mellan myndigheter och företaget</a>.</p>
+
+      <p>Samtidigt visar datamäklarmarknaden en sårbarhet som redan utnyttjas i skarpa lägen. <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">CENTCOM bekräftade i maj 2026</a> att motståndare utnyttjar kommersiell platsdata mot aktiv militärpersonal i fält. <a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">Duke Universitys studie visade att militärpersonal kan spåras för 0,12 dollar per post</a>, köpt via en .asia-domän utan att den säljande aktören reagerar.</p>
+
+      <p>Det norska händelseförloppet under 2026 visar att motståndareer inte inväntar politisk reglering. <a href="https://therecord.media/norawy-intelligence-discloses-salt-typhoon-attacks">PST bekräftade i februari att Salt Typhoon penetrerat norsk infrastruktur</a>. <a href="https://www.thelocal.no/20260508/norway-arrests-chinese-woman-for-spying-on-satellite-data">PST neutraliserade i maj en kinesisk satellitmottagaroperation på Andøya</a> – Europas viktigaste kommersiella uppskjutningsplats för polarsatelliter – dold bakom ett norskt frontbolag via ett singaporianskt mellanlager. <a href="https://www.document.news/news/2026/05/chinese-spy-suspect-was-living-in-a-bunker-at-bodo-airport">Åtta dagar senare greps en kinesisk medborgare vid Bodø Air Station</a>, sedan oktober 2025 hem för NATO:s regionala Combined Air Operations Centre för Norden och Arktis – det praktiska nav som samordnar det luftrum Andøyas uppskjutningar sker i. Andøya och Bodø är inte separata mål. De är sammanlänkade delar av samma strategiska nätverk.</p>
+
+      <p>Det som låser fast problemet är enkelt: de stater som tydligast ser riskerna kan inte lösa dem på egen hand. Att lämna Maven Smart System innebär förlorad interoperabilitet med alliansens gemensamma underrättelseflöde. Att stanna kvar innebär att kritisk underrättelseinfrastruktur kontrolleras av ett privat bolag vars tillgänglighet och villkor kan förändras av ett enskilt affärsbeslut. Det är inte en hypotetisk sårbarhet. <a href="https://thewaldbrief.substack.com/p/can-europe-escape-palantir">NATO Allied Command Operations nödadoption av Maven i mars 2025 väckte specifik irritation i Paris</a>, vars militärledning betraktar överlåtande av stridsdataflöden till en amerikansk plattform som en fråga om praktisk suveränitet.</p>
+    </div>
+
+    <div class="uncertainty-box">
+      <div class="uncertainty-label">⚠ Osäkerhetsfaktor</div>
+      <p>Det europeiska suveränitetsinitiativet kan röra sig snabbare än bedömningen förutsätter. <a href="https://www.heise.de/en/news/Digital-Sovereignty-BfV-Buys-European-Palantir-Alternative-11293717.html">Tysklands BfV valde i maj 2026 franska ChapsVision och ArgonOS framför Palantir</a>. Om en likvärdig europeisk plattform når NATO-certifiering förskjuts beroendet – men löser inte tillsynsproblemet, det förflyttar det. Den djupare frågan är inte om plattformen är amerikanskt eller europeiskt ägd, utan om det finns demokratisk insyn i hur den används. Den frågan har varken NATO, EU eller någon enskild allierad stat svarat på.</p>
+    </div>
+  </div>
+</section>
+
+<nav class="section-nav">
+  <div class="section-nav-inner">
+    <a href="#bedomning">Bedömning</a>
+    <a href="#sammanfattning">Sammanfattning</a>
+    <a href="#fenomenet">Fenomenet</a>
+    <a href="#techoligarker">Techoligarker</a>
+    <a href="#palantir-europa">Palantir i Europa</a>
+    <a href="#satelliter">Satelliter</a>
+    <a href="#arktis">Arktis</a>
+    <a href="#andoya">Andøya-klustret</a>
+    <a href="#datamaklare">Datamäklare</a>
+    <a href="#riskmatris">Riskbild</a>
+    <a href="#sverige">Sverige</a>
+    <a href="#slutsatser">Slutsatser</a>
+    <a href="#referenser">Källor</a>
+  </div>
+</nav>
+
+<main>
+<div class="content-wrapper">
+
+<!-- SAMMANFATTNING -->
+<section id="sammanfattning" class="article-section">
+  <div class="section-header">
+    <span class="section-num">—</span>
+    <h2 class="section-title">Sammanfattning</h2>
+  </div>
+  <div class="reveal">
+  <p>Den kommersiella satellitkonstellation som vuxit fram under 2020-talet har fundamentalt förändrat vad privata aktörer kan se, analysera och monetarisera om enskilda individer, fordon och infrastruktur. Rapporten behandlar tre sammanflätade hottyper: (1) framväxten av privata underrättelseföretag med förmågor som tidigare tillhörde stater, (2) den strategiska kampen om arktisk rymdinfrastruktur – markstationer, uppskjutningsplatser och de satellitbanor som gör Arktis till ett kritiskt nav för global datanedladdning – och (3) datamäklarindustrins förmåga att i realtid kartlägga individer och militär personal.</p>
+  <p>Rapporten bedömer att sammansmältningen av dessa tre dimensioner utgör en betydande och underuppskattad nationell säkerhetsrisk för Sverige och dess allierade, och att den politiska responsen är på ett sätt som sitter inbyggt i systemet eftersläpande i förhållande till teknologins utvecklingstakt. De norska händelserna under 2026 bekräftar bedömningens viktigaste tes med empirisk precision och visar att motståndareer redan agerar redan i den gråzon som uppstår när kommersiell och statlig säkerhetsinfrastruktur flyter ihop utan anpassning i myndigheter och regelverk.</p>
+  </div>
+</section>
+
+<!-- 01 HUR MONOPOLET FÖRSVANN -->
+<section id="fenomenet" class="article-section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Hur statens gamla monopol försvann</h2>
+  </div>
+  <div class="reveal">
+  <div class="stats-strip">
+    <div class="stat-cell"><div class="stat-val" id="s1">0<span> mdr $</span></div><div class="stat-lbl">Global rymdekonomi 2024</div></div>
+    <div class="stat-cell"><div class="stat-val" id="s2">0<span> %</span></div><div class="stat-lbl">Kommersiell andel</div></div>
+    <div class="stat-cell"><div class="stat-val" id="s3">0<span> mdr $</span></div><div class="stat-lbl">Satellitövervakning 2033 (prognos)</div></div>
+    <div class="stat-cell"><div class="stat-val" id="s4">0<span> %</span></div><div class="stat-lbl">Tillväxt per år (CAGR)</div></div>
+  </div>
+
+  <p>Stater har historiskt haft monopol på satellitbaserade övervakningsförmågor. Det monopolet är upplöst. Den globala rymdekonomin uppgick till <a href="https://atlasinstitute.org/the-privatisation-of-persistent-surveillance-risks-and-opportunities-for-natos-space-strategy/">613 miljarder US-dollar år 2024</a>, varav den kommersiella sektorn stod för 78 procent. Marknadsvärdet för satellitövervakningstjänster beräknas växa från 6,8 miljarder dollar år 2024 till <a href="https://marketintelo.com/report/satellite-surveillance-services-market">18,3 miljarder dollar år 2033</a> – en tillväxt driven av dramatiskt sjunkande uppskjutningskostnader, miniaturiserad satellithårdvara och kommersiella marknader som inte är förbehållna stater.</p>
+
+  <p>Resultatet är att privata tech-oligarker och deras bolag i dag besitter underrättelseförmågaer som under kalla kriget var förbehållna supermakter. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=56791">Shoshana Zuboff, professor emerita vid Harvard Business School</a>, beskrev det det ekonomiska system som ligger bakom utvecklingen i <em>The Age of Surveillance Capitalism</em> (2019): mänsklig erfarenhet omvandlas till råmaterial, beteendedata omvandlas till <span data-tooltip="Överskottsdata som säljs på kommersiella marknader">behavioral surplus</span> och handlas på <em>behavioral futures markets</em>. Satellitövervakningen är den del av detta system som knyter data till platser, rörelser och fysiska objekt.</p>
+
+  <div class="key-quote">
+    <div class="key-quote-text">"Satellit imagery has made it possible for actors with the right knowledge to essentially become intelligence analysts without needing security clearance."</div>
+    <div class="key-quote-source">Payload Space, 2022 — <a href="https://payloadspace.com/osint-via-satellite/" style="color:#faf8f4;border-bottom-color:rgba(250,248,244,0.3)">OSINT via satellit</a></div>
+  </div>
+
+  <p>Det går inte längre att behandla underrättelseförmåga som en statlig exklusivitet, anta att kommersiella plattformar är neutrala, eller hävda att civila och militära infraupplägg är meningsfullt åtskilda. Dessa distinktioner har upplösts – inte av politiska beslut utan av marknadsdynamik.</p>
+  </div>
+</section>
+
+<!-- 02 TECHOLIGARKER -->
+<section id="techoligarker" class="article-section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Techmiljardärer som nya underrättelseaktörer</h2>
+  </div>
+  <div class="reveal">
+  <p><a href="https://www.forbes.com/sites/antoniopequenoiv/2024/07/16/jd-vance-and-peter-thiel-what-to-know-about-the-relationship-between-trump-running-mate-and-billionaire/">Peter Thiel har också varit mentor och finansiär åt JD Vance</a>, och han räknas till kretsen kring den så kallade <a href="https://fortune.com/2025/05/21/peter-thiel-silicon-valley-trump-administration-elon-musk-jd-vance/">PayPal-maffian</a> – nätverket av entreprenörer och investerare som fått ovanligt stort inflytande över amerikansk teknik, säkerhetspolitik och statsförvaltning.</p>
+  </div>
+  <div class="reveal">
+  <h3 class="subsection-title">SpaceX Starshield: Det privata spionagesatellitsystemet</h3>
+  <p><a href="https://www.reuters.com/technology/space/musks-spacex-is-building-spy-satellite-network-us-intelligence-agency-sources-2024-03-16/">Reuters avslöjade i mars 2024</a> att SpaceX bygger ett nätverk av hundratals övervakningssatelliter under ett hemligstämplat avtal med National Reconnaissance Office (NRO) till ett värde av 1,8 miljarder dollar – utformat för att ge det amerikanska försvaret kapacitet att snabbt identifiera mål "nästan var som helst på jordklotet". <a href="https://www.spacex.com/starshield/">Starshield</a> erbjuder, till skillnad från civila Starlink, hög krypteringskapacitet och förmågan att hantera hemligstämplad data. Systemet använder Starlinks satellitkonstellation i låg jordbana – en sammanblandning av civil och militär rymdanvändning som en kinesisk militäranalytiker i <a href="https://www.globaltimes.cn/page/202403/1308988.shtml">Global Times</a> sammanfattade: "linjen är inte tydlig".</p>
+
+  <div class="fact-box">
+    <div class="fact-box-label">Problem i upplägget</div>
+    <p>Starshield är ett hemligstämplat statligt kontrakt drivet av ett privat bolag vars grundare har egna geopolitiska agendor, affärsintressen i Kina och offentliga politiska positioner. Ingen demokratisk institution har mandat att granska hur förmågorna används, av vem, eller under vilka omständigheter de kan återkallas.</p>
+  </div>
+
+  <p>Elon Musks SpaceX och Jeff Bezos Blue Origin representerar ett systemskifte i hur USA:s underrättelsesamhälle organiseras. <a href="https://www.theguardian.com/us-news/2025/apr/06/trump-musk-billionaires-influence-national-security">The Guardian konstaterade i april 2025 att den amerikanska underrättelsegemenskapen riskerar att bli inbyggt beroende av dessa aktörer</a>. En artikel i <a href="https://www.tandfonline.com/doi/full/10.1080/09505431.2026.2655707"><em>Social Studies of Science</em> (2026)</a> varnar för att oligarkisk kontroll av rymden är en direkt konsekvens av grundläggande beslut från amerikanska rymdprogrammets tidiga år – inte ett brott med historien.</p>
+
+  <h3 class="subsection-title">Amazon Web Services och statlig övervakningsfusion</h3>
+  <p><a href="https://warehouseworkers.org/while-eyes-are-on-musk-dont-forget-bezos/">Amazon Web Services</a> fungerar som värdtjänst för en tredjedel av internet och driver lönsamma federala kontrakt. Amazon har marknadsanpassat de verktyg för datainhämtning och beteendeövervakning som ursprungligen utvecklades för lagerlokaler och säljer dem nu till staten, vilket skapar en fusion av konsument-, administrativ, biometrisk och platsdata.</p>
+  </div>
+</section>
+
+<!-- 03 PALANTIR I EUROPA -->
+<section id="palantir-europa" class="article-section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Palantir i Europa: växande beroende och försök att bryta det</h2>
+  </div>
+  <div class="reveal">
+  <p>Palantir Technologies fungerar som den kritiska länken mellan rymdbaserade rådata och handlingsorienterad underrättelse. <a href="https://afsc.org/palantir-explainer">Bolaget grundades med CIA-finansiering</a> och opererar primärt genom Foundry (privat sektor) och Gotham (statlig sektor). <a href="https://www.nytimes.com/2025/05/30/technology/trump-palantir-data-americans.html">Trump-administrationen expanderade Palantirs roll kraftigt</a>: bolaget erhöll mer än 113 miljoner dollar i federala kontrakt, utöver ett DoD-kontrakt värt 795 miljoner dollar, och Foundry implementerades i minst fyra federala myndigheter inklusive Department of Homeland Security.</p>
+
+  <p>Palantirs inbäddning i europeisk säkerhetsstruktur är mer djupgående än vad den offentliga debatten vanligen reflekterar. <a href="https://caat.org.uk/data/companies/palantir/">Bolaget använder sina verktyg i polismyndigheter i Tyskland, Danmark och Storbritannien</a>. Tre tyska delstater – Nordrhein-Westfalen, Hessen och Bayern – <a href="https://cybernews.com/tech/germany-palantir-alternative/">kör Palantirs Gotham-plattform i polisarbetet</a>, vilket ger plattformen tillgång till personuppgifter inklusive adresser, bötesregister, brottsregister och skannat innehåll från sociala mediekanaler. <a href="https://www.escudodigital.com/en/defense/europe/palantir-embeds-across-european-militaries-nato-germany-holds-back.html">Frankrikes DGSI, som arbetat med Palantir sedan 2016, förnyade i december 2025 sitt avtal</a> – efter att ha använt plattformen under bland annat Paris OS 2024. <a href="https://www.find-tender.service.gov.uk/Notice/083874-2025">Det brittiska försvarsdepartement:s nya ramavtal</a> från december 2025 värt 240 miljoner pund löper till 2029 och täcker beslut med upp till NATO-klassificerad data.</p>
+
+  <div class="key-quote">
+    <div class="key-quote-text">"No employee of a foreign industrial company should have access to national databases."</div>
+    <div class="key-quote-source">Viceamiral Thomas Daum, chef Bundeswehr Cyber och Information Domain Service, april 2026 — <a href="https://xpert.digital/en/the-german-armed-forces-are-foregoing-palantir/" style="color:#faf8f4;border-bottom-color:rgba(250,248,244,0.3)">Xpert Digital</a></div>
+  </div>
+
+  <h3 class="subsection-title">Sverige: Acus – Palantir under annat namn</h3>
+  <p><a href="https://omni.se/granskning-svensk-polis-anvander-kontroversiellt-ai-supervapen/a/VzyO7W">Dagens ETC:s granskning från november 2025</a> visar att svensk polis i minst fem år har använt en specialanpassad version av Palantirs plattform Gotham under namnet <strong>Acus</strong>. Enligt granskningen används systemet för att knyta ihop uppgifter från bland annat brottsregister, BankID, mobiloperatörer och sociala medier, vilket gör det lättare att se samband mellan personer, kontakter och rörelser. <a href="https://www.etc.se/story/svenska-kodare-bygger-palantirs-hemliga-system-paa-plats-i-polishuset">ETC rapporterade också</a> att Palantir-kodare arbetat inne i polishuset på Kungsholmen under sträng tystnadsplikt, medan <a href="https://www.tv4.se/artikel/6W2BaTandDPNm4mp4UU91V/polisens-anvaendning-av-palantir-ifragasaetts-riskerna-aer-enorma">TV4:s rapportering i februari 2026</a> knöt systemet till både gränspolisen och arbetet mot organiserad brottslighet.</p>
+
+  <div class="fact-box">
+    <div class="fact-box-label">Den svenska dimensionen</div>
+    <p>Acus visar att Palantir inte bara är ett amerikanskt eller kontinentaleuropeiskt fenomen. Den svenska användningen tyder på att samma beroende finns här, men under ett annat namn och med betydligt mindre offentlig insyn än i flera andra länder. När Palantir diskuteras i Europa handlar det därför också om Sverige, inte bara om Tyskland, Frankrike eller Danmark.</p>
+  </div>
+
+<h3 class="subsection-title">ChapsVision och den europeiska motrörelsen</h3>
+  <p><a href="https://www.heise.de/en/news/Digital-Sovereignty-BfV-Buys-European-Palantir-Alternative-11293717.html">Tysklands inhemska säkerhetstjänst BfV valde i maj 2026 det franska bolaget ChapsVision</a> och dess ArgonOS-plattform framför Palantir för analys av stora datamängder – med uttrycklig hänvisning till behovet av suverän infrastruktur utan extern åtkomst. ArgonOS körs i ett luftgapat, suveränt molnmiljö. <a href="https://xpert.digital/en/the-german-armed-forces-are-foregoing-palantir/">Bundeswehr har parallellt uteslutit Palantir från sin militära molnupphandling</a> och testar de europeiska alternativen Almato, Orcrist och ChapsVision.</p>
+
+  <p><a href="https://thewaldbrief.substack.com/p/can-europe-escape-palantir">ChapsVision är i dag den enda europeiska dataanalysplattform som bedöms kunna konkurrera reellt med Palantir</a>. Bolaget grundades 2019 och vann 2024 DGSI:s upphandling för att ersätta Palantirs Gotham – och slog då ut Thales och Atos. Ändå saknar bolaget den driftsmognad och skalbarhet som krävs för NATO-alliansomfattande adoption. NATO använder fortfarande Palantir som sin system som alliansens underrättelsearbete i praktiken vilar på. <a href="https://www.ftm.eu/articles/european-investors-palantir-investment">Mer än 100 stora europeiska banker, kapitalförvaltare och pensionsfonder ökade sitt Palantir-innehav med nästan 70 procent</a> under 2025 – vilket visar att finanssektorn röstar med kapitalet för den amerikanska plattformen, trots den politiska retoriken om europeisk suveränitet.</p>
+  </div>
+</section>
+
+<!-- 04 SATELLITER -->
+<section id="satelliter" class="article-section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Kommersiella jordobservationssatelliter: Kapaciteten som förändrat spelreglerna</h2>
+  </div>
+  <div class="reveal">
+  <p><a href="https://spacenexus.us/compare/planet-labs-vs-maxar">Planet Labs driver världens största kommersiella jordobservationskonstellation</a> med 200+ satelliter som ger global daglig täckning vid 3–5 meters upplösning och 50 centimeters upplösning på begäran. Maxar levererar bildupplösning under 30 centimeter och är den primära leverantören av högupplöst satellitbild till den amerikanska regeringen via NGA och NRO.</p>
+
+  <p>Syntetisk aperturadar (SAR) representerar ett ytterligare tydligt skifte i förmåga: SAR-satelliter sänder egna mikrovågssignaler och skapar bilder oavsett ljusförhållanden, molntäcke eller väder. <a href="https://earth.esa.int/eogateway/news/iceye-the-world-s-first-sar-new-space-constellation">ICEYE</a>, grundat 2014 vid Aalto Universitetet i Finland, driver världens största kommersiella SAR-konstellation med 30+ mikrosatelliter och en bildupplösning på 25 centimeter – jämförbart med många statliga SAR-system. ICEYE levererar SAR-underrättelse till det ukrainska försvarsministeriet, NATO-länder och brittiska försvarsministeriet. <a href="https://www.capellaspace.com">Capella Space</a> är NRO:s och NGA:s primärleverantör av kommersiell SAR-data med 0,25 meters upplösning och upp till 15 besöksfrekvenser per dag. <a href="https://www.blacksky.com">BlackSky</a> levererar 35-centimeters upplösning med global återbesöksfrekvens på under 90 minuter och kan, enligt <a href="https://breakingdefense.com/2025/06/commercial-remote-sensing-the-critical-u-s-national-security-space-imperative/">Breaking Defense</a>, leverera underrättelse direkt till "den taktiska kanten av slagfältet".</p>
+
+  <p>Den avgörande frågan är inte om dessa teknologier finns, utan vem som kontrollerar dem och under vilka förhållanden de kan riktas mot civila mål. Den marknaden för kommersiell jordobservation finansieras till ungefär två tredjedelar av statliga kontrakt, men den kvarvarande tredjedelen är tillgänglig för vilken välbeställd aktör som helst.</p>
+  </div>
+</section>
+
+<!-- 05 ARKTIS -->
+<section id="arktis" class="article-section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Arktisk rymdinfrastruktur: Varför polarnärbanan är strategisk</h2>
+  </div>
+  <div class="reveal">
+  <p>En satellit i polarnärbana passerar Arktis vid varje omloppsbana. Det innebär att en markstation i polarnärt läge kan ladda ned data med en frekvens som inte är möjlig från stationer längre söderut – det är kärnan i Arktis strategiska värde som rymdinfrastrukturhub. <a href="https://en.wikipedia.org/wiki/Svalbard_Satellite_Station">Svalbard Satellite Station (SvalSat)</a>, belägen nära Longyearbyen på Svalbard, är en av världens största civila satellitmarkstationer. Stationen drivs av Kongsberg Satellite Services (KSAT), ett samriskföretag mellan Kongsberg Defence &amp; Aerospace och det norska rymdcentret.</p>
+
+  <p><a href="https://www.cigionline.org/publications/undercover-infrastructure-dual-use-arctic-satellite-ground-stations/">Centre for International Governance Innovation (2024)</a> identifierar hur markstationer som SvalSat utgör en allvarlig säkerhetsutmaning: privata bolag lanserar fler raketer och satelliter än någonsin, vilket ökar mängden rymdtillgångar för både civilt och militärt bruk. <a href="https://phys.org/news/2011-10-china-satellite.html">Stationens IT-system utnyttjades vid fyra tillfällen år 2007–2008</a>, möjligen av kinesiska militärhackare, för att störa amerikanska jordobservationssatelliter. Hackarna "uppnådde alla steg som krävs för att ge kommandon till satelliten", men valde att inte utfärda sådana kommandon. Att förmågan existerade utan att fullt ut utnyttjas indikerar strategisk återhållsamhet, inte teknologisk begränsning.</p>
+
+  <div class="key-quote">
+    <div class="key-quote-text">"People's Liberation Army openly states that the military will conduct Arctic reconnaissance and intelligence operations."</div>
+    <div class="key-quote-source">Hybrid CoE, 2026 — <a href="https://euromaidanpress.com/2026/01/22/russia-china-arctic-hybrid-threats-military-civil-fusion/" style="color:#faf8f4;border-bottom-color:rgba(250,248,244,0.3)">Euromaidanpress</a></div>
+  </div>
+
+  <p><a href="https://euromaidanpress.com/2026/01/22/russia-china-arctic-hybrid-threats-military-civil-fusion/">Hybrid CoE (2026)</a> dokumenterar hur Moskva och Peking omvandlar vetenskapliga expeditioner, sjöfartsinfrastruktur och satellitsystem till hybridkrigsverktyg. Bland de observerade hybridhoten återfinns sabotage av kommunikationskablar, GPS-störningar, hackning av norska hamnar och universitet samt spionage via fiskefartyg och drönare. Kina har deklarerat sitt mål att bli en "polär stormakt" till 2030. <a href="https://thewatch-journal.com/2024/09/12/prc-expands-arctic-presence-with-dual-use-research/">En kinesisk forskningsinstitution kopplad till landets försvarsetablissemang har konstaterats ha använt en satellitmarkstation på Svalbard</a> för att bistå ett kinesiskt försvarsrelaterat bolag, trots förbud mot datatransmission för militära ändamål.</p>
+
+  <p><a href="https://www.thebarentsobserver.com/news/norway-boosts-gps-jamming-detection-amid-russian-escalation/451004">Nkom planerar under 2026 att installera ytterligare två GNSS-övervakningsstationer</a>, utöver de tre som redan är etablerade i gränsregionen mot Ryssland – bakgrunden är att störningar nu detekteras allt djupare inne i norskt luftrum, ned till 500 meters höjd över Varangerhalvön. GPS-störningar mot nordnorskt luftrum är inte enbart ett luftfartsproblem: de representerar också ett angrepp mot den navigationssignalinfrastruktur som satellitmarkstationer är beroende av för tidsynkronisering och praktisk drift.</p>
+  </div>
+</section>
+
+<!-- 06 ANDØYA-KLUSTRET -->
+<section id="andoya" class="article-section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Andøya-klustret: Fyra operationer under 90 dagar</h2>
+  </div>
+  <div class="reveal">
+  <p>Under perioden februari–maj 2026 bekräftades fyra separata underrättelseoperationer mot Norges arktiska säkerhetsinfrastruktur – en täthet och geografisk koncentration som är ovanlig i nordisk säkerhetshistoria under fredstid. Klustret visar att motståndareer betraktar Andøya–Bodø-regionen som ett integrerat strategiskt mål, inte som separata objekt.</p>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-date">Februari 2026</div>
+      <div class="timeline-title">Salt Typhoon – cyberintrång i norsk infrastruktur</div>
+      <div class="timeline-body"><a href="https://therecord.media/norawy-intelligence-discloses-salt-typhoon-attacks">PST:s nationella hotbedömning bekräftade</a> att den kinesiska APT-gruppen Salt Typhoon (FamousSparrow / GhostEmperor) framgångsrikt komprometterat nätverksenheter i norska organisationer. PST-direktören Beate Gangås: <em>"Norges allvarligaste säkerhetsläge sedan andra världskriget."</em> Gruppen riktar in sig på backbone-routrar hos telekomoperatörer, inklusive de som bär trafik kopplad till satellitkommunikation och militär kommunikation. <a href="https://www.bankinfosecurity.com/norway-says-salt-typhoon-hackers-hit-vulnerable-systems-a-30721">Bank Info Security</a> · <a href="https://www.itpro.com/security/cyber-attacks/salt-typhoon-norway-cyber-espionage-warning">IT Pro</a></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-date">7 maj 2026</div>
+      <div class="timeline-title">PST:s satellitmottagaroperation – Andøya Spaceport</div>
+      <div class="timeline-body"><a href="https://www.thelocal.no/20260508/norway-arrests-chinese-woman-for-spying-on-satellite-data">Kinesisk kvinna (29 år) gripen på Andøya.</a> <a href="https://scandasia.com/three-charged-in-singapore-china-linked-satellite-spy-case-deepening-in-norway/">Frontbolag registrerat i Norge via singaporianskt mellanlager.</a> <a href="https://www.newsinenglish.no/2026/05/08/several-charged-with-espionage/">En 22-ton tung mobil satellitmottagare beslagtogs</a> – ursprungligen i container vid Oslos hamn, avsedd att placeras vid Europas viktigaste kommersiella uppskjutningsplats för polarsatelliter. <a href="https://www.newsinenglish.no/2026/05/24/psts-spy-hunt-yields-more-suspects/">Mottagaren var avsedd att samla in navigationssignaler, röst- och datakommunikation, foton, videor och miljödata.</a> PST avvisade förklaringen om väderdata för krillfiske: förmågan vida översteg syftet, och krillfiske är förbjudet i Arktis. Tre misstänkta och ett bolag åtalade. <a href="https://mothership.sg/2026/05/singapore-espionage-norway-satellite-data/">Mothership.SG</a></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-date">15 maj 2026</div>
+      <div class="timeline-title">Kinesisk medborgare greps vid NATO CAOC – Bodø Air Station</div>
+      <div class="timeline-body"><a href="https://www.document.news/news/2026/05/chinese-spy-suspect-was-living-in-a-bunker-at-bodo-airport">Man gripen efter att ungdomar fann tecken på boende i övergiven bunker</a> inne på Bodø Air Station – sedan oktober 2025 hem för <a href="https://www.dagens.com/news/chinese-citizen-arrested-near-nato-operations-center-in-norway">NATO:s regionala Combined Air Operations Centre (CAOC)</a>. CAOC samordnar alliansens luftoperationer för Norden och Arktis – inklusive det luftrum och de uppskjutningskorridorer som Andøyas satelliter opererar i. Andøya och Bodø är inte separata mål: uppskjutningsplatsen producerar den förmåga som luftoperationscentrumet nyttjar. PST uppger att inget formellt samband med Andøya-fallet bekräftats. Det geografiska och temporala mönstret – två kinesiska medborgare, åtta dagar isär, vid Norges två mest säkerhetskritiska arktiska anläggningar – är anmärkningsvärt.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Maj 2026 – Observandum</div>
+      <div class="timeline-title">Northsafe Andøya AS: Spårningsbricka under tjänstefordon</div>
+      <div class="timeline-body"><a href="https://www.ht.no/nyheter/n/rrnr3a/fant-sporingsbrikke-under-bil">Northsafe rapporterade om "flera händelser"</a> som föranlett extra säkerhetsåtgärder, däribland en GPS-spårningsbricka fäst under en anställds tjänstefordon. Bolaget driver ett <a href="https://www.blv.no/kjopte-gigantisk-fjellhall-pa-andoya-dette-vil-han-bruke-den-til/s/5-9-571216">tidigare militärt berghallskomplex (10 000 kvm) i Skarsteindalen</a> under omvandling till bergskyddad säker datainfrastruktur – <a href="https://www.blv.no/kjoper-seg-opp-for-enda-flere-millioner-her-vil-det-skje-mye/s/5-9-863459">aktivt i samtal med aktörer som söker säker datalagring</a>. Händelsen är inte statligt bekräftad. Den visar ändå ett sårbarhetsmönster: förberedande kartläggning kan riktas mot objekt i etableringsfasen som ännu saknar formell skyddsstatus men uppvisar tydligt strategiskt intresse.</div>
+    </div>
+  </div>
+
+  <div class="key-quote">
+    <div class="key-quote-text">"En aktör som kartlägger Andøyas satellitinfrastruktur har parallellt intresse av det militära operationscentrum i Bodø som ger denna infrastruktur dess strategiska sammanhang. De är inte separata mål – de är delar av samma nätverk."</div>
+    <div class="key-quote-source">Analytisk slutledning, denna rapport</div>
+  </div>
+  </div>
+</section>
+
+<!-- 07 DATAMÄKLARE -->
+<section id="datamaklare" class="article-section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Datamäklare: Den tredje dimensionen</h2>
+  </div>
+  <div class="reveal">
+  <p>Datamäklarbranschen utgör ett mångmiljarders nätverk av bolag som samlar in, aggregerar och säljer data om enskilda individer med i princip obefintlig tillsyn. Tusentals datamäklare i USA köper, aggregerar och säljer miljarder datapunkter om amerikaner. Datan inkluderar politiska preferenser, hälsoinformation, religiösa praktiker, ägda fordon och platsdata i realtid.</p>
+
+  <p><a href="https://www.lemonde.fr/pixels/article/2025/02/12/donnees-personnelles-en-vente-libre-les-data-brokers-une-industrie-hors-de-controle">Le Mondes granskning Data Brokers Files</a> och den parallella tyska undersökningen från <a href="https://netzpolitik.org/2025/databroker-files-targeting-the-eu/">Netzpolitik.org</a> visar att samma marknad redan används på ett sätt som har direkt underrättelsevärde. Med hjälp av kommersiellt köpt annonsdata kunde reportrar kartlägga rörelsemönster för franska underrättelseoperatörer, elitpoliser och militär personal, inklusive hemadresser, arbetsplatser och regelbundna resvägar.</p>
+  <p>I den tyska delen av undersökningen gick det att identifiera NATO-baser, fängelser, kärnkraftverk och högt uppsatta EU-tjänstemäns rörelser utifrån samma typ av data. ANSSI-chefen <a href="https://www.lemonde.fr/pixels/article/2025/12/10/dans-certaines-missions-la-simple-geolocalisation-a-une-sensibilite-toute-particuliere">Vincent Strubel</a> konstaterade att enbart geolokalisering av känslig personal i sig är underrättelsematerial av högsta relevans.</p>
+
+  <p> <a href="https://epic.org/issues/consumer-privacy/data-brokers/">Tusentals datamäklare i USA</a> köper, aggregerar och säljer miljarder datapunkter om amerikaner. Datan inkluderar politiska preferenser, hälsoinformation, religiösa praktiker, ägda fordon och platsdata i realtid.</p>
+
+  <p><a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">Duke Universitys studie (Sherman, 2021)</a> visade att aktiv militärpersonal, deras familjer och veteraner kan spåras via datamäklare för <strong>0,12 dollar per post</strong>, köpt via en .asia-domän utan att säljaren reagerade. <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">CENTCOM bekräftade i maj 2026</a> att motståndare utnyttjar kommersiell platsdata mot aktiv militärpersonal i fält. En bipartisan grupp senatorer varnade Pentagon: "Kommersiell platsdata kan identifiera var USA:s personal samlas och deras livsmönster, vilket motståndare kan utnyttja för att organisera attacker – inklusive missilattacker, drönarattacker och vägbomber."</p>
+
+  <p><a href="https://www.wired.com/story/the-pentagon-knew-enemies-could-track-troops-phones-for-years-now-they-are/">Wired</a>, Bayerischer Rundfunk och Netzpolitik.org köpte tre miljarder telefonplatsregistreringar från en amerikansk datamäklare och spårade telefoner från amerikanska militärbaracker i Tyskland till arbetsplatser, restauranger och barer. Av 189 enheter inne på en högskyddsklassad tysk militäranläggning följdes samtliga rörelsmönster. <a href="https://www.lawfaremedia.org/article/tackling-data-brokerage-threats-to-american-national-security">Lawfare Media konstaterar</a> att detta "precis lika gärna kunde ha genomförts av en utländsk aktör, särskilt en med djupa fickor".</p>
+
+  <p>GPS-spårningsmarknaden för fordon värderades till <a href="https://www.imarcgroup.com/gps-tracking-device-market">3,2 miljarder dollar år 2024 och förväntas växa till 8,2 miljarder dollar år 2033</a>. Dagens fordon fungerar i praktiken som rullande sensorsystem. Det gäller inte bara var bilen befinner sig, utan också när den startar, hur den körs och vilka digitala tjänster som används under färden. Kameror och mikrofoner kan dessutom registrera körstil, destination, medpassagerare och biologiska mätvärden. Kombinationen av kommersiell satellitbild, GPS-platsdata och AI-analys – vad Palantirs Gotham-plattform redan gör i statlig tjänst – är vad varje aktör med tillräckliga resurser och rätt datamäklarkontakter kan replikera.</p>
+
+  <div class="fact-box">
+    <div class="fact-box-label">Cariad visar hur fordonsdata kan bli underrättelsematerial</div>
+    <p>I december 2024 avslöjades att <a href="https://www.it-daily.net/shortnews-en/vws-software-glitch-reveals-ev-users-daily-routes">Volkswagens mjukvarubolag Cariad hade läckt platsdata från omkring 800&nbsp;000 elfordon</a>. Enligt uppgifter som återgavs efter <em>Der Spiegel</em>s granskning gick det i många fall att koppla exakta rörelsemönster till enskilda personer, och datan bedömdes vara tillräcklig för att identifiera fordon som regelbundet stod parkerade vid känsliga objekt som <a href="https://www.wired.com/story/phone-data-us-soldiers-spies-nuclear-germany/">underrättelsebyggnader och militära anläggningar</a>. Exemplet visar hur kommersiell fordonsdata snabbt kan få militär eller säkerhetspolitisk betydelse, även utan ett klassiskt dataintrång mot staten.</p>
+  </div>
+  </div>
+</section>
+
+</div><!-- /content-wrapper -->
+
+<!-- RISKMATRIS -->
+<section id="riskmatris" style="padding: 64px 0; border-top: 1px solid #e0dbd0; border-bottom: 1px solid #e0dbd0; background: #f9f7f3;">
+  <div style="max-width: var(--col-max); margin: 0 auto; padding: 0 40px;">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Riskbild</h2>
+    </div>
+    <div class="reveal">
+    <div class="risk-table-wrap">
+      <table class="risk-table">
+        <thead>
+          <tr>
+            <th>Hotvektor</th>
+            <th>Hotaktör</th>
+            <th>Status</th>
+            <th>Prioritet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>NATO-beroende av privat analysplattform</td><td>Palantir (beroenderisk)</td><td><span class="status-tag">Bekräftat – MSS NATO mars 2025</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
+          <tr><td>Satellitmottagarinfrastruktur via frontbolag</td><td>Kina (MSS)</td><td><span class="status-tag">Bekräftad – PST/Andøya maj 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
+          <tr><td>Rekognosering av NATO CAOC och arktiskt luftrumskluster</td><td>Kina (HUMINT)</td><td><span class="status-tag">Misstänkt – Bodø maj 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
+          <tr><td>Cyberoperationer mot telekommunikationsinfrastruktur</td><td>Kina (Salt Typhoon)</td><td><span class="status-tag">Bekräftad – PST feb 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
+          <tr><td>Satellitbild-OSINT mot militärbaser och infrastruktur</td><td>Kina, Ryssland</td><td><span class="status-tag">Löpande risk – hög sannolikhet</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
+          <tr><td>Datamäklare-platsdata mot militärpersonal</td><td>Utländsk underrättelsetjänst</td><td><span class="status-tag">Bekräftad – CENTCOM maj 2026</span></td><td><span class="prio-kritisk">Kritisk</span></td></tr>
+          <tr><td>Förberedande spårning av objekt i etableringsfas</td><td>Okänd aktör</td><td><span class="status-tag">Observandum – Northsafe maj 2026</span></td><td><span class="prio-hog">Hög</span></td></tr>
+          <tr><td>GPS/GNSS-störningar mot arktisk rymdinfrastruktur</td><td>Ryssland</td><td><span class="status-tag">Bekräftad, eskalerande – Nkom 2026</span></td><td><span class="prio-hog">Hög</span></td></tr>
+          <tr><td>Maritim rekognosering via civila fartyg</td><td>Ryssland</td><td><span class="status-tag">Bedömd pågående – PST 2026</span></td><td><span class="prio-hog">Hög</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</section>
+
+<div class="content-wrapper">
+
+<!-- 09 SVERIGE -->
+<section id="sverige" class="article-section">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Sverige och Norden</h2>
+  </div>
+  <div class="reveal">
+  <p><a href="https://sakerhetspolisen.se/ovriga-sidor/other-languages/english-engelska/nct.html">Säkerhetspolisen (Säpo)</a> identifierar löpande att de digitala hoten mot Sverige är allvarligare och mer komplexa än någonsin. Sverige är som NATO-allierad sedan april 2024 integrerat i den alliansgemensamma underrättelsestrukturen – vilket konkret innebär bindande anslutning till Maven Smart System NATO och de beroenden detta medför.</p>
+
+  <p><a href="https://en.wikipedia.org/wiki/Svalbard_Satellite_Station">SvalSat på norska Svalbard</a> är en kritisk tillgång för allierad underrättelseverksamhet och ett bekräftat motståndaremål. <a href="https://atlasinstitute.org/the-privatisation-of-persistent-surveillance-risks-and-opportunities-for-natos-space-strategy/">NATO formaliserade sin kommersiella rymdstrategi vid Haag-toppmötet i februari 2025</a>, inklusive Alliance Persistent Surveillance from Space (APSS)-programmet. Sverige är nu integrerat i denna struktur, vilket skapar beroenden av amerikanska privata aktörer med de lojalitetsproblem detta innebär.</p>
+
+  <p>Den svenska säkerhetsskyddslagstiftningen är utformad för identifierbara skyddsvärda objekt i känd driftsfas. Northsafe-fallet visar det luckan i dagens skydd: objekt i etableringsfasen med tydligt strategiskt intresse men utan formell klassificering faller utanför den myndigheternas förmåga att upptäcka. Sverige har ett antal äldre militäranläggningar som i dag ägs civilt – tunnlar, skyddsrum och berghallskomplex – vars säkerhetsstatus och framtida strategiska värde är ojämnt kartlagda. Proaktiv tillämpning av säkerhetsskyddslagstiftningen, snarare än reaktiv, är den slutsats för svensk politik Northsafe-fallet direkt motiverar.</p>
+  </div>
+  <div class="reveal">
+  <p>Andøya-fallet står inte ensamt. <a href="https://www.regjeringen.no/contentassets/6290dec36c374ee191e5c7dbba18a258/fokus2025-no-weboppslag-v3.pdf">Norska underrättelsebedömningar</a> har under flera år pekat ut Kina som en aktör med växande intresse för Arktis, Svalbard och norsk infrastruktur i norr. <a href="https://marcusoscarsson.se/norge-varnar-kina-forbereder-stor-narvaro-i-norden/">Kinesiska forskningsmiljöer på Svalbard</a>, utvecklingen av tyngre isbrytare och den ökade användningen av den nordliga sjövägen tillsammans med Ryssland visar att närvaron inte bara är symbolisk. <a href="https://nordicdefencesector.com/article/ffi-russia-and-china-increase-influence-against-norway">FFI:s rapport från 2026</a> visar dessutom att kinesiska aktörer kraftigt har ökat sin påverkan mot Norge i digitala kanaler, medan <a href="https://www.stortinget.no/no/Saker-og-publikasjoner/Sporsmal/Skriftlige-sporsmal-og-svar/Skriftlig-sporsmal/?qnid=111170">frågor i Stortinget</a> understryker att delegationsbesök, forskningssamarbeten och kontaktytor mot myndigheter också ses som möjliga vägar för informationsinhämtning. Tillsammans gör det Andøya mindre till ett enskilt avvikande fall och mer till en del av ett bredare arktiskt mönster.</p>
+  </div>
+</section>
+
+<!-- 10 SLUTSATSER -->
+<section id="slutsatser" class="article-section">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Slutsatser</h2>
+  </div>
+  <div class="reveal">
+  <ol class="conclusion-list">
+    <li>
+      <div class="conclusion-num">1</div>
+      <div class="conclusion-body">
+        <strong>Beroendet är redan uppstått – frågan är om det kan regleras.</strong>
+        <p>Ingen av USA:s NATO-allierade kan i dag genomföra ett fullskaligt underrättelseuppdrag utan att förlita sig på kommersiella satellitförmågor, privata analysplattformar eller datamäklarnätverk. <a href="https://defensescoop.com/2025/04/14/nato-palantir-maven-smart-system-contract/">Maven Smart System NATO</a> är nu alliansens system som alliansens underrättelsearbete i praktiken vilar på. Det politiska systemets förmåga att reglera detta beroende innan det är irreversibelt är den avgörande variabeln fram till 2030.</p>
+      </div>
+    </li>
+    <li>
+      <div class="conclusion-num">2</div>
+      <div class="conclusion-body">
+        <strong>Arktis är den plats där alla dessa hot möts och förstärker varandra.</strong>
+        <p>Rysslands och Kinas systematiska etablering av dual-use-infrastruktur, de fyra norska fallen under 2026, och det faktum att <a href="https://europeanspaceflight.com/isar-to-launch-norwegian-maritime-surveillance-satellites/">Andøya hyser Europas viktigaste kommersiella uppskjutningsplats</a> medan <a href="https://www.dagens.com/news/chinese-citizen-arrested-near-nato-operations-center-in-norway">Bodø Air Station hyser NATO:s regionala luftoperationscentrum</a> – allt detta pekar mot Arktis som den geografi där samtliga hottyper möts och förstärker varandra.</p>
+      </div>
+    </li>
+    <li>
+      <div class="conclusion-num">3</div>
+      <div class="conclusion-body">
+        <strong>Infrastruktur i etableringsfasen är ett underidentifierat skyddsgap.</strong>
+        <p><a href="https://www.ht.no/nyheter/n/rrnr3a/fant-sporingsbrikke-under-bil">Northsafe-fallet</a> etablerar en kategori av sårbarhet som saknar tydlig myndighetsrespons: objekt med strategiskt intresse men utan formell skyddsstatus. Förberedande kartläggning i denna fas är ett logiskt första steg för en motståndare och svår att detektera och lagföra.</p>
+      </div>
+    </li>
+    <li>
+      <div class="conclusion-num">4</div>
+      <div class="conclusion-body">
+        <strong>Det demokratiska underskottet är inte en olycklig bieffekt. Det följer av hur systemet har byggts upp och vem som kontrollerar det.</strong>
+        <p>Koncentrationen av kritisk säkerhetsinfrastruktur hos ett fåtal privata aktörer utan folkmandat, kombinerat med hemligstämplade kontrakt och oreglerade datamäklarmarknader, innebär att demokratiska stater successivt förlorar förmågan att utöva meningsfull tillsyn över sin egen underrättelseförmåga. <a href="https://thewaldbrief.substack.com/p/can-europe-escape-palantir">Den europeiska motrörelsen med ChapsVision</a> förflyttar beroendet men löser inte tillsynsproblemet. Det är följden av att låta marknaden, snarare än demokratisk styrning, sätta ramarna för statens säkerhetsarbete.</p>
+      </div>
+    </li>
+  </ol>
+  </div>
+</section>
+
+</div>
+
+<!-- REFERENCES -->
+<section id="referenser" class="references-section">
+  <div class="references-inner">
+    <div class="ref-header">Referenslista · Öppna och verifierade källor</div>
+    <div class="ref-columns">
+      <div class="ref-item">American Friends Service Committee. (u.å.). <em>What is Palantir?</em> <a href="https://afsc.org/palantir-explainer">afsc.org</a></div>
+      <div class="ref-item">Atlas Institute for International Affairs. (2025). <em>The privatisation of persistent surveillance.</em> <a href="https://atlasinstitute.org/the-privatisation-of-persistent-surveillance-risks-and-opportunities-for-natos-space-strategy/">atlasinstitute.org</a></div>
+      <div class="ref-item">Bank Info Security. (2026, 9 februari). <em>Norway says Salt Typhoon hackers hit vulnerable systems.</em> <a href="https://www.bankinfosecurity.com/norway-says-salt-typhoon-hackers-hit-vulnerable-systems-a-30721">bankinfosecurity.com</a></div>
+      <div class="ref-item">BlackSky. (u.å.). <em>Space-based intelligence at the speed of conflict.</em> <a href="https://www.blacksky.com">blacksky.com</a></div>
+      <div class="ref-item">Bladet Vesterålen. (2023, 5 januari). <em>Kjøpte gigantisk fjellhall på Andøya.</em> <a href="https://www.blv.no/kjopte-gigantisk-fjellhall-pa-andoya-dette-vil-han-bruke-den-til/s/5-9-571216">blv.no</a></div>
+      <div class="ref-item">Bladet Vesterålen. (2025, 28 juli). <em>Kjøper seg opp for enda flere millioner.</em> <a href="https://www.blv.no/kjoper-seg-opp-for-enda-flere-millioner-her-vil-det-skje-mye/s/5-9-863459">blv.no</a></div>
+      <div class="ref-item">Breaking Defense. (2025, juni). <em>Commercial remote sensing: The critical U.S. National Security Space imperative.</em> <a href="https://breakingdefense.com/2025/06/commercial-remote-sensing-the-critical-u-s-national-security-space-imperative/">breakingdefense.com</a></div>
+      <div class="ref-item">CAAT. (2026). <em>Palantir: Company profile and concerns.</em> <a href="https://caat.org.uk/data/companies/palantir/">caat.org.uk</a></div>
+      <div class="ref-item">Capella Space. (u.å.). <em>Trusted all-weather earth intelligence from space.</em> <a href="https://www.capellaspace.com">capellaspace.com</a></div>
+      <div class="ref-item">CIGI. (2024). <em>Undercover infrastructure: Dual-use Arctic satellite ground stations.</em> <a href="https://www.cigionline.org/publications/undercover-infrastructure-dual-use-arctic-satellite-ground-stations/">cigionline.org</a></div>
+      <div class="ref-item">Christensen, H. (2026, 18 maj). <em>Norway arrests Chinese spies.</em> <a href="https://hanschristensen.substack.com/p/norway-arrests-chinese-spies">Substack</a></div>
+      <div class="ref-item">Clarkson Law Firm. (2025). <em>The Foundry of Surveillance.</em> <a href="https://clarksonlawfirm.com/the-foundry-of-surveillance/">clarksonlawfirm.com</a></div>
+      <div class="ref-item">Cybernews. (2026). <em>Germany's Palantir alternative: ChapsVision wins.</em> <a href="https://cybernews.com/tech/germany-palantir-alternative/">cybernews.com</a></div>
+      <div class="ref-item">Dagens.com. (2026). <em>Chinese citizen arrested near NATO operations center in Norway.</em> <a href="https://www.dagens.com/news/chinese-citizen-arrested-near-nato-operations-center-in-norway">dagens.com</a></div>
+      <div class="ref-item">Defense Update. (2025, april). <em>NATO AI modernization: Palantir's Maven Smart System acquisition.</em> <a href="https://defense-update.com/20250418_palantir-mss-nato.html">defense-update.com</a></div>
+      <div class="ref-item">DefenseScoop. (2025, 14 april). <em>NATO inks deal with Palantir for Maven AI system.</em> <a href="https://defensescoop.com/2025/04/14/nato-palantir-maven-smart-system-contract/">defensescoop.com</a></div>
+      <div class="ref-item">DirectionsMag. (2026). <em>Norway expands GNSS jamming detection.</em> <a href="https://www.directionsmag.com/articles/gnss-jamming-detection-norway">directionsmag.com</a></div>
+      <div class="ref-item">Document News. (2026, 18 maj). <em>Chinese spy suspect was living in a bunker at Bodø airport.</em> <a href="https://www.document.news/news/2026/05/chinese-spy-suspect-was-living-in-a-bunker-at-bodo-airport">document.news</a></div>
+      <div class="ref-item">Duke University / Sherman, J. (2021). <em>Data brokers and the sale of data on U.S. military personnel.</em> <a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">sanford.duke.edu</a></div>
+      <div class="ref-item">EPIC. (2025). <em>Data brokers: Thousands of data brokers with virtually no oversight.</em> <a href="https://epic.org/issues/consumer-privacy/data-brokers/">epic.org</a></div>
+      <div class="ref-item">ESA Earth Online. (2021). <em>ICEYE: The world's first SAR New Space constellation.</em> <a href="https://earth.esa.int/eogateway/news/iceye-the-world-s-first-sar-new-space-constellation">esa.int</a></div>
+      <div class="ref-item">Escudo Digital. (2026, maj). <em>Palantir embeds itself across European militaries and NATO.</em> <a href="https://www.escudodigital.com/en/defense/europe/palantir-embeds-across-european-militaries-nato-germany-holds-back.html">escudodigital.com</a></div>
+      <div class="ref-item">Euromaidanpress. (2026, januari). <em>Russia and China build Arctic hybrid threat toolkit.</em> <a href="https://euromaidanpress.com/2026/01/22/russia-china-arctic-hybrid-threats-military-civil-fusion/">euromaidanpress.com</a></div>
+      <div class="ref-item">European Spaceflight. (2025). <em>Isar to launch Norwegian maritime surveillance satellites.</em> <a href="https://europeanspaceflight.com/isar-to-launch-norwegian-maritime-surveillance-satellites/">europeanspaceflight.com</a></div>
+      <div class="ref-item">Follow the Money. (2026, april). <em>European funders bet big on tech giant Palantir.</em> <a href="https://www.ftm.eu/articles/european-investors-palantir-investment">ftm.eu</a></div>
+      <div class="ref-item">Global Times. (2024, mars). <em>SpaceX's spy satellite network deal.</em> <a href="https://www.globaltimes.cn/page/202403/1308988.shtml">globaltimes.cn</a></div>
+      <div class="ref-item">Harstad Tidende. (2026, 23 maj). <em>Eier av fjellhall fant sporingsbrikke – frykter overvåkning.</em> <a href="https://www.ht.no/nyheter/n/rrnr3a/fant-sporingsbrikke-under-bil">ht.no</a> <span class="source-note">betalvägg</span></div>
+      <div class="ref-item">Heise Online. (2026, maj). <em>Digital sovereignty: BfV buys European Palantir alternative.</em> <a href="https://www.heise.de/en/news/Digital-Sovereignty-BfV-Buys-European-Palantir-Alternative-11293717.html">heise.de</a></div>
+      <div class="ref-item">High North News. (2025). <em>New microsatellite launched to strengthen Norwegian ocean surveillance.</em> <a href="https://www.highnorthnews.com/en/new-microsatellite-launched-strengthen-norwegian-ocean-surveillance/">highnorthnews.com</a></div>
+      <div class="ref-item">IMARC Group. (2025). <em>GPS tracking device market size and share report 2025–2033.</em> <a href="https://www.imarcgroup.com/gps-tracking-device-market">imarcgroup.com</a></div>
+      <div class="ref-item">IT Pro. (2026, 9 februari). <em>Security expert warns Salt Typhoon is becoming 'more dangerous'.</em> <a href="https://www.itpro.com/security/cyber-attacks/salt-typhoon-norway-cyber-espionage-warning">itpro.com</a></div>
+      <div class="ref-item">Janes. (2025, april). <em>NATO agrees sole-source procurement of Palantir's Maven.</em> <a href="https://www.janes.com/osint-insights/defence-news/c4isr/nato-agrees-sole-source-procurement-of-palantirs-maven">janes.com</a></div>
+      <div class="ref-item">Lawfare Media. (2025). <em>Tackling data brokerage threats to American national security.</em> <a href="https://www.lawfaremedia.org/article/tackling-data-brokerage-threats-to-american-national-security">lawfaremedia.org</a></div>
+      <div class="ref-item">Malay Mail. (2025, december). <em>US tech firm Palantir secures three-year extension with French spies.</em> <a href="https://www.malaymail.com/news/money/2025/12/16/us-tech-firm-palantir-secures-three-year-extension-with-french-spies/202143">malaymail.com</a></div>
+      <div class="ref-item">Maritime Executive. (2026, februari). <em>Norway flags Russian cyber espionage campaign on maritime infrastructure.</em> <a href="https://maritime-executive.com/article/norway-flags-russian-cyber-espionage-campaign-on-maritime-infrastructure">maritime-executive.com</a></div>
+      <div class="ref-item">Market Intelo. (2025). <em>Satellite surveillance services market research report 2033.</em> <a href="https://marketintelo.com/report/satellite-surveillance-services-market">marketintelo.com</a></div>
+      <div class="ref-item">militarnyi.com. (2026a). <em>Chinese citizen arrested in Norway for espionage attempt.</em> <a href="https://militarnyi.com/en/news/chinese-arrested-in-norway-espionage-space/">militarnyi.com</a></div>
+      <div class="ref-item">militarnyi.com. (2026b). <em>German intelligence chooses French ChapsVision over Palantir.</em> <a href="https://militarnyi.com/en/news/german-intelligence-french-chapsvision/">militarnyi.com</a></div>
+      <div class="ref-item">Mothership.SG. (2026). <em>Chinese woman suspected of espionage in Norway.</em> <a href="https://mothership.sg/2026/05/singapore-espionage-norway-satellite-data/">mothership.sg</a></div>
+      <div class="ref-item">News in English [Norway]. (2026a, 8 maj). <em>Several charged with espionage.</em> <a href="https://www.newsinenglish.no/2026/05/08/several-charged-with-espionage/">newsinenglish.no</a></div>
+      <div class="ref-item">News in English [Norway]. (2026b, 24 maj). <em>PST's spy hunt yields more suspects.</em> <a href="https://www.newsinenglish.no/2026/05/24/psts-spy-hunt-yields-more-suspects/">newsinenglish.no</a></div>
+      <div class="ref-item">New York Times. (2025, maj). <em>Trump taps Palantir to compile data on Americans.</em> <a href="https://www.nytimes.com/2025/05/30/technology/trump-palantir-data-americans.html">nytimes.com</a></div>
+      <div class="ref-item">Payload Space. (2022). <em>OSINT via satellit.</em> <a href="https://payloadspace.com/osint-via-satellite/">payloadspace.com</a></div>
+      <div class="ref-item">Phys.org. (2011). <em>China suspect in US satellite interference: report.</em> <a href="https://phys.org/news/2011-10-china-satellite.html">phys.org</a></div>
+      <div class="ref-item">PST. (2026). <em>Nasjonal trusselvurdering 2026.</em> [Refererat via The Record, IT Pro och Bank Info Security]</div>
+      <div class="ref-item">Reuters. (2024, mars). <em>Exclusive: Musk's SpaceX is building spy satellite network.</em> <a href="https://www.reuters.com/technology/space/musks-spacex-is-building-spy-satellite-network-us-intelligence-agency-sources-2024-03-16/">reuters.com</a></div>
+      <div class="ref-item">Reuters. (2026, maj). <em>US military personnel are being targeted using location data.</em> <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">reuters.com</a></div>
+      <div class="ref-item">Scandasia. (2026, maj). <em>Three charged in Singapore-China linked satellite spy case.</em> <a href="https://scandasia.com/three-charged-in-singapore-china-linked-satellite-spy-case-deepening-in-norway/">scandasia.com</a></div>
+      <div class="ref-item">Social Studies of Science / Tandfonline. (2026). <em>Dictators of the future: The tech oligarchy in outer space.</em> <a href="https://www.tandfonline.com/doi/full/10.1080/09505431.2026.2655707">tandfonline.com</a></div>
+      <div class="ref-item">SpaceNexus. (2026). <em>Planet Labs vs Maxar Technologies: Complete comparison.</em> <a href="https://spacenexus.us/compare/planet-labs-vs-maxar">spacenexus.us</a></div>
+      <div class="ref-item">SpaceX. (u.å.). <em>Starshield: Secured satellite network for government entities.</em> <a href="https://www.spacex.com/starshield/">spacex.com</a></div>
+      <div class="ref-item">Stellarmr. (2025). <em>Commercial earth observation market industry analysis.</em> <a href="https://www.stellarmr.com/report/Commercial-Earth-Observation-Market/2204">stellarmr.com</a></div>
+      <div class="ref-item">Säkerhetspolisen. (u.å.). <em>National Centre for Terrorist Threat Assessment (NCT).</em> <a href="https://sakerhetspolisen.se/ovriga-sidor/other-languages/english-engelska/nct.html">sakerhetspolisen.se</a></div>
+      <div class="ref-item">TerraWatch Space. (2025). <em>Earth observation in 2024 and outlook for 2025.</em> <a href="https://newsletter.terrawatchspace.com/earth-observation-in-2024-and-outlook-for-2025/">terrawatchspace.com</a></div>
+      <div class="ref-item">The Barents Observer. (2026). <em>Norway boosts GPS jamming detection amid Russian escalation.</em> <a href="https://www.thebarentsobserver.com/news/norway-boosts-gps-jamming-detection-amid-russian-escalation/451004">thebarentsobserver.com</a></div>
+      <div class="ref-item">The Conversation. (2026). <em>When the government can see everything: How Palantir is mapping the nation's data.</em> <a href="https://theconversation.com/when-the-government-can-see-everything-how-one-company-palantir-is-mapping-the-nations-data-263178">theconversation.com</a></div>
+      <div class="ref-item">The Guardian. (2025, april). <em>Under Trump and Musk, billionaires wield unprecedented influence over US national security.</em> <a href="https://www.theguardian.com/us-news/2025/apr/06/trump-musk-billionaires-influence-national-security">theguardian.com</a></div>
+      <div class="ref-item">The Local Norway. (2026, maj). <em>Norway arrests Chinese woman for spying on satellite data.</em> <a href="https://www.thelocal.no/20260508/norway-arrests-chinese-woman-for-spying-on-satellite-data">thelocal.no</a></div>
+      <div class="ref-item">The Record. (2026, februari). <em>Norwegian intelligence discloses country hit by Salt Typhoon campaign.</em> <a href="https://therecord.media/norawy-intelligence-discloses-salt-typhoon-attacks">therecord.media</a></div>
+      <div class="ref-item">The Wald Brief / Delafon, G. (2026, maj). <em>Can Europe escape Palantir?</em> <a href="https://thewaldbrief.substack.com/p/can-europe-escape-palantir">Substack</a></div>
+      <div class="ref-item">The Watch Journal. (2024). <em>PRC expands Arctic presence with dual-use research.</em> <a href="https://thewatch-journal.com/2024/09/12/prc-expands-arctic-presence-with-dual-use-research/">thewatch-journal.com</a></div>
+      <div class="ref-item">UK Government. (2025, december). <em>MOD Palantir Enterprise Agreement – contract award notice.</em> <a href="https://www.find-tender.service.gov.uk/Notice/083874-2025">find-tender.service.gov.uk</a></div>
+      <div class="ref-item">Verfassungsblog. (2025, december). <em>Patchwork policing: The fragmented regulation of police AI in Germany, France, and Luxembourg.</em> <a href="https://verfassungsblog.de/police-ai-tools/">verfassungsblog.de</a></div>
+      <div class="ref-item">Warehouse Workers Resource Center. (2025). <em>While eyes are on Musk, don't forget Bezos.</em> <a href="https://warehouseworkers.org/while-eyes-are-on-musk-dont-forget-bezos/">warehouseworkers.org</a></div>
+      <div class="ref-item">Washington Post. (2026, maj). <em>Norwegian authorities have arrested a Chinese citizen on espionage allegations.</em> <a href="https://www.washingtonpost.com/world/2026/05/07/norway-china-arrest-espionage-allegations/9ebcca84-4a22-11f1-a119-857cd2bf4fd4_story.html">washingtonpost.com</a></div>
+      <div class="ref-item">Wikipedia. (u.å.). <em>Svalbard Satellite Station.</em> <a href="https://en.wikipedia.org/wiki/Svalbard_Satellite_Station">wikipedia.org</a></div>
+      <div class="ref-item">Wired. (2026, maj). <em>The Pentagon knew enemies could track troops' phones for years.</em> <a href="https://www.wired.com/story/the-pentagon-knew-enemies-could-track-troops-phones-for-years-now-they-are/">wired.com</a></div>
+      <div class="ref-item">Xpert Digital. (2026, april). <em>The German Armed Forces are foregoing Palantir and examining alternatives.</em> <a href="https://xpert.digital/en/the-german-armed-forces-are-foregoing-palantir/">xpert.digital</a></div>
+      <div class="ref-item">Yahoo Finance / Bloomberg. (2025). <em>Space race with China drives antenna-building boom in Arctic.</em> <a href="https://finance.yahoo.com/news/space-race-china-drives-antenna-130036096.html">finance.yahoo.com</a></div>
+      <div class="ref-item">Zuboff, S. (2019). <em>The age of surveillance capitalism.</em> PublicAffairs. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=56791">hbs.edu</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">INBL<em>I</em>CK</div>
+  <span>Svensk OSINT · Säkerhetsanalytisk rapportserie</span><br>
+  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.0
+</footer>
+
+<script>
+// ── SCROLL PROGRESS ──
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── ACTIVE NAV ──
+const navLinks = document.querySelectorAll('.section-nav a');
+const sections = document.querySelectorAll('section[id], div[id]');
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.section-nav a[href="#${entry.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => navObserver.observe(s));
+
+// ── REVEAL ON SCROLL ──
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ── CONFIDENCE RING + SCALE ANIMATION ──
+const confBlock = document.getElementById('conf-block');
+let confAnimated = false;
+const confObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !confAnimated) {
+      confAnimated = true;
+      // Ring: circumference = 2π × 54 ≈ 339.3; dashoffset for 85% = 339.3 × 0.15 ≈ 50.9
+      const arc = document.getElementById('conf-arc');
+      // We're using r=54, so circumference = 2*PI*54 = 339.29
+      // For 85%: dashoffset = 339.29 * (1 - 0.85) = 50.89
+      setTimeout(() => {
+        arc.style.strokeDasharray = '339.29';
+        arc.style.strokeDashoffset = '339.29';
+        arc.style.transition = 'stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1)';
+        arc.style.strokeDashoffset = '50.89';
+      }, 200);
+
+      // Counter 0 → 85
+      let count = 0;
+      const pctEl = document.getElementById('conf-pct-num');
+      const timer = setInterval(() => {
+        count = Math.min(count + 2, 85);
+        pctEl.textContent = count;
+        if (count >= 85) clearInterval(timer);
+      }, 40);
+
+      // Scale bar
+      setTimeout(() => {
+        document.getElementById('conf-scale-fill').style.width = '85%';
+        document.getElementById('conf-scale-marker').style.left = '85%';
+      }, 300);
+
+      confObs.disconnect();
+    }
+  });
+}, { threshold: 0.4 });
+if (confBlock) confObs.observe(confBlock);
+
+// Fix SVG dasharray for r=54
+document.addEventListener('DOMContentLoaded', () => {
+  const arc = document.getElementById('conf-arc');
+  if (arc) {
+    arc.style.strokeDasharray = '339.29';
+    arc.style.strokeDashoffset = '339.29';
+  }
+});
+
+// ── STATS COUNTER ──
+const statsBlock = document.querySelector('.stats-strip');
+let statsAnimated = false;
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !statsAnimated) {
+      statsAnimated = true;
+      const targets = [
+        { id: 's1', val: 613, suffix: ' mdr $', decimals: 0 },
+        { id: 's2', val: 78, suffix: ' %', decimals: 0 },
+        { id: 's3', val: 18.3, suffix: ' mdr $', decimals: 1 },
+        { id: 's4', val: 11.6, suffix: ' %', decimals: 1 },
+      ];
+      targets.forEach(t => {
+        const el = document.getElementById(t.id);
+        if (!el) return;
+        let cur = 0;
+        const steps = 40;
+        const inc = t.val / steps;
+        let count = 0;
+        const timer = setInterval(() => {
+          cur = Math.min(cur + inc, t.val);
+          count++;
+          el.innerHTML = cur.toFixed(t.decimals) + '<span>' + t.suffix + '</span>';
+          if (count >= steps) { el.innerHTML = t.val.toFixed(t.decimals) + '<span>' + t.suffix + '</span>'; clearInterval(timer); }
+        }, 35);
+      });
+      statsObs.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+if (statsBlock) statsObs.observe(statsBlock);
+
+// ── HERO STAGGER ──
+document.querySelectorAll('.hero-inner > *').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity 0.6s ease ${i * 0.12}s, transform 0.6s ease ${i * 0.12}s`;
+  setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, 50);
+});
+</script>
+</body>
+</html>
