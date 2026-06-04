@@ -73,7 +73,8 @@
   /* ── HERO ── */
   .hero { background-color: #0d0d0d; color: #faf8f4; padding: 80px 40px 68px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.025) 39px, rgba(255,255,255,0.025) 40px); pointer-events: none; }
-  .hero-inner { max-width: var(--col-max); margin: 0 auto; position: relative; }
+  .hero-inner { max-width: var(--col-wide); margin: 0 auto; position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.86fr); gap: clamp(36px, 6vw, 86px); align-items: center; }
+  .hero-copy { min-width: 0; }
   .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #c41e24; margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
   .hero-kicker::before { content: ''; display: block; width: 28px; height: 2px; background: #c41e24; flex-shrink: 0; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900; line-height: 1.09; letter-spacing: -0.02em; margin-bottom: 28px; color: #faf8f4; }
@@ -81,6 +82,8 @@
   .hero-byline { display: flex; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.13); padding-top: 20px; }
   .hero-byline-item { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,248,244,0.45); }
   .hero-byline-item strong { display: block; color: rgba(250,248,244,0.82); font-weight: 500; margin-bottom: 3px; font-size: 11px; }
+  .hero-logo-panel { min-height: clamp(240px, 34vw, 360px); display: flex; align-items: center; justify-content: center; padding: 0; background: transparent; border: 0; box-shadow: none; }
+  .hero-logo-img { display: block; width: min(100%, 430px); max-height: 280px; object-fit: contain; filter: drop-shadow(0 0 24px rgba(196,30,36,0.12)); }
 
   /* ── ASSESSMENT SECTION ── */
   .assessment-section { background-color: #f4f1eb; border-bottom: 4px solid #0d0d0d; }
@@ -459,6 +462,9 @@
     .masthead-inner { padding: 14px 20px; }
     .inblick-intro { padding: 22px 20px; }
     .hero { padding: 48px 20px 40px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+    .hero-logo-panel { min-height: 220px; order: -1; }
+    .hero-logo-img { max-height: 180px; }
     .assessment-inner { padding: 40px 20px; }
     .content-wrapper { padding: 0 16px; }
     .section-nav-inner { padding: 0 20px; }
@@ -503,14 +509,19 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-kicker">Hotanalytisk bedömning &nbsp;·&nbsp; Arktis &nbsp;·&nbsp; Rymdsäkerhet &nbsp;·&nbsp; Privata underrättelsebolag</div>
-    <h1>Privata underrättelsebolag, satellitövervakning och Arktis</h1>
-    <p class="hero-deck">När kommersiella satellitsystem, privata analysplattformar och datamäklarnätverk flyter ihop med statlig underrättelseverksamhet – utan demokratisk tillsyn, utan reglering, och med motståndareer som redan opererar i den uppkomna gråzonen.</p>
-    <div class="hero-byline">
-      <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
-      <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
-      <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
-      <div class="hero-byline-item"><strong>Version</strong>3.3</div>
+    <div class="hero-copy">
+      <div class="hero-kicker">Hotanalytisk bedömning &nbsp;·&nbsp; Arktis &nbsp;·&nbsp; Rymdsäkerhet &nbsp;·&nbsp; Privata underrättelsebolag</div>
+      <h1>Privata underrättelsebolag, satellitövervakning och Arktis</h1>
+      <p class="hero-deck">När kommersiella satellitsystem, privata analysplattformar och datamäklarnätverk flyter ihop med statlig underrättelseverksamhet – utan demokratisk tillsyn, utan reglering, och med motståndare som redan opererar i den uppkomna gråzonen.</p>
+      <div class="hero-byline">
+        <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
+        <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
+        <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
+        <div class="hero-byline-item"><strong>Version</strong>3.3</div>
+      </div>
+    </div>
+    <div class="hero-logo-panel">
+      <img class="hero-logo-img" src="./inblick-logo.png" alt="INBLICK Svensk OSINT" loading="eager">
     </div>
   </div>
 </section>
@@ -1145,7 +1156,7 @@ if (satelliteVideo) {
 }
 
 // ── HERO STAGGER ──
-document.querySelectorAll('.hero-inner > *').forEach((el, i) => {
+document.querySelectorAll('.hero-copy > *, .hero-logo-panel').forEach((el, i) => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = `opacity 0.6s ease ${i * 0.12}s, transform 0.6s ease ${i * 0.12}s`;
