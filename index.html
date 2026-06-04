@@ -8,6 +8,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Bakgrundsbilder: .png + fallback för filnamn utan synlig ändelse i repo -->
+<link rel="preload" as="image" href="./bg-hero-arktis-karta.png">
+<link rel="preload" as="image" href="./bg-assessment-rapportstruktur.png">
+<link rel="preload" as="image" href="./bg-summary-noder-karta.png">
+<link rel="preload" as="image" href="./bg-monopol-satellitritning.png">
+<link rel="preload" as="image" href="./bg-tech-datacenter-ljust.png">
+<link rel="preload" as="image" href="./bg-palantir-europa-noder.png">
+<link rel="preload" as="image" href="./bg-earth-observation-hamn.png">
+<link rel="preload" as="image" href="./bg-arktisk-markstation.png">
+<link rel="preload" as="image" href="./bg-andoya-kust-satellit.png">
+<link rel="preload" as="image" href="./bg-datamaklare-rorelsespar.png">
+<link rel="preload" as="image" href="./bg-heist-kabelrutter.png">
+<link rel="preload" as="image" href="./bg-norden-infrastruktur.png">
+<link rel="preload" as="image" href="./bg-slutsats-sammanvavt-nat.png">
 <style>
   :root {
     color-scheme: light only;
@@ -75,7 +90,8 @@
     background-color: #0d0d0d;
     background-image:
       linear-gradient(90deg, rgba(13,13,13,0.94) 0%, rgba(13,13,13,0.86) 46%, rgba(13,13,13,0.70) 100%),
-      url('./bg-hero-arktis-karta.png');
+      url('./bg-hero-arktis-karta.png'),
+      url('./bg-hero-arktis-karta');
     background-size: cover;
     background-position: center;
     color: #faf8f4;
@@ -101,7 +117,8 @@
     background-color: #f4f1eb;
     background-image:
       linear-gradient(180deg, rgba(244,241,235,0.92), rgba(250,248,244,0.96)),
-      url('./bg-assessment-rapportstruktur.png');
+      url('./bg-assessment-rapportstruktur.png'),
+      url('./bg-assessment-rapportstruktur');
     background-size: cover;
     background-position: center;
     border-bottom: 4px solid #0d0d0d;
@@ -428,14 +445,15 @@
     background-size: cover;
     background-position: var(--section-bg-position, center);
     background-repeat: no-repeat;
-    opacity: var(--section-bg-opacity, 0.24);
+    opacity: var(--section-bg-opacity, 0.58);
+    filter: saturate(0.92) contrast(0.96);
   }
   .section-bg::after {
     z-index: 0;
     background:
-      linear-gradient(180deg, rgba(250,248,244,0.86), rgba(250,248,244,0.92)),
-      radial-gradient(circle at 18% 12%, rgba(255,255,255,0.86), transparent 40%),
-      radial-gradient(circle at 82% 80%, rgba(244,241,235,0.78), transparent 42%);
+      linear-gradient(180deg, rgba(250,248,244,0.50), rgba(250,248,244,0.70)),
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,0.52), transparent 42%),
+      radial-gradient(circle at 82% 80%, rgba(244,241,235,0.46), transparent 46%);
   }
   .section-bg > * {
     position: relative;
@@ -443,58 +461,58 @@
   }
 
   #sammanfattning {
-    --section-bg: url('./bg-summary-noder-karta.png');
-    --section-bg-opacity: 0.34;
+    --section-bg: url('./bg-summary-noder-karta.png'), url('./bg-summary-noder-karta');
+    --section-bg-opacity: 0.66;
     --section-bg-position: center;
   }
   #fenomenet {
-    --section-bg: url('./bg-monopol-satellitritning.png');
-    --section-bg-opacity: 0.30;
+    --section-bg: url('./bg-monopol-satellitritning.png'), url('./bg-monopol-satellitritning');
+    --section-bg-opacity: 0.62;
     --section-bg-position: center;
   }
   #techoligarker {
-    --section-bg: url('./bg-tech-datacenter-ljust.png');
-    --section-bg-opacity: 0.30;
+    --section-bg: url('./bg-tech-datacenter-ljust.png'), url('./bg-tech-datacenter-ljust');
+    --section-bg-opacity: 0.62;
     --section-bg-position: center;
   }
   #palantir-europa {
-    --section-bg: url('./bg-palantir-europa-noder.png');
-    --section-bg-opacity: 0.34;
+    --section-bg: url('./bg-palantir-europa-noder.png'), url('./bg-palantir-europa-noder');
+    --section-bg-opacity: 0.66;
     --section-bg-position: center;
   }
   #satelliter {
-    --section-bg: url('./bg-earth-observation-hamn.png');
-    --section-bg-opacity: 0.30;
+    --section-bg: url('./bg-earth-observation-hamn.png'), url('./bg-earth-observation-hamn');
+    --section-bg-opacity: 0.62;
     --section-bg-position: center;
   }
   #arktis {
-    --section-bg: url('./bg-arktisk-markstation.png');
-    --section-bg-opacity: 0.34;
+    --section-bg: url('./bg-arktisk-markstation.png'), url('./bg-arktisk-markstation');
+    --section-bg-opacity: 0.66;
     --section-bg-position: center;
   }
   #andoya {
-    --section-bg: url('./bg-andoya-kust-satellit.png');
-    --section-bg-opacity: 0.32;
+    --section-bg: url('./bg-andoya-kust-satellit.png'), url('./bg-andoya-kust-satellit');
+    --section-bg-opacity: 0.64;
     --section-bg-position: center;
   }
   #datamaklare {
-    --section-bg: url('./bg-datamaklare-rorelsespar.png');
-    --section-bg-opacity: 0.34;
+    --section-bg: url('./bg-datamaklare-rorelsespar.png'), url('./bg-datamaklare-rorelsespar');
+    --section-bg-opacity: 0.66;
     --section-bg-position: center;
   }
   #heist {
-    --section-bg: url('./bg-heist-kabelrutter.png');
-    --section-bg-opacity: 0.38;
+    --section-bg: url('./bg-heist-kabelrutter.png'), url('./bg-heist-kabelrutter');
+    --section-bg-opacity: 0.72;
     --section-bg-position: center;
   }
   #sverige {
-    --section-bg: url('./bg-norden-infrastruktur.png');
-    --section-bg-opacity: 0.36;
+    --section-bg: url('./bg-norden-infrastruktur.png'), url('./bg-norden-infrastruktur');
+    --section-bg-opacity: 0.70;
     --section-bg-position: center;
   }
   #slutsatser {
-    --section-bg: url('./bg-slutsats-sammanvavt-nat.png');
-    --section-bg-opacity: 0.32;
+    --section-bg: url('./bg-slutsats-sammanvavt-nat.png'), url('./bg-slutsats-sammanvavt-nat');
+    --section-bg-opacity: 0.62;
     --section-bg-position: center;
   }
 
