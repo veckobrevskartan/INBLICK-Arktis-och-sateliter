@@ -491,6 +491,140 @@
     margin-right: auto;
   }
 
+
+
+  /* ── FULLSKÄRMSBAKGRUNDER PER SEKTION ──
+     Bilderna hämtas från repo-roten. Varje bakgrund ligger på själva section-elementet,
+     inte på textkolumnen, så bilden fyller hela viewportens bredd medan texten behåller läsbredd. */
+  .hero {
+    background-image:
+      linear-gradient(90deg, rgba(13,13,13,0.88) 0%, rgba(13,13,13,0.74) 45%, rgba(13,13,13,0.62) 100%),
+      url('./bg-hero-arktis-karta.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .assessment-section {
+    background-image:
+      linear-gradient(rgba(244,241,235,0.70), rgba(244,241,235,0.82)),
+      url('./bg-assessment-rapportstruktur.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #sammanfattning {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.70), rgba(250,248,244,0.80)),
+      url('./bg-summary-noder-karta.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #fenomenet {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.68), rgba(250,248,244,0.84)),
+      url('./bg-monopol-satellitritning.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #techoligarker {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.70), rgba(250,248,244,0.84)),
+      url('./bg-tech-datacenter-ljust.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #palantir-europa {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.68), rgba(250,248,244,0.84)),
+      url('./bg-palantir-europa-noder.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #satelliter {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.74), rgba(250,248,244,0.86)),
+      url('./bg-earth-observation-hamn.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #arktis {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.64), rgba(250,248,244,0.82)),
+      url('./bg-arktisk-markstation.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #andoya {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.66), rgba(250,248,244,0.84)),
+      url('./bg-andoya-kust-satellit.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #datamaklare {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.66), rgba(250,248,244,0.84)),
+      url('./bg-datamaklare-rorelsespar.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #heist {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.62), rgba(250,248,244,0.82)),
+      url('./bg-heist-kabelrutter.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #sverige {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.64), rgba(250,248,244,0.84)),
+      url('./bg-norden-infrastruktur.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #slutsatser {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.64), rgba(250,248,244,0.84)),
+      url('./bg-slutsats-sammanvavt-nat.png?v=39') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #karta {
+    background-image: none !important;
+  }
+
+  @media (max-width: 700px) {
+    .article-section,
+    .assessment-section,
+    .hero {
+      background-position: center top !important;
+    }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     .masthead-inner { padding: 14px 20px; }
@@ -521,7 +655,7 @@
       <div class="inblick-divider"></div>
       <div class="inblick-tagline">Säkerhetsanalys<br>Svensk OSINT</div>
     </a>
-    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.8</div>
+    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.9</div>
   </div>
 </header>
 
@@ -551,7 +685,7 @@
         <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
         <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
         <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
-        <div class="hero-byline-item"><strong>Version</strong>3.8</div>
+        <div class="hero-byline-item"><strong>Version</strong>3.9</div>
       </div>
     </div>
     <div class="hero-logo-panel">
@@ -1112,7 +1246,7 @@
 <footer>
   <div class="footer-logo">INBL<em>I</em>CK</div>
   <span>Svensk OSINT · Säkerhetsanalytisk rapportserie</span><br>
-  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.8
+  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.9
 </footer>
 
 <script>
