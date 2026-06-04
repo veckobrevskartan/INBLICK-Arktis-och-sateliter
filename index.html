@@ -457,6 +457,128 @@
   [data-tooltip] { position: relative; cursor: help; border-bottom: 1px dashed rgba(26,58,107,0.4); }
   [data-tooltip]:hover::after { content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #0d0d0d; color: #faf8f4; padding: 6px 10px; font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; white-space: nowrap; z-index: 100; pointer-events: none; margin-bottom: 6px; }
 
+
+  /* ── BAKGRUNDSBILDER – ljusa sektionsbakgrunder ──
+     Bilderna läses från repo-roten. Cache-brytaren ?v=37 gör att GitHub Pages
+     inte fortsätter visa en äldre version av samma filnamn. */
+  .hero {
+    background-image:
+      linear-gradient(90deg, rgba(13,13,13,0.94) 0%, rgba(13,13,13,0.86) 48%, rgba(13,13,13,0.76) 100%),
+      url('./bg-hero-arktis-karta.png?v=37');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero::before {
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.028) 39px, rgba(255,255,255,0.028) 40px),
+      linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));
+  }
+
+  .assessment-section {
+    background-image:
+      linear-gradient(rgba(244,241,235,0.80), rgba(244,241,235,0.88)),
+      url('./bg-assessment-rapportstruktur.png?v=37');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .article-section {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(250,248,244,0.76);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
+  }
+  .article-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  #sammanfattning {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.76), rgba(250,248,244,0.88)),
+      url('./bg-summary-noder-karta.png?v=37');
+    background-position: center;
+  }
+
+  #fenomenet {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.80), rgba(250,248,244,0.90)),
+      url('./bg-monopol-satellitritning.png?v=37');
+    background-position: center 44%;
+  }
+
+  #techoligarker {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.78), rgba(250,248,244,0.90)),
+      url('./bg-tech-datacenter-ljust.png?v=37');
+    background-position: center 45%;
+  }
+
+  #palantir-europa {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.77), rgba(250,248,244,0.90)),
+      url('./bg-palantir-europa-noder.png?v=37');
+    background-position: center;
+  }
+
+  #satelliter {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.70), rgba(250,248,244,0.88)),
+      url('./bg-earth-observation-hamn.png?v=37');
+    background-position: center;
+  }
+
+  #arktis {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.72), rgba(250,248,244,0.90)),
+      url('./bg-arktisk-markstation.png?v=37');
+    background-position: center;
+  }
+
+  #andoya {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.73), rgba(250,248,244,0.90)),
+      url('./bg-andoya-kust-satellit.png?v=37');
+    background-position: center;
+  }
+
+  #datamaklare {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.76), rgba(250,248,244,0.91)),
+      url('./bg-datamaklare-rorelsespar.png?v=37');
+    background-position: center;
+  }
+
+  #heist {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.68), rgba(250,248,244,0.88)),
+      url('./bg-heist-kabelrutter.png?v=37');
+    background-position: center;
+  }
+
+  #sverige {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.72), rgba(250,248,244,0.89)),
+      url('./bg-norden-infrastruktur.png?v=37');
+    background-position: center;
+  }
+
+  #slutsatser {
+    background-image:
+      linear-gradient(rgba(250,248,244,0.74), rgba(250,248,244,0.91)),
+      url('./bg-slutsats-sammanvavt-nat.png?v=37');
+    background-position: center;
+  }
+
+  /* Kartan är redan visuellt bärande och ska inte få egen bakgrundsbild. */
+  #karta {
+    background-image: none;
+    background-color: #faf8f4;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     .masthead-inner { padding: 14px 20px; }
@@ -487,7 +609,7 @@
       <div class="inblick-divider"></div>
       <div class="inblick-tagline">Säkerhetsanalys<br>Svensk OSINT</div>
     </a>
-    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.6</div>
+    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.7</div>
   </div>
 </header>
 
@@ -517,7 +639,7 @@
         <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
         <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
         <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
-        <div class="hero-byline-item"><strong>Version</strong>3.6</div>
+        <div class="hero-byline-item"><strong>Version</strong>3.7</div>
       </div>
     </div>
     <div class="hero-logo-panel">
@@ -1078,7 +1200,7 @@
 <footer>
   <div class="footer-logo">INBL<em>I</em>CK</div>
   <span>Svensk OSINT · Säkerhetsanalytisk rapportserie</span><br>
-  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.6
+  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.7
 </footer>
 
 <script>
