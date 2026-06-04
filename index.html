@@ -159,6 +159,183 @@
     .embedded-map-frame { height: 72vh; min-height: 500px; }
   }
 
+
+
+  /* ── INBLICK INLAGA – samma presentationsblock som valpåverkanssidan ── */
+  #inlaga {
+    --inlaga-ink: #08090f;
+    --inlaga-panel: #111526;
+    --inlaga-border: #1a2038;
+    --inlaga-amber: #d4a843;
+    --inlaga-amber-dim: #7a5f1a;
+    --inlaga-ice: #f0f4fa;
+    --inlaga-mist: #a0b0cc;
+    background: var(--inlaga-panel);
+    border-top: 1px solid var(--inlaga-amber-dim);
+    border-bottom: 1px solid var(--inlaga-border);
+    padding: 52px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  #inlaga::before {
+    content: 'INBLICK';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 900;
+    color: rgba(212,168,67,0.045);
+    pointer-events: none;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .inlaga-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    position: relative;
+    z-index: 1;
+  }
+  .inlaga-badge {
+    flex-shrink: 0;
+    padding: 20px 28px;
+    border: 1px solid var(--inlaga-amber);
+    text-align: center;
+    min-width: 130px;
+    background: rgba(212,168,67,0.05);
+  }
+  .inlaga-badge .ib-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--inlaga-amber);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+  }
+  .inlaga-badge .ib-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    color: var(--inlaga-mist);
+    text-transform: uppercase;
+    margin-top: 5px;
+    line-height: 1.45;
+  }
+  .inlaga-sep {
+    width: 1px;
+    height: 84px;
+    background: var(--inlaga-border);
+    flex-shrink: 0;
+  }
+  .inlaga-text {
+    font-size: 17px;
+    color: var(--inlaga-ice);
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 860px;
+    opacity: 0.88;
+  }
+  .inlaga-text strong {
+    color: var(--inlaga-amber);
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .inlaga-text em {
+    color: var(--inlaga-mist);
+    font-style: italic;
+  }
+
+  @media (max-width: 760px) {
+    #inlaga { padding: 38px 0; }
+    .inlaga-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 0 22px; }
+    .inlaga-sep { display: none; }
+    .inlaga-text { font-size: 16px; line-height: 1.72; }
+  }
+
+  /* ── SATELLITVIDEO – autostart vid scroll ── */
+  .sat-video-panel {
+    margin: 34px 0 38px;
+    background: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.78fr) minmax(320px, 1.22fr);
+    gap: 0;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+  }
+  .sat-video-copy {
+    padding: 30px 32px;
+    color: #faf8f4;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(196,30,36,0.22), transparent 35%),
+      linear-gradient(135deg, #0d0d0d 0%, #161616 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 260px;
+  }
+  .sat-video-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #d4a843;
+    margin-bottom: 14px;
+  }
+  .sat-video-copy h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.12;
+    font-weight: 900;
+    color: #faf8f4;
+    margin-bottom: 16px;
+  }
+  .sat-video-copy p {
+    font-size: 16.5px;
+    line-height: 1.78;
+    color: rgba(250,248,244,0.82);
+    margin: 0 0 18px;
+  }
+  .sat-video-copy p:last-child { margin-bottom: 0; }
+  .sat-video-copy a {
+    color: #f0c060;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(240,192,96,0.42);
+  }
+  .sat-video-copy a:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.55); }
+  .sat-video-frame {
+    position: relative;
+    background: #050505;
+    min-height: 320px;
+  }
+  .sat-video-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 18%, transparent 82%, rgba(0,0,0,0.22));
+    z-index: 1;
+  }
+  .sat-video {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    max-height: 560px;
+    display: block;
+    object-fit: cover;
+    background: #050505;
+  }
+  @media (max-width: 860px) {
+    .sat-video-panel { grid-template-columns: 1fr; }
+    .sat-video-copy { min-height: auto; padding: 26px 24px; }
+    .sat-video, .sat-video-frame { min-height: 360px; }
+  }
+
   /* ── NAV ── */
   .section-nav { border-bottom: 1px solid #e0dbd0; background-color: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
   .section-nav-inner {
@@ -308,12 +485,17 @@
   </div>
 </header>
 
-<div class="inblick-intro">
-  <div class="inblick-intro-inner">
-    <div class="inblick-intro-bar"></div>
-    <p class="inblick-intro-text">
-      <strong>INBLICK</strong> är Svensk OSINTs djupanalysserie – underrättelseanalytiska bedömningar av säkerhetspolitiska trender, hybridhot och kritisk infrastruktur. Serien riktar sig till säkerhetsanalytiker, beslutsfattare och kvalificerade läsare med intresse för öppen källanalys på strategisk nivå. Allt källmaterial är öppet och verifierbart. Bedömningsformatet följer etablerade analytiska standarder med explicita sannolikhetsnivåer och redovisade osäkerhetsfaktorer.
-    </p>
+<div id="inlaga">
+  <div class="inlaga-inner">
+    <div class="inlaga-badge">
+      <div class="ib-main">INBLICK</div>
+      <div class="ib-sub">Analyskatalog</div>
+      <div class="ib-sub" style="margin-top:4px;">Svensk OSINT</div>
+    </div>
+    <div class="inlaga-sep"></div>
+    <div class="inlaga-text">
+      <strong>Denna analys ingår i Svensk OSINTs analyskatalog INBLICK</strong> — ett fristående projekt med fokus på säkerhetspolitik, hybridhot, kritisk infrastruktur och underrättelseanalys i öppna källor. Detta kapitel behandlar privatiseringen av underrättelseförmåga, kommersiell satellitövervakning, Arktis rymdinfrastruktur och datamäklarnätverk. Bedömningar presenteras med konfidensgrad och källhänvisningar. <em>Analysen är inte en myndighetspublikation och speglar inte officiella svenska ståndpunkter.</em>
+    </div>
   </div>
 </div>
 
@@ -455,7 +637,18 @@
     <div class="stat-cell"><div class="stat-val" id="s4">0<span> %</span></div><div class="stat-lbl">Tillväxt per år (CAGR)</div></div>
   </div>
 
-  <p>Stater har historiskt haft monopol på satellitbaserade övervakningsförmågor. Det monopolet är upplöst. Den globala rymdekonomin uppgick till <a href="https://atlasinstitute.org/the-privatisation-of-persistent-surveillance-risks-and-opportunities-for-natos-space-strategy/">613 miljarder US-dollar år 2024</a>, varav den kommersiella sektorn stod för 78 procent. Marknadsvärdet för satellitövervakningstjänster beräknas växa från 6,8 miljarder dollar år 2024 till <a href="https://marketintelo.com/report/satellite-surveillance-services-market">18,3 miljarder dollar år 2033</a> – en tillväxt driven av dramatiskt sjunkande uppskjutningskostnader, miniaturiserad satellithårdvara och kommersiella marknader som inte är förbehållna stater.</p>
+  <div class="sat-video-panel reveal">
+    <div class="sat-video-copy">
+      <p>Stater har historiskt haft monopol på satellitbaserade övervakningsförmågor. Det monopolet är upplöst. Den globala rymdekonomin uppgick till <a href="https://atlasinstitute.org/the-privatisation-of-persistent-surveillance-risks-and-opportunities-for-natos-space-strategy/">613 miljarder US-dollar år 2024</a>, varav den kommersiella sektorn stod för 78 procent. Marknadsvärdet för satellitövervakningstjänster beräknas växa från 6,8 miljarder dollar år 2024 till <a href="https://marketintelo.com/report/satellite-surveillance-services-market">18,3 miljarder dollar år 2033</a> – en tillväxt driven av dramatiskt sjunkande uppskjutningskostnader, miniaturiserad satellithårdvara och kommersiella marknader som inte är förbehållna stater.</p>
+    </div>
+    <div class="sat-video-frame">
+      <video id="satellite-visualisering" class="sat-video" muted playsinline loop preload="metadata" aria-label="Satellitvideo">
+        <source src="./satelliter_egen_visualisering.mp4" type="video/mp4">
+        <source src="./satelliter_egen_visualisering.mov" type="video/quicktime">
+        Din webbläsare kan inte spela upp videon.
+      </video>
+    </div>
+  </div>
 
   <p>Resultatet är att privata tech-oligarker och deras bolag i dag besitter underrättelseförmågaer som under kalla kriget var förbehållna supermakter. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=56791">Shoshana Zuboff, professor emerita vid Harvard Business School</a>, beskrev det det ekonomiska system som ligger bakom utvecklingen i <em>The Age of Surveillance Capitalism</em> (2019): mänsklig erfarenhet omvandlas till råmaterial, beteendedata omvandlas till <span data-tooltip="Överskottsdata som säljs på kommersiella marknader">behavioral surplus</span> och handlas på <em>behavioral futures markets</em>. Satellitövervakningen är den del av detta system som knyter data till platser, rörelser och fysiska objekt.</p>
 
@@ -917,6 +1110,39 @@ const statsObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 if (statsBlock) statsObs.observe(statsBlock);
+
+
+// ── SATELLITVIDEO: starta automatiskt när läsaren scrollar över blocket ──
+const satelliteVideo = document.getElementById('satellite-visualisering');
+if (satelliteVideo) {
+  satelliteVideo.muted = true;
+  satelliteVideo.playsInline = true;
+
+  const satelliteVideoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+        const playPromise = satelliteVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            satelliteVideo.setAttribute('controls', 'controls');
+          });
+        }
+      } else {
+        satelliteVideo.pause();
+      }
+    });
+  }, { threshold: [0, 0.35, 0.6] });
+
+  satelliteVideoObserver.observe(satelliteVideo);
+
+  satelliteVideo.addEventListener('click', () => {
+    if (satelliteVideo.paused) {
+      satelliteVideo.play().catch(() => satelliteVideo.setAttribute('controls', 'controls'));
+    } else {
+      satelliteVideo.pause();
+    }
+  });
+}
 
 // ── HERO STAGGER ──
 document.querySelectorAll('.hero-inner > *').forEach((el, i) => {
