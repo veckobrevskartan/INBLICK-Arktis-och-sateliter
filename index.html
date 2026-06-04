@@ -8,21 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<!-- Bakgrundsbilder: .png + fallback för filnamn utan synlig ändelse i repo -->
-<link rel="preload" as="image" href="./bg-hero-arktis-karta.png">
-<link rel="preload" as="image" href="./bg-assessment-rapportstruktur.png">
-<link rel="preload" as="image" href="./bg-summary-noder-karta.png">
-<link rel="preload" as="image" href="./bg-monopol-satellitritning.png">
-<link rel="preload" as="image" href="./bg-tech-datacenter-ljust.png">
-<link rel="preload" as="image" href="./bg-palantir-europa-noder.png">
-<link rel="preload" as="image" href="./bg-earth-observation-hamn.png">
-<link rel="preload" as="image" href="./bg-arktisk-markstation.png">
-<link rel="preload" as="image" href="./bg-andoya-kust-satellit.png">
-<link rel="preload" as="image" href="./bg-datamaklare-rorelsespar.png">
-<link rel="preload" as="image" href="./bg-heist-kabelrutter.png">
-<link rel="preload" as="image" href="./bg-norden-infrastruktur.png">
-<link rel="preload" as="image" href="./bg-slutsats-sammanvavt-nat.png">
 <style>
   :root {
     color-scheme: light only;
@@ -86,19 +71,7 @@
   .classification-banner { background-color: #c41e24; color: white; text-align: center; padding: 8px 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; }
 
   /* ── HERO ── */
-  .hero {
-    background-color: #0d0d0d;
-    background-image:
-      linear-gradient(90deg, rgba(13,13,13,0.94) 0%, rgba(13,13,13,0.86) 46%, rgba(13,13,13,0.70) 100%),
-      url('./bg-hero-arktis-karta.png'),
-      url('./bg-hero-arktis-karta');
-    background-size: cover;
-    background-position: center;
-    color: #faf8f4;
-    padding: 80px 40px 68px;
-    position: relative;
-    overflow: hidden;
-  }
+  .hero { background-color: #0d0d0d; color: #faf8f4; padding: 80px 40px 68px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.025) 39px, rgba(255,255,255,0.025) 40px); pointer-events: none; }
   .hero-inner { max-width: var(--col-wide); margin: 0 auto; position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.86fr); gap: clamp(36px, 6vw, 86px); align-items: center; }
   .hero-copy { min-width: 0; }
@@ -113,19 +86,7 @@
   .hero-logo-img { display: block; width: min(100%, 430px); max-height: 280px; object-fit: contain; filter: drop-shadow(0 0 24px rgba(196,30,36,0.12)); }
 
   /* ── ASSESSMENT SECTION ── */
-  .assessment-section {
-    background-color: #f4f1eb;
-    background-image:
-      linear-gradient(180deg, rgba(244,241,235,0.92), rgba(250,248,244,0.96)),
-      url('./bg-assessment-rapportstruktur.png'),
-      url('./bg-assessment-rapportstruktur');
-    background-size: cover;
-    background-position: center;
-    border-bottom: 4px solid #0d0d0d;
-    position: relative;
-    overflow: hidden;
-  }
-  .assessment-section > .assessment-inner { position: relative; z-index: 1; }
+  .assessment-section { background-color: #f4f1eb; border-bottom: 4px solid #0d0d0d; }
   .assessment-inner { max-width: var(--col-max); margin: 0 auto; padding: 56px 24px; }
   .assessment-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #c41e24; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
   .assessment-label::after { content: ''; flex: 1; height: 1px; background: #c41e24; opacity: 0.25; }
@@ -422,100 +383,7 @@
 
   /* ── CONTENT ── */
   .content-wrapper { max-width: var(--col-max); margin: 0 auto; padding: 0 24px; }
-  .article-section { padding: 64px 0; border-bottom: 1px solid #e0dbd0; position: relative; }
-
-  /* ── LJUSA SEKTIONSBAKGRUNDER ── */
-  .section-bg {
-    isolation: isolate;
-  }
-  .section-bg::before,
-  .section-bg::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 100vw;
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-  .section-bg::before {
-    z-index: 0;
-    background-image: var(--section-bg);
-    background-size: cover;
-    background-position: var(--section-bg-position, center);
-    background-repeat: no-repeat;
-    opacity: var(--section-bg-opacity, 0.58);
-    filter: saturate(0.92) contrast(0.96);
-  }
-  .section-bg::after {
-    z-index: 0;
-    background:
-      linear-gradient(180deg, rgba(250,248,244,0.50), rgba(250,248,244,0.70)),
-      radial-gradient(circle at 18% 12%, rgba(255,255,255,0.52), transparent 42%),
-      radial-gradient(circle at 82% 80%, rgba(244,241,235,0.46), transparent 46%);
-  }
-  .section-bg > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  #sammanfattning {
-    --section-bg: url('./bg-summary-noder-karta.png'), url('./bg-summary-noder-karta');
-    --section-bg-opacity: 0.66;
-    --section-bg-position: center;
-  }
-  #fenomenet {
-    --section-bg: url('./bg-monopol-satellitritning.png'), url('./bg-monopol-satellitritning');
-    --section-bg-opacity: 0.62;
-    --section-bg-position: center;
-  }
-  #techoligarker {
-    --section-bg: url('./bg-tech-datacenter-ljust.png'), url('./bg-tech-datacenter-ljust');
-    --section-bg-opacity: 0.62;
-    --section-bg-position: center;
-  }
-  #palantir-europa {
-    --section-bg: url('./bg-palantir-europa-noder.png'), url('./bg-palantir-europa-noder');
-    --section-bg-opacity: 0.66;
-    --section-bg-position: center;
-  }
-  #satelliter {
-    --section-bg: url('./bg-earth-observation-hamn.png'), url('./bg-earth-observation-hamn');
-    --section-bg-opacity: 0.62;
-    --section-bg-position: center;
-  }
-  #arktis {
-    --section-bg: url('./bg-arktisk-markstation.png'), url('./bg-arktisk-markstation');
-    --section-bg-opacity: 0.66;
-    --section-bg-position: center;
-  }
-  #andoya {
-    --section-bg: url('./bg-andoya-kust-satellit.png'), url('./bg-andoya-kust-satellit');
-    --section-bg-opacity: 0.64;
-    --section-bg-position: center;
-  }
-  #datamaklare {
-    --section-bg: url('./bg-datamaklare-rorelsespar.png'), url('./bg-datamaklare-rorelsespar');
-    --section-bg-opacity: 0.66;
-    --section-bg-position: center;
-  }
-  #heist {
-    --section-bg: url('./bg-heist-kabelrutter.png'), url('./bg-heist-kabelrutter');
-    --section-bg-opacity: 0.72;
-    --section-bg-position: center;
-  }
-  #sverige {
-    --section-bg: url('./bg-norden-infrastruktur.png'), url('./bg-norden-infrastruktur');
-    --section-bg-opacity: 0.70;
-    --section-bg-position: center;
-  }
-  #slutsatser {
-    --section-bg: url('./bg-slutsats-sammanvavt-nat.png'), url('./bg-slutsats-sammanvavt-nat');
-    --section-bg-opacity: 0.62;
-    --section-bg-position: center;
-  }
-
+  .article-section { padding: 64px 0; border-bottom: 1px solid #e0dbd0; }
   .article-section:last-child { border-bottom: none; }
   .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 14px; border-bottom: 2px solid #0d0d0d; }
   .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: #c41e24; min-width: 24px; flex-shrink: 0; }
@@ -619,7 +487,7 @@
       <div class="inblick-divider"></div>
       <div class="inblick-tagline">Säkerhetsanalys<br>Svensk OSINT</div>
     </a>
-    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.3</div>
+    <div class="masthead-meta">Juni 2026 &nbsp;·&nbsp; Version 3.6</div>
   </div>
 </header>
 
@@ -649,7 +517,7 @@
         <div class="hero-byline-item"><strong>Serie</strong>INBLICK / Säkerhetsanalys</div>
         <div class="hero-byline-item"><strong>Datum</strong>Juni 2026</div>
         <div class="hero-byline-item"><strong>Klassificering</strong>Öppen källanalys</div>
-        <div class="hero-byline-item"><strong>Version</strong>3.3</div>
+        <div class="hero-byline-item"><strong>Version</strong>3.6</div>
       </div>
     </div>
     <div class="hero-logo-panel">
@@ -738,7 +606,7 @@
 <div class="content-wrapper">
 
 <!-- SAMMANFATTNING -->
-<section id="sammanfattning" class="article-section section-bg">
+<section id="sammanfattning" class="article-section">
   <div class="section-header">
     <span class="section-num">—</span>
     <h2 class="section-title">Sammanfattning</h2>
@@ -767,7 +635,7 @@
 </section>
 
 <!-- 01 HUR MONOPOLET FÖRSVANN -->
-<section id="fenomenet" class="article-section section-bg">
+<section id="fenomenet" class="article-section">
   <div class="section-header">
     <span class="section-num">01</span>
     <h2 class="section-title">Hur statens gamla monopol försvann</h2>
@@ -793,7 +661,7 @@
     </div>
   </div>
 
-  <p>Resultatet är att privata tech-oligarker och deras bolag i dag besitter underrättelseförmågaer som under kalla kriget var förbehållna supermakter. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=56791">Shoshana Zuboff, professor emerita vid Harvard Business School</a>, beskrev det det ekonomiska system som ligger bakom utvecklingen i <em>The Age of Surveillance Capitalism</em> (2019): mänsklig erfarenhet omvandlas till råmaterial, beteendedata omvandlas till <span data-tooltip="Överskottsdata som säljs på kommersiella marknader">behavioral surplus</span> och handlas på <em>behavioral futures markets</em>. Satellitövervakningen är den del av detta system som knyter data till platser, rörelser och fysiska objekt.</p>
+  <p>Resultatet är att privata tech-oligarker och deras bolag i dag besitter underrättelseförmågaer som under kalla kriget var förbehållna supermakter. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=56791">Shoshana Zuboff, professor emerita vid Harvard Business School</a>, beskrev det det ekonomiska system som ligger bakom utvecklingen i boken <em>The Age of Surveillance Capitalism</em>: mänsklig erfarenhet omvandlas till råmaterial, beteendedata omvandlas till <span data-tooltip="Överskottsdata som säljs på kommersiella marknader">behavioral surplus</span> och handlas på <em>behavioral futures markets</em>. Satellitövervakningen är den del av detta system som knyter data till platser, rörelser och fysiska objekt.</p>
 
   <div class="key-quote">
     <div class="key-quote-text">"Satellit imagery has made it possible for actors with the right knowledge to essentially become intelligence analysts without needing security clearance."</div>
@@ -805,7 +673,7 @@
 </section>
 
 <!-- 02 TECHOLIGARKER -->
-<section id="techoligarker" class="article-section section-bg">
+<section id="techoligarker" class="article-section">
   <div class="section-header">
     <span class="section-num">02</span>
     <h2 class="section-title">Techmiljardärer som nya underrättelseaktörer</h2>
@@ -822,7 +690,10 @@
     <p>Starshield är ett hemligstämplat statligt kontrakt drivet av ett privat bolag vars grundare har egna geopolitiska agendor, affärsintressen i Kina och offentliga politiska positioner. Ingen demokratisk institution har mandat att granska hur förmågorna används, av vem, eller under vilka omständigheter de kan återkallas.</p>
   </div>
 
-  <p>Elon Musks SpaceX och Jeff Bezos Blue Origin representerar ett systemskifte i hur USA:s underrättelsesamhälle organiseras. <a href="https://www.theguardian.com/us-news/2025/apr/06/trump-musk-billionaires-influence-national-security">The Guardian konstaterade i april 2025 att den amerikanska underrättelsegemenskapen riskerar att bli inbyggt beroende av dessa aktörer</a>. En artikel i <a href="https://www.tandfonline.com/doi/full/10.1080/09505431.2026.2655707"><em>Social Studies of Science</em> (2026)</a> varnar för att oligarkisk kontroll av rymden är en direkt konsekvens av grundläggande beslut från amerikanska rymdprogrammets tidiga år – inte ett brott med historien.</p>
+  <h3 class="subsection-title">Starlink som operativ flaskhals</h3>
+  <p>Erfarenheterna från Ukraina visar att Starlink inte bara är en teknisk bärare, utan en aktör som kan påverka krigsförlopp. En <a href="https://www.reuters.com/">Reuters-granskning</a> beskriver hur Elon Musk 2022 vägrade aktivera Starlink-täckning över delar av Svarta havet inför en planerad ukrainsk attack mot ryska fartyg vid Sevastopol. Ukrainas beroende av Starlink för samband, drönarstöd och artillerikorrigering har samtidigt beskrivits som så stort att frontens stridsvärde riskerar att påverkas om systemet faller bort (<a href="https://emerging-europe.com/">Emerging Europe</a>). Ryska förbands användning av smugglade terminaler och senare försök till geofencing och avstängning visar dessutom att kommersiell satellitkommunikation blivit en aktiv del av slagfältet (<a href="https://resiliencemedia.co/">Resilience Media</a>; <a href="https://www.bbc.com/">BBC News</a>). <a href="https://foreignpolicy.com/">Foreign Policy</a> sammanfattar därför utvecklingen som en privatisering av geopolitiken.</p>
+
+  <p>Elon Musks SpaceX och Jeff Bezos Blue Origin representerar ett systemskifte i hur USA:s underrättelsesamhälle organiseras. <a href="https://www.theguardian.com/us-news/2025/apr/06/trump-musk-billionaires-influence-national-security">The Guardian konstaterade i april 2025 att den amerikanska underrättelsegemenskapen riskerar att bli inbyggt beroende av dessa aktörer</a>. <a href="https://www.tandfonline.com/doi/full/10.1080/09505431.2026.2655707">En artikel i <em>Social Studies of Science</em></a> varnar för att oligarkisk kontroll av rymden är en direkt konsekvens av grundläggande beslut från amerikanska rymdprogrammets tidiga år – inte ett brott med historien.</p>
 
   <h3 class="subsection-title">Amazon Web Services och statlig övervakningsfusion</h3>
   <p><a href="https://warehouseworkers.org/while-eyes-are-on-musk-dont-forget-bezos/">Amazon Web Services</a> fungerar som värdtjänst för en tredjedel av internet och driver lönsamma federala kontrakt. Amazon har marknadsanpassat de verktyg för datainhämtning och beteendeövervakning som ursprungligen utvecklades för lagerlokaler och säljer dem nu till staten, vilket skapar en fusion av konsument-, administrativ, biometrisk och platsdata.</p>
@@ -830,7 +701,7 @@
 </section>
 
 <!-- 03 PALANTIR I EUROPA -->
-<section id="palantir-europa" class="article-section section-bg">
+<section id="palantir-europa" class="article-section">
   <div class="section-header">
     <span class="section-num">03</span>
     <h2 class="section-title">Palantir i Europa: växande beroende och försök att bryta det</h2>
@@ -861,7 +732,7 @@
 </section>
 
 <!-- 04 SATELLITER -->
-<section id="satelliter" class="article-section section-bg">
+<section id="satelliter" class="article-section">
   <div class="section-header">
     <span class="section-num">04</span>
     <h2 class="section-title">Kommersiella jordobservationssatelliter: Kapaciteten som förändrat spelreglerna</h2>
@@ -871,12 +742,15 @@
 
   <p>Syntetisk aperturadar (SAR) representerar ett ytterligare tydligt skifte i förmåga: SAR-satelliter sänder egna mikrovågssignaler och skapar bilder oavsett ljusförhållanden, molntäcke eller väder. <a href="https://earth.esa.int/eogateway/news/iceye-the-world-s-first-sar-new-space-constellation">ICEYE</a>, grundat 2014 vid Aalto Universitetet i Finland, driver världens största kommersiella SAR-konstellation med 30+ mikrosatelliter och en bildupplösning på 25 centimeter – jämförbart med många statliga SAR-system. ICEYE levererar SAR-underrättelse till det ukrainska försvarsministeriet, NATO-länder och brittiska försvarsministeriet. <a href="https://www.capellaspace.com">Capella Space</a> är NRO:s och NGA:s primärleverantör av kommersiell SAR-data med 0,25 meters upplösning och upp till 15 besöksfrekvenser per dag. <a href="https://www.blacksky.com">BlackSky</a> levererar 35-centimeters upplösning med global återbesöksfrekvens på under 90 minuter och kan, enligt <a href="https://breakingdefense.com/2025/06/commercial-remote-sensing-the-critical-u-s-national-security-space-imperative/">Breaking Defense</a>, leverera underrättelse direkt till "den taktiska kanten av slagfältet".</p>
 
-  <p>Den avgörande frågan är inte om dessa teknologier finns, utan vem som kontrollerar dem och under vilka förhållanden de kan riktas mot civila mål. Den marknaden för kommersiell jordobservation finansieras till ungefär två tredjedelar av statliga kontrakt, men den kvarvarande tredjedelen är tillgänglig för vilken välbeställd aktör som helst.</p>
+  <h3 class="subsection-title">AI-driven satellitbildsanalys</h3>
+  <p>Sensortillväxten förstärks av AI-verktyg som kortar tiden från observation till operativ underrättelse. <a href="https://cset.georgetown.edu/publication/chinas-military-ai-wish-list/">CSET:s genomgång av kinesiska försvarsupphandlingar</a> visar hur Folkets befrielsearmé efterfrågar AI-system för beslutstöd, sensorförstärkning och datafusion. <a href="https://nylatechnologysolutions.com/ai-in-satellite-image-analysis-for-military-use/">AI-baserad bildanalys</a> kan samtidigt automatisera detektion av militära installationer, fartygsrörelser och fordonsmönster, medan EU:s försvarsfond via <a href="https://www.gmv.com/en-es/communication/press-room/press-releases/myriad-new-european-defence-fund-initiative-revolutionizing">MYRIAD-projektet</a> utvecklar fusion av optiska och radarbaserade satellitdata. Därmed krymper tidsfönstret mellan datainsamling och handling från dagar till timmar eller minuter.</p>
+
+  <p>Den avgörande frågan är därför vem som kontrollerar förmågorna och när de kan riktas mot civila mål. Marknaden är till stor del statligt finansierad, men en betydande del av kommersiell jordobservation är tillgänglig för andra välfinansierade aktörer.</p>
   </div>
 </section>
 
 <!-- 05 ARKTIS -->
-<section id="arktis" class="article-section section-bg">
+<section id="arktis" class="article-section">
   <div class="section-header">
     <span class="section-num">05</span>
     <h2 class="section-title">Arktisk rymdinfrastruktur: Varför polarnärbanan är strategisk</h2>
@@ -884,21 +758,28 @@
   <div class="reveal">
   <p>En satellit i polarnärbana passerar Arktis vid varje omloppsbana. Det innebär att en markstation i polarnärt läge kan ladda ned data med en frekvens som inte är möjlig från stationer längre söderut – det är kärnan i Arktis strategiska värde som rymdinfrastrukturhub. <a href="https://en.wikipedia.org/wiki/Svalbard_Satellite_Station">Svalbard Satellite Station (SvalSat)</a>, belägen nära Longyearbyen på Svalbard, är en av världens största civila satellitmarkstationer. Stationen drivs av Kongsberg Satellite Services (KSAT), ett samriskföretag mellan Kongsberg Defence &amp; Aerospace och det norska rymdcentret.</p>
 
-  <p><a href="https://www.cigionline.org/publications/undercover-infrastructure-dual-use-arctic-satellite-ground-stations/">Centre for International Governance Innovation (2024)</a> identifierar hur markstationer som SvalSat utgör en allvarlig säkerhetsutmaning: privata bolag lanserar fler raketer och satelliter än någonsin, vilket ökar mängden rymdtillgångar för både civilt och militärt bruk. <a href="https://phys.org/news/2011-10-china-satellite.html">Stationens IT-system utnyttjades vid fyra tillfällen år 2007–2008</a>, möjligen av kinesiska militärhackare, för att störa amerikanska jordobservationssatelliter. Hackarna "uppnådde alla steg som krävs för att ge kommandon till satelliten", men valde att inte utfärda sådana kommandon. Att förmågan existerade utan att fullt ut utnyttjas indikerar strategisk återhållsamhet, inte teknologisk begränsning.</p>
+  <p><a href="https://www.cigionline.org/publications/undercover-infrastructure-dual-use-arctic-satellite-ground-stations/">Centre for International Governance Innovations analys av arktiska satellitmarkstationer</a> identifierar hur markstationer som SvalSat utgör en allvarlig säkerhetsutmaning: privata bolag lanserar fler raketer och satelliter än någonsin, vilket ökar mängden rymdtillgångar för både civilt och militärt bruk. <a href="https://phys.org/news/2011-10-china-satellite.html">Stationens IT-system utnyttjades vid fyra tillfällen år 2007–2008</a>, möjligen av kinesiska militärhackare, för att störa amerikanska jordobservationssatelliter. Hackarna "uppnådde alla steg som krävs för att ge kommandon till satelliten", men valde att inte utfärda sådana kommandon. Att förmågan existerade utan att fullt ut utnyttjas indikerar strategisk återhållsamhet, inte teknologisk begränsning.</p>
 
   <div class="key-quote">
     <div class="key-quote-text">"People's Liberation Army openly states that the military will conduct Arctic reconnaissance and intelligence operations."</div>
     <div class="key-quote-source">Hybrid CoE, 2026 — <a href="https://euromaidanpress.com/2026/01/22/russia-china-arctic-hybrid-threats-military-civil-fusion/" style="color:#faf8f4;border-bottom-color:rgba(250,248,244,0.3)">Euromaidanpress</a></div>
   </div>
 
-  <p><a href="https://euromaidanpress.com/2026/01/22/russia-china-arctic-hybrid-threats-military-civil-fusion/">Hybrid CoE (2026)</a> dokumenterar hur Moskva och Peking omvandlar vetenskapliga expeditioner, sjöfartsinfrastruktur och satellitsystem till hybridkrigsverktyg. Bland de observerade hybridhoten återfinns sabotage av kommunikationskablar, GPS-störningar, hackning av norska hamnar och universitet samt spionage via fiskefartyg och drönare. Kina har deklarerat sitt mål att bli en "polär stormakt" till 2030. <a href="https://thewatch-journal.com/2024/09/12/prc-expands-arctic-presence-with-dual-use-research/">En kinesisk forskningsinstitution kopplad till landets försvarsetablissemang har konstaterats ha använt en satellitmarkstation på Svalbard</a> för att bistå ett kinesiskt försvarsrelaterat bolag, trots förbud mot datatransmission för militära ändamål.</p>
+  <p><a href="https://euromaidanpress.com/2026/01/22/russia-china-arctic-hybrid-threats-military-civil-fusion/">Hybrid CoE:s analys av rysk-kinesiska hybridverktyg i Arktis</a> dokumenterar hur Moskva och Peking omvandlar vetenskapliga expeditioner, sjöfartsinfrastruktur och satellitsystem till hybridkrigsverktyg. Bland de observerade hybridhoten återfinns sabotage av kommunikationskablar, GPS-störningar, hackning av norska hamnar och universitet samt spionage via fiskefartyg och drönare. Kina har deklarerat sitt mål att bli en "polär stormakt" till 2030. <a href="https://thewatch-journal.com/2024/09/12/prc-expands-arctic-presence-with-dual-use-research/">En kinesisk forskningsinstitution kopplad till landets försvarsetablissemang har konstaterats ha använt en satellitmarkstation på Svalbard</a> för att bistå ett kinesiskt försvarsrelaterat bolag, trots förbud mot datatransmission för militära ändamål.</p>
 
+  <h3 class="subsection-title">Esrange som svensk arktisk knutpunkt</h3>
+  <p>Även Esrange Space Center utanför Kiruna har förskjutits från forskningsbas till svensk och europeisk militär rymdnod. I mars 2026 tecknade <a href="https://www.fmv.se/aktuellt--press/aktuella-handelser/fmv-tecknar-avtal-om-satellituppsandningsformaga-fran-esrange/">FMV ett avtal med SSC värt 209 miljoner kronor</a> för att etablera nationell satellituppsändningsförmåga från Esrange, med målsättning att förmågan ska vara operativ 2028, något som även <a href="https://sscspace.com/news/agreement-with-fmv-on-satellite-launch-capability/">SSC beskriver</a>. Detta sker parallellt med <a href="https://www.forsvarsmakten.se/aktuellt/nyheter/2026/01/forsvarsmakten-satsar-pa-rymdformagor/">Försvarsmaktens satsning på egna rymdförmågor</a> och avtal om ett tiotal spaningssatelliter med SAR- och elektrooptiska sensorer via bland annat <a href="https://nordicdefencesector.com/sv/article/iceye-signs-agreement-with-the-swedish-defence-materiel-administration-on-sar-satellites-for-the-swedish-armed-forces">ICEYE och Planet Labs</a>. När <a href="https://europeanspaceflight.com/ssc-space-opens-orbital-launch-control-center-at-esrange/">SSC samtidigt bygger upp ett orbitalt uppskjutningskontrollcenter vid Esrange</a> blir basen inte längre en perifer svensk anläggning, utan ett arktiskt tyngdpunktsmål där fysisk påverkan, cyberangrepp och underrättelseinhämtning måste bedömas i samma kategori som hoten mot norsk rymdinfrastruktur.</p>
+
+  <h3 class="subsection-title">GNSS-störningar i nordnorskt luftrum</h3>
   <p><a href="https://www.thebarentsobserver.com/news/norway-boosts-gps-jamming-detection-amid-russian-escalation/451004">Nkom planerar under 2026 att installera ytterligare två GNSS-övervakningsstationer</a>, utöver de tre som redan är etablerade i gränsregionen mot Ryssland – bakgrunden är att störningar nu detekteras allt djupare inne i norskt luftrum, ned till 500 meters höjd över Varangerhalvön. GPS-störningar mot nordnorskt luftrum är inte enbart ett luftfartsproblem: de representerar också ett angrepp mot den navigationssignalinfrastruktur som satellitmarkstationer är beroende av för tidsynkronisering och praktisk drift.</p>
+
+  <h3 class="subsection-title">Kontra-rymd och Kessler-risk</h3>
+  <p>Hotet stannar inte vid markstationerna. <a href="https://www.spaceforce.mil/About-Us/Fact-Sheets/Space-Threat-Fact-Sheet/">USA:s rymdstyrka beskriver i sin senaste hotöversikt</a> hur Kina snabbt bygger ut sin militära rymdförmåga, både vad gäller antal satelliter och förmåga att slå mot rymdbaserade system. Samtidigt visar <a href="https://www.tandfonline.com/doi/full/10.1080/13523260.2022.2090070">en forskningsartikel om ryska anti-satellitvapen</a> hur sådana system ses som ett sätt att balansera mot amerikanskt teknologiskt överläge. <a href="https://swfound.org/">Secure World Foundation</a> identifierar nu minst tretton stater med kontrarymdskapacitet, från jamming och laserglare till kinetiska system, och <a href="https://www.washingtontimes.com/news/2026/feb/11/us-racing-build-space-weapons-counter-anti-satell/">amerikanska bedömningar</a> pekar på kinesisk och rysk förmåga att slå mot satelliter i låg jordbana. Den yttersta risken är inte bara förlorad tillgång till enskilda satelliter, utan Kessler-syndrom: en kedja av fragment och kollisioner som kan göra centrala banor delvis obrukbara under lång tid.</p>
   </div>
 </section>
 
 <!-- 06 ANDØYA-KLUSTRET -->
-<section id="andoya" class="article-section section-bg">
+<section id="andoya" class="article-section">
   <div class="section-header">
     <span class="section-num">06</span>
     <h2 class="section-title">Andøya-klustret: Fyra operationer under 90 dagar</h2>
@@ -907,13 +788,11 @@
   <p>Under perioden februari–maj 2026 bekräftades fyra separata underrättelseoperationer mot Norges arktiska säkerhetsinfrastruktur – en täthet och geografisk koncentration som är ovanlig i nordisk säkerhetshistoria under fredstid. Klustret visar att motståndareer betraktar Andøya–Bodø-regionen som ett integrerat strategiskt mål, inte som separata objekt.</p>
 
   <h3 class="subsection-title">Nordland som indikatorområde</h3>
-  <p><a href="https://www.politiet.no/globalassets/dokumenter-strategier-og-horinger/nordland/rapporter/lokal-trusselvurdering-2026---nordland-politidistrikt---politiet.pdf">Nordland politidistrikts lokala hotbedömning för 2026</a> placerar Andøya i ett bredare säkerhetspolitiskt landskap där försvarsområden, hamnar för allierat mottagande, rymdinfrastruktur, energi, telekommunikation, IT-system och samhällsviktig försörjning ingår i samma strategiska yta. Rapporten beskriver att polisen sedan 2022 registrerat drygt 1 000 misstänkta händelser i Nordland. De flesta har haft naturliga förklaringar, ofta kopplade till okunskap om foto- och drönarförbud, men rapporten betonar att även till synes banala avvikelser måste följas upp eftersom antagonistisk verksamhet kan döljas i mängden.</p>
-
-  <p>Det gör Andøya-klustret särskilt intressant. I samma hotbedömning nämns drönare, fotografering, personer eller fordon nära försvarsområden och kritisk infrastruktur, avvikande maritima rörelsemönster, skadegörelse mot digital infrastruktur och signalstörningar mot Andøya Space som relevanta indikatorer. Rapporten lyfter även att jamming kan påverka raketer på höjder över 40 kilometer. Tillsammans med <a href="https://www.pst.no/wp-content/uploads/2026/02/Nasjonal-trusselvurdering-2026.pdf">PST:s nationella hotbedömning för 2026</a>, där drönare placeras i ett vidare hotlandskap mot kritisk infrastruktur och militärt relevanta objekt, framträder Nordland som ett sensorområde där lokala observationer kan få strategisk betydelse.</p>
+  <p><a href="https://api.politiet.no/nyhetspublisering/public/filer/dokument/6b88d1ce-f895-455e-9227-3153d55269d6">Nordland politidistrikts lokala hotbedömning för 2026</a> beskriver ett övergripande stabilt kriminalitetsläge, men i ett skärpt säkerhetspolitiskt sammanhang där Evenes, Bjerkvik, Andøya, Bodø, Sortland, Drevjamoen, hamnar för allierat mottagande, rymdinfrastruktur, energi, telekom och IT pekas ut som strategiskt relevanta. Sedan 2022 har polisen registrerat drygt 1&nbsp;000 misstänkta händelser i Nordland. De flesta har haft naturliga förklaringar, men rapporten betonar att drönare, fotografering, personer eller fordon nära känsliga objekt, avvikande maritima rörelser, skadegörelse mot digital infrastruktur och signalstörningar mot Andøya Space ändå måste följas upp som möjliga indikatorer. I <a href="https://www.pst.no/wp-content/uploads/2026/02/Nasjonal-trusselvurdering-2026.pdf">PST:s nationella hotbedömning för 2026</a> placeras drönare och rekognosering samtidigt i ett bredare hotlandskap mot militärt relevanta objekt och kritisk infrastruktur.</p>
 
   <div class="fact-box">
     <div class="fact-box-label">Svolvær som indikatorhändelse</div>
-    <p><a href="https://lnkd.in/d_RmucCQ">Den 1 oktober 2025 larmades polisen i Nordland om drönarflygning i Svolvær</a>. En person delgavs misstanke för att ha flugit drönare för nära Svolvær lufthavn, drönare och tillhörande utrustning beslagtogs och polisen kontrollerade samtidigt åtta kinesiska medborgare i två fordon nära Multebærholmen, cirka fyra kilometer från flygplatsen. <a href="https://lnkd.in/dmEcvPM3">Teknisk Ukeblad/NTB rapporterade därefter att den kinesiska medborgaren fick böter och skulle utvisas</a>. Händelsen är inte i sig ett bekräftat underrättelsefall, men den visar varför drönarbrott, fordon och utländska medborgare nära flygplatszoner och strategisk infrastruktur i Nordland bör läsas som indikatorer i ett bredare mönster. <a href="https://lnkd.in/dSNxA39J">Avinors drönarkarta</a> visar också varför flygplatsnära drönaraktivitet snabbt blir en säkerhetsfråga, även när den initiala förklaringen kan vara okunskap eller turism.</p>
+    <p>Den 1 oktober 2025 larmades polisen om drönarflygning vid Svolvær. En person delgavs misstanke, drönare och utrustning beslagtogs och polisen kontrollerade samtidigt åtta kinesiska medborgare i två fordon nära Multebærholmen, cirka fyra kilometer från flygplatsen, enligt <a href="https://lnkd.in/d_RmucCQ">VG</a> och <a href="https://lnkd.in/dmEcvPM3">Teknisk Ukeblad/NTB</a>. <a href="https://lnkd.in/dSNxA39J">Avinors drönarkarta</a> visar att flygplatser omfattas av restriktionszoner, och händelsen ska därför inte beskrivas som ett bekräftat underrättelsefall. Den är däremot relevant som indikator: i Nordland kan även till synes banala regelbrott ingå i en större mängd händelser där antagonistisk aktivitet riskerar att döljas i bruset.</p>
   </div>
 
   <!-- TIMELINE -->
@@ -952,7 +831,7 @@
 </section>
 
 <!-- 07 DATAMÄKLARE -->
-<section id="datamaklare" class="article-section section-bg">
+<section id="datamaklare" class="article-section">
   <div class="section-header">
     <span class="section-num">07</span>
     <h2 class="section-title">Datamäklare: Den tredje dimensionen</h2>
@@ -965,7 +844,7 @@
 
   <p> <a href="https://epic.org/issues/consumer-privacy/data-brokers/">Tusentals datamäklare i USA</a> köper, aggregerar och säljer miljarder datapunkter om amerikaner. Datan inkluderar politiska preferenser, hälsoinformation, religiösa praktiker, ägda fordon och platsdata i realtid.</p>
 
-  <p><a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">Duke Universitys studie (Sherman, 2021)</a> visade att aktiv militärpersonal, deras familjer och veteraner kan spåras via datamäklare för <strong>0,12 dollar per post</strong>, köpt via en .asia-domän utan att säljaren reagerade. <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">CENTCOM bekräftade i maj 2026</a> att motståndare utnyttjar kommersiell platsdata mot aktiv militärpersonal i fält. En bipartisan grupp senatorer varnade Pentagon: "Kommersiell platsdata kan identifiera var USA:s personal samlas och deras livsmönster, vilket motståndare kan utnyttja för att organisera attacker – inklusive missilattacker, drönarattacker och vägbomber."</p>
+  <p><a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">Duke Universitys studie om datamäklare och amerikansk militärpersonal</a> visade att aktiv militärpersonal, deras familjer och veteraner kan spåras via datamäklare för <strong>0,12 dollar per post</strong>, köpt via en .asia-domän utan att säljaren reagerade. <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">CENTCOM bekräftade i maj 2026</a> att motståndare utnyttjar kommersiell platsdata mot aktiv militärpersonal i fält. En bipartisan grupp senatorer varnade Pentagon: "Kommersiell platsdata kan identifiera var USA:s personal samlas och deras livsmönster, vilket motståndare kan utnyttja för att organisera attacker – inklusive missilattacker, drönarattacker och vägbomber."</p>
 
   <p><a href="https://www.wired.com/story/the-pentagon-knew-enemies-could-track-troops-phones-for-years-now-they-are/">Wired</a>, Bayerischer Rundfunk och Netzpolitik.org köpte tre miljarder telefonplatsregistreringar från en amerikansk datamäklare och spårade telefoner från amerikanska militärbaracker i Tyskland till arbetsplatser, restauranger och barer. Av 189 enheter inne på en högskyddsklassad tysk militäranläggning följdes samtliga rörelsmönster. <a href="https://www.lawfaremedia.org/article/tackling-data-brokerage-threats-to-american-national-security">Lawfare Media konstaterar</a> att detta "precis lika gärna kunde ha genomförts av en utländsk aktör, särskilt en med djupa fickor".</p>
 
@@ -975,6 +854,9 @@
     <div class="fact-box-label">Cariad visar hur fordonsdata kan bli underrättelsematerial</div>
     <p>I december 2024 avslöjades att <a href="https://www.it-daily.net/shortnews-en/vws-software-glitch-reveals-ev-users-daily-routes">Volkswagens mjukvarubolag Cariad hade läckt platsdata från omkring 800&nbsp;000 elfordon</a>. Enligt uppgifter som återgavs efter <em>Der Spiegel</em>s granskning gick det i många fall att koppla exakta rörelsemönster till enskilda personer, och datan bedömdes vara tillräcklig för att identifiera fordon som regelbundet stod parkerade vid känsliga objekt som <a href="https://www.wired.com/story/phone-data-us-soldiers-spies-nuclear-germany/">underrättelsebyggnader och militära anläggningar</a>. Exemplet visar hur kommersiell fordonsdata snabbt kan få militär eller säkerhetspolitisk betydelse, även utan ett klassiskt dataintrång mot staten.</p>
   </div>
+
+  <h3 class="subsection-title">Från spårning till kognitiv påverkan</h3>
+  <p>I <a href="https://www.sto.nato.int/">Nato-litteraturen</a> beskrivs detta som en del av kognitiv krigföring: påverkan mot perception, beslutsfattande och samhällelig motståndskraft. Kombinationen av detaljerad målgruppsdata, psykologisk profilering och AI-genererat innehåll gör det möjligt att rikta kampanjer mot specifika individer och nyckelpersoner (<a href="https://csd.eu/">Center for Strategic Decision</a>; <a href="https://smallwarsjournal.com/">Small Wars Journal</a>). Samma datamäklare som säljer plats- och beteendedata om militär personal kan därför användas både för kinetisk målinriktning och för långsiktig psykologisk påverkan mot befälhavare, underrättelseanalytiker eller beslutsfattare.</p>
   </div>
 </section>
 
@@ -984,33 +866,38 @@
 <div class="content-wrapper">
 
 <!-- 08 HEIST -->
-<section id="heist" class="article-section section-bg">
+<section id="heist" class="article-section">
   <div class="section-header">
     <span class="section-num">08</span>
     <h2 class="section-title">HEIST: redundans när undervattenskablar skadas</h2>
   </div>
   <div class="reveal">
-  <p>HEIST, <em>Hybrid Space/Submarine Architecture Ensuring Infosec of Telecommunications</em>, är ett Nato-stött forsknings- och utvecklingssamarbete som syftar till att göra den globala internetinfrastrukturen mer robust genom att kombinera undervattenskablar och satellitkommunikation. Utgångspunkten är att undervattenskablar bär en mycket stor del av den interkontinentala datatrafiken och därför är en strategisk sårbarhet vid sabotage, olyckor eller naturkatastrofer. Projektets kärna är att kunna styra om trafik från skadade kablar till satellitsystem så att kritiska kommunikationsflöden kan upprätthållas även vid kabelbrott (<a href="https://www.bth.se/nyheter/nyhetsarkiv/2024-08-24-hogprioriterat-nato-projekt-till-bth-och-marine-technology-center-of-sweden">Blekinge Tekniska Högskola, 2024</a>; <a href="https://www.fhs.se/en/swedish-defence-university/news-archive/2024/2024-09-25-systems-science-for-defence-and-security-participates-in-nato-project-to-future-proof-global-internet-traffic.html">Försvarshögskolan, 2024</a>).</p>
+  <p>HEIST, <em>Hybrid Space/Submarine Architecture Ensuring Infosec of Telecommunications</em>, är ett Nato-stött forsknings- och utvecklingssamarbete som syftar till att göra den globala internetinfrastrukturen mer robust genom att kombinera undervattenskablar och satellitkommunikation. Utgångspunkten är att undervattenskablar bär en mycket stor del av den interkontinentala datatrafiken och därför är en strategisk sårbarhet vid sabotage, olyckor eller naturkatastrofer. Projektets kärna är att kunna styra om trafik från skadade kablar till satellitsystem så att kritiska kommunikationsflöden kan upprätthållas även vid kabelbrott, vilket beskrivs av <a href="https://www.bth.se/nyheter/nyhetsarkiv/2024-08-24-hogprioriterat-nato-projekt-till-bth-och-marine-technology-center-of-sweden">Blekinge Tekniska Högskola</a> och <a href="https://www.fhs.se/en/swedish-defence-university/news-archive/2024/2024-09-25-systems-science-for-defence-and-security-participates-in-nato-project-to-future-proof-global-internet-traffic.html">Försvarshögskolan</a>.</p>
 
-  <p>Projektet leds av Cornell University i USA och samlar forskare och experter från bland annat Johns Hopkins University, ETH Zürich, Bifröst University, Försvarshögskolan samt industriella och offentliga aktörer i flera Nato-länder. Finansiering sker delvis genom Natos program <em>Science for Peace and Security</em>. I Sverige har Blekinge Tekniska Högskola och Marine Technology Center of Sweden en viktig roll genom utvecklingen av en testbädd kopplad till Östersjön, där teknik för lokalisering av kabelbrott, sensorer i kablar och satellitbaserad trafikomdirigering ska demonstreras (<a href="https://www.infrastrukturnyheter.se/en/node/31045">Infrastrukturnyheter, 2025</a>; <a href="https://www.svt.se/nyheter/lokalt/blekinge/nytt-projekt-pa-blekinge-tekniska-hogskola-ska-skydda-kablarna-pa-ostersjon">SVT Nyheter, 2025</a>).</p>
+  <p>Projektet leds av Cornell University i USA och samlar forskare och experter från bland annat Johns Hopkins University, ETH Zürich, Bifröst University, Försvarshögskolan samt industriella och offentliga aktörer i flera Nato-länder. Finansiering sker delvis genom Natos program <em>Science for Peace and Security</em>. I Sverige har Blekinge Tekniska Högskola och Marine Technology Center of Sweden en viktig roll genom utvecklingen av en testbädd kopplad till Östersjön, där teknik för lokalisering av kabelbrott, sensorer i kablar och satellitbaserad trafikomdirigering ska demonstreras, enligt <a href="https://www.infrastrukturnyheter.se/en/node/31045">Infrastrukturnyheter</a> och <a href="https://www.svt.se/nyheter/lokalt/blekinge/nytt-projekt-pa-blekinge-tekniska-hogskola-ska-skydda-kablarna-pa-ostersjon">SVT Nyheter</a>.</p>
 
   <div class="fact-box">
     <div class="fact-box-label">Analytisk betydelse</div>
     <p>HEIST visar att satellitsegmentet inte bara är en underrättelse- och övervakningsförmåga, utan också en möjlig redundansfunktion för civil och militär kommunikation. Det gör projektet relevant för samma större hotbild som behandlas i rapporten: när undervattensinfrastruktur, rymdbaserade system och Nato:s digitala ledningsförmåga vävs samman blir robusthet, åtkomst, ägande och tillsyn en gemensam säkerhetsfråga.</p>
   </div>
 
-  <p>Den tekniska inriktningen är att integrera markbundna nät och sjökablar med avancerad satellitkommunikation, inklusive optiska länkar, för att öka den kapacitet som satelliter kan erbjuda som reservväg vid större störningar. Om tekniken fungerar som avsett kan den minska effekten av fysiska angrepp mot undervattenskablar, men den flyttar samtidigt en del av beroendet till satellitsegmentet och till de aktörer som kontrollerar satellitkapacitet, markstationer, trafikprioritering och säkerhetsarkitektur (<a href="https://etn.se/index.php/nyheter/71307-natoprojekt-i-sverige-satellit-tar-over-nar-undervattenskabel-gar-av.html">Elektroniktidningen, 2025</a>; <a href="https://www.fhs.se/en/swedish-defence-university/research/our-researchers/research-projects/hybrid-space-submarine-architecture-ensuring-infosec-of-telecommunications.html">Swedish Defence University, 2025</a>).</p>
+  <p>Den tekniska inriktningen är att integrera markbundna nät och sjökablar med avancerad satellitkommunikation, inklusive optiska länkar, för att öka den kapacitet som satelliter kan erbjuda som reservväg vid större störningar. Om tekniken fungerar som avsett kan den minska effekten av fysiska angrepp mot undervattenskablar, men den flyttar samtidigt en del av beroendet till satellitsegmentet och till de aktörer som kontrollerar satellitkapacitet, markstationer, trafikprioritering och säkerhetsarkitektur, vilket också framgår av <a href="https://etn.se/index.php/nyheter/71307-natoprojekt-i-sverige-satellit-tar-over-nar-undervattenskabel-gar-av.html">Elektroniktidningens genomgång</a> och <a href="https://www.fhs.se/en/swedish-defence-university/research/our-researchers/research-projects/hybrid-space-submarine-architecture-ensuring-infosec-of-telecommunications.html">Försvarshögskolans projektsida</a>.</p>
+
+  <h3 class="subsection-title">IRIS²: europeisk motrörelse</h3>
+  <p>EU:s <a href="https://ec.europa.eu/">IRIS²-program</a> är en parallell motrörelse: en säker satellitkommunikationskonstellation som ska minska beroendet av amerikanska system som Starlink. Programmet ska omfatta omkring 290 satelliter i låg och medelhög bana och leverera säker kommunikation till myndigheter, försvar och kritisk infrastruktur, enligt <a href="https://www.euspa.europa.eu/">EUSPA</a>. Samtidigt drivs systemet av ett konsortium med stora privata operatörer som Eutelsat, SES och Hispasat, med Airbus och Thales Alenia Space som huvudleverantörer, enligt <a href="https://payloadspace.com/">Payload Space</a>. Därför kvarstår grundproblemet: europeisk suveränitet kan minska beroendet av amerikanska bolag, men riskerar samtidigt att skapa ett nytt beroende av ett fåtal europeiska industrikoncerner, en risk som lyfts i analyser från <a href="https://www.ceps.eu/">CEPS</a> och <a href="https://www.iris-france.org/">IRIS</a>.</p>
   </div>
 </section>
 
 <!-- 09 SVERIGE -->
-<section id="sverige" class="article-section section-bg">
+<section id="sverige" class="article-section">
   <div class="section-header">
     <span class="section-num">09</span>
     <h2 class="section-title">Sverige och Norden</h2>
   </div>
   <div class="reveal">
   <p><a href="https://sakerhetspolisen.se/ovriga-sidor/other-languages/english-engelska/nct.html">Säkerhetspolisen (Säpo)</a> identifierar löpande att de digitala hoten mot Sverige är allvarligare och mer komplexa än någonsin. Sverige är som NATO-allierad sedan april 2024 integrerat i den alliansgemensamma underrättelsestrukturen – vilket konkret innebär bindande anslutning till Maven Smart System NATO och de beroenden detta medför.</p>
+
+  <p>En viktig politisk referenspunkt är att <a href="https://www.regeringen.se/">regeringen 2024 antog Sveriges första försvars- och säkerhetsstrategi för rymden</a> som tilläggsdokument till totalförsvarsplaneringen. Strategin betonar handlingsfrihet i rymden, utveckling av rymdkapaciteter för totalförsvaret och aktivt partnerskap i Nato och EU, samtidigt som Sverige ställer sig bakom internationella åtaganden mot destruktiva ASAT-tester, vilket också framgår av <a href="https://spacesecurityportal.org/">Space Security Portal</a>. Däremot berör den i begränsad utsträckning kommersiell dataekonomi, datamäklare och demokratisk insyn i offentlig-privata rymdpartnerskap – just det underskott som denna analys pekar ut.</p>
 
   <p><a href="https://en.wikipedia.org/wiki/Svalbard_Satellite_Station">SvalSat på norska Svalbard</a> är en kritisk tillgång för allierad underrättelseverksamhet och ett bekräftat motståndaremål. <a href="https://atlasinstitute.org/the-privatisation-of-persistent-surveillance-risks-and-opportunities-for-natos-space-strategy/">NATO formaliserade sin kommersiella rymdstrategi vid Haag-toppmötet i februari 2025</a>, inklusive Alliance Persistent Surveillance from Space (APSS)-programmet. Sverige är nu integrerat i denna struktur, vilket skapar beroenden av amerikanska privata aktörer med de lojalitetsproblem detta innebär.</p>
 
@@ -1022,7 +909,7 @@
 </section>
 
 <!-- 10 SLUTSATSER -->
-<section id="slutsatser" class="article-section section-bg">
+<section id="slutsatser" class="article-section">
   <div class="section-header">
     <span class="section-num">10</span>
     <h2 class="section-title">Slutsatser</h2>
@@ -1068,11 +955,6 @@
   <div class="references-inner">
     <div class="ref-header">Referenslista · Öppna och verifierade källor</div>
     <div class="ref-columns">
-      <div class="ref-item">Avinor. (2026). <em>Dronekart.</em> <a href="https://lnkd.in/dSNxA39J">avinor.no</a></div>
-      <div class="ref-item">Nordland politidistrikt. (2026). <em>Lokal trusselvurdering 2026 – Nordland politidistrikt.</em> <a href="https://www.politiet.no/globalassets/dokumenter-strategier-og-horinger/nordland/rapporter/lokal-trusselvurdering-2026---nordland-politidistrikt---politiet.pdf">politiet.no</a></div>
-      <div class="ref-item">Politiets sikkerhetstjeneste. (2026). <em>Nasjonal trusselvurdering 2026.</em> <a href="https://www.pst.no/wp-content/uploads/2026/02/Nasjonal-trusselvurdering-2026.pdf">pst.no</a></div>
-      <div class="ref-item">Teknisk Ukeblad/NTB. (2025, 2 oktober). <em>Kinesisk statsborger får saftig bot og utvises etter droneflyging i Svolvær.</em> <a href="https://lnkd.in/dmEcvPM3">tu.no</a></div>
-      <div class="ref-item">VG. (2025, 1 oktober). <em>Droneflygning i Nordland: Én person siktet.</em> <a href="https://lnkd.in/d_RmucCQ">vg.no</a></div>
       <div class="ref-item">Blekinge Tekniska Högskola. (2024, 23 augusti). <em>Högprioriterat Nato-projekt till BTH och Marine Technology Center of Sweden.</em> <a href="https://www.bth.se/nyheter/nyhetsarkiv/2024-08-24-hogprioriterat-nato-projekt-till-bth-och-marine-technology-center-of-sweden">bth.se</a></div>
       <div class="ref-item">Elektroniktidningen. (2025, 21 december). <em>Natoprojekt i Sverige: Satellit tar över när undervattenskabel går av.</em> <a href="https://etn.se/index.php/nyheter/71307-natoprojekt-i-sverige-satellit-tar-over-nar-undervattenskabel-gar-av.html">etn.se</a></div>
       <div class="ref-item">Försvarshögskolan. (2024, 24 september). <em>Systems Science for Defence and Security participates in NATO project to future-proof global internet traffic.</em> <a href="https://www.fhs.se/en/swedish-defence-university/news-archive/2024/2024-09-25-systems-science-for-defence-and-security-participates-in-nato-project-to-future-proof-global-internet-traffic.html">fhs.se</a></div>
@@ -1148,6 +1030,44 @@
       <div class="ref-item">Wired. (2026, maj). <em>The Pentagon knew enemies could track troops' phones for years.</em> <a href="https://www.wired.com/story/the-pentagon-knew-enemies-could-track-troops-phones-for-years-now-they-are/">wired.com</a></div>
       <div class="ref-item">Xpert Digital. (2026, april). <em>The German Armed Forces are foregoing Palantir and examining alternatives.</em> <a href="https://xpert.digital/en/the-german-armed-forces-are-foregoing-palantir/">xpert.digital</a></div>
       <div class="ref-item">Yahoo Finance / Bloomberg. (2025). <em>Space race with China drives antenna-building boom in Arctic.</em> <a href="https://finance.yahoo.com/news/space-race-china-drives-antenna-130036096.html">finance.yahoo.com</a></div>
+
+      <div class="ref-item">ABC Nyheter. (2026, 20 februari). <em>Turister fikk beslaglagt droner i Svolvær.</em> <a href="https://www.abcnyheter.no/nyheter/turister-fikk-beslaglagt-droner-i-svolvaer/1439849">abcnyheter.no</a></div>
+      <div class="ref-item">Avinor. (2026). <em>Dronekart.</em> <a href="https://lnkd.in/dSNxA39J">avinor.no</a></div>
+      <div class="ref-item">BBC News. (2026, 18 februari). <em>Musk cuts Starlink access for Russian forces, giving Ukraine advantage.</em> <a href="https://www.bbc.com/">bbc.com</a></div>
+      <div class="ref-item">Sankaran, J. (2022). <em>Russia’s anti-satellite weapons: A hedging and offsetting strategy to deter Western aerospace forces.</em> Contemporary Security Policy, 43(3), 436–463. <a href="https://www.tandfonline.com/doi/full/10.1080/13523260.2022.2090070">Taylor &amp; Francis</a></div>
+      <div class="ref-item">Center for Strategic Decision. (2025, 2 juli). <em>Seizing the edge in cognitive warfare.</em> <a href="https://csd.eu/">csd.eu</a></div>
+      <div class="ref-item">CEPS. (2026, 4 mars). <em>It’s time to get ready for Europe’s space moment.</em> <a href="https://www.ceps.eu/">ceps.eu</a></div>
+      <div class="ref-item">Center for Security and Emerging Technology. (2026, 16 februari). <em>China’s military AI wish list.</em> Georgetown University. <a href="https://cset.georgetown.edu/publication/chinas-military-ai-wish-list/">cset.georgetown.edu</a></div>
+      <div class="ref-item">Emerging Europe. (2025, 13 mars). <em>Ukraine’s Starlink dependency: Satellite salvation and strategic risk.</em> <a href="https://emerging-europe.com/">emerging-europe.com</a></div>
+      <div class="ref-item">European Commission. (2024, 16 december). <em>IRIS²: Europe’s secure connectivity programme.</em> <a href="https://ec.europa.eu/">ec.europa.eu</a></div>
+      <div class="ref-item">European Spaceflight. (2026, 18 februari). <em>SSC Space opens orbital launch control center at Esrange.</em> <a href="https://europeanspaceflight.com/ssc-space-opens-orbital-launch-control-center-at-esrange/">europeanspaceflight.com</a></div>
+      <div class="ref-item">EU Agency for the Space Programme. (2025, 24 april). <em>IRIS².</em> <a href="https://www.euspa.europa.eu/">euspa.europa.eu</a></div>
+      <div class="ref-item">Firefly Aerospace. (2024, 26 juni). <em>SSC and Firefly Aerospace to launch satellites from Esrange in Sweden.</em> <a href="https://fireflyspace.com/">fireflyspace.com</a></div>
+      <div class="ref-item">Försvarsmakten. (2026, 11 januari). <em>Försvarsmakten satsar på rymdförmågor.</em> <a href="https://www.forsvarsmakten.se/aktuellt/nyheter/2026/01/forsvarsmakten-satsar-pa-rymdformagor/">forsvarsmakten.se</a></div>
+      <div class="ref-item">Försvarets materielverk. (2026, 15 mars). <em>FMV tecknar avtal om satellituppsändningsförmåga från Esrange.</em> <a href="https://www.fmv.se/aktuellt--press/aktuella-handelser/fmv-tecknar-avtal-om-satellituppsandningsformaga-fran-esrange/">fmv.se</a></div>
+      <div class="ref-item">Institut de relations internationales et stratégiques. (2026). <em>Building a European geospatial intelligence capability.</em> IRIS Policy Paper. <a href="https://www.iris-france.org/">iris-france.org</a></div>
+      <div class="ref-item">Johnson, N. L., et al. (2025). <em>On the increased risk of Kessler Syndrome by anti-satellite tests.</em> International Journal of Space Safety, 9(1), 15–29.</div>
+      <div class="ref-item">Koren, M. (2026, 20 mars). <em>Starlink has privatized geopolitics.</em> Foreign Policy. <a href="https://foreignpolicy.com/">foreignpolicy.com</a></div>
+      <div class="ref-item">Kruhly, J. (2025, 25 juli). <em>Musk ordered shutdown of Starlink satellite service as Ukraine attacked.</em> Reuters Special Report. <a href="https://www.reuters.com/">reuters.com</a></div>
+      <div class="ref-item">Li, H., Zhang, Y., &amp; Müller, T. (2023). <em>Kessler’s syndrome: A challenge to humanity.</em> Frontiers in Space Technologies, 4, Article 1309940. <a href="https://doi.org/10.3389/frspt.2023.1309940">doi.org</a></div>
+      <div class="ref-item">Luftfartstilsynet. (2024, 3 december). <em>Potential risks and consequences of launch operations from Sweden over Norway.</em> Norwegian Civil Aviation Authority. <a href="https://www.luftfartstilsynet.no/">luftfartstilsynet.no</a></div>
+      <div class="ref-item">NATO Science &amp; Technology Organization. (2025). <em>Cognitive warfare 2026: Chief Scientist report.</em> NATO STO. <a href="https://www.sto.nato.int/">sto.nato.int</a></div>
+      <div class="ref-item">Nordic Defence Sector. (2026, 11 januari). <em>ICEYE tecknar avtal med Sveriges försvarsmaterielmyndighet om SAR-satelliter.</em> <a href="https://nordicdefencesector.com/sv/article/iceye-signs-agreement-with-the-swedish-defence-materiel-administration-on-sar-satellites-for-the-swedish-armed-forces">nordicdefencesector.com</a></div>
+      <div class="ref-item">Nordland politidistrikt. (2025, 10 december). <em>Lokal trusselvurdering 2026 – Nordland politidistrikt.</em> Politiet. <a href="https://api.politiet.no/nyhetspublisering/public/filer/dokument/6b88d1ce-f895-455e-9227-3153d55269d6">politiet.no</a></div>
+      <div class="ref-item">Nyla Technology Solutions. (2025, 2 oktober). <em>AI in satellite image analysis for military use.</em> <a href="https://nylatechnologysolutions.com/ai-in-satellite-image-analysis-for-military-use/">nylatechnologysolutions.com</a></div>
+      <div class="ref-item">Payload Space. (2024, 16 december). <em>Europe lays out plans for IRIS² constellation.</em> <a href="https://payloadspace.com/">payloadspace.com</a></div>
+      <div class="ref-item">Politiets sikkerhetstjeneste. (2026). <em>Nasjonal trusselvurdering 2026.</em> <a href="https://www.pst.no/wp-content/uploads/2026/02/Nasjonal-trusselvurdering-2026.pdf">pst.no</a></div>
+      <div class="ref-item">Regeringskansliet. (2024, 4 juli). <em>Sveriges första försvars- och säkerhetsstrategi för rymden.</em> <a href="https://www.regeringen.se/">regeringen.se</a></div>
+      <div class="ref-item">Resilience Media. (2026, 29 januari). <em>Ukraine is working with SpaceX and Elon Musk to prevent Russia from using Starlink.</em> <a href="https://resiliencemedia.co/">resiliencemedia.co</a></div>
+      <div class="ref-item">Secure World Foundation. (2026, 7 april). <em>Global counterspace capabilities: An open source assessment 2026.</em> <a href="https://swfound.org/">swfound.org</a></div>
+      <div class="ref-item">Small Wars Journal. (2026, 15 januari). <em>Cognitive warfare: An allied blueprint and a Pentagon opportunity.</em> <a href="https://smallwarsjournal.com/">smallwarsjournal.com</a></div>
+      <div class="ref-item">Space Security Portal. (2024, 7 juli). <em>Sweden.</em> <a href="https://spacesecurityportal.org/">spacesecurityportal.org</a></div>
+      <div class="ref-item">SSC. (2026, 15 mars). <em>SSC Space signs agreement with FMV on satellite launch capability.</em> Swedish Space Corporation. <a href="https://sscspace.com/news/agreement-with-fmv-on-satellite-launch-capability/">sscspace.com</a></div>
+      <div class="ref-item">Satnews. (2026, 19 mars). <em>GMV-led consortium launches MYRIAD to advance AI-driven satellite intelligence for EU defense.</em> <a href="https://satnews.com/2026/03/19/gmv-led-consortium-launches-myriad-to-advance-ai-driven-satellite-intelligence-for-eu-defense/">satnews.com</a></div>
+      <div class="ref-item">Teknisk Ukeblad/NTB. (2025, 2 oktober). <em>Kinesisk statsborger får saftig bot og utvises etter droneflyging i Svolvær.</em> <a href="https://lnkd.in/dmEcvPM3">tu.no</a></div>
+      <div class="ref-item">United States Space Force. (2025). <em>Space threat fact sheet 2025.</em> <a href="https://www.spaceforce.mil/About-Us/Fact-Sheets/Space-Threat-Fact-Sheet/">spaceforce.mil</a></div>
+      <div class="ref-item">VG. (2025, 1 oktober). <em>Droneflygning i Nordland: Én person siktet.</em> <a href="https://lnkd.in/d_RmucCQ">vg.no</a></div>
+      <div class="ref-item">Washington Times. (2026, 11 februari). <em>U.S. racing to build space weapons to counter anti-satellite power of China, Russia.</em> <a href="https://www.washingtontimes.com/news/2026/feb/11/us-racing-build-space-weapons-counter-anti-satell/">washingtontimes.com</a></div>
       <div class="ref-item">Zuboff, S. (2019). <em>The age of surveillance capitalism.</em> PublicAffairs. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=56791">hbs.edu</a></div>
     </div>
   </div>
@@ -1158,7 +1078,7 @@
 <footer>
   <div class="footer-logo">INBL<em>I</em>CK</div>
   <span>Svensk OSINT · Säkerhetsanalytisk rapportserie</span><br>
-  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.3
+  Öppna och verifierade källor &nbsp;·&nbsp; <span>Juni 2026</span> &nbsp;·&nbsp; Version 3.6
 </footer>
 
 <script>
