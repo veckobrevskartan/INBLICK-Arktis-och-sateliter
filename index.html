@@ -71,7 +71,18 @@
   .classification-banner { background-color: #c41e24; color: white; text-align: center; padding: 8px 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; }
 
   /* ── HERO ── */
-  .hero { background-color: #0d0d0d; color: #faf8f4; padding: 80px 40px 68px; position: relative; overflow: hidden; }
+  .hero {
+    background-color: #0d0d0d;
+    background-image:
+      linear-gradient(90deg, rgba(13,13,13,0.94) 0%, rgba(13,13,13,0.86) 46%, rgba(13,13,13,0.70) 100%),
+      url('./bg-hero-arktis-karta.png');
+    background-size: cover;
+    background-position: center;
+    color: #faf8f4;
+    padding: 80px 40px 68px;
+    position: relative;
+    overflow: hidden;
+  }
   .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.025) 39px, rgba(255,255,255,0.025) 40px); pointer-events: none; }
   .hero-inner { max-width: var(--col-wide); margin: 0 auto; position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.86fr); gap: clamp(36px, 6vw, 86px); align-items: center; }
   .hero-copy { min-width: 0; }
@@ -86,7 +97,18 @@
   .hero-logo-img { display: block; width: min(100%, 430px); max-height: 280px; object-fit: contain; filter: drop-shadow(0 0 24px rgba(196,30,36,0.12)); }
 
   /* ── ASSESSMENT SECTION ── */
-  .assessment-section { background-color: #f4f1eb; border-bottom: 4px solid #0d0d0d; }
+  .assessment-section {
+    background-color: #f4f1eb;
+    background-image:
+      linear-gradient(180deg, rgba(244,241,235,0.92), rgba(250,248,244,0.96)),
+      url('./bg-assessment-rapportstruktur.png');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid #0d0d0d;
+    position: relative;
+    overflow: hidden;
+  }
+  .assessment-section > .assessment-inner { position: relative; z-index: 1; }
   .assessment-inner { max-width: var(--col-max); margin: 0 auto; padding: 56px 24px; }
   .assessment-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #c41e24; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
   .assessment-label::after { content: ''; flex: 1; height: 1px; background: #c41e24; opacity: 0.25; }
@@ -383,7 +405,99 @@
 
   /* ── CONTENT ── */
   .content-wrapper { max-width: var(--col-max); margin: 0 auto; padding: 0 24px; }
-  .article-section { padding: 64px 0; border-bottom: 1px solid #e0dbd0; }
+  .article-section { padding: 64px 0; border-bottom: 1px solid #e0dbd0; position: relative; }
+
+  /* ── LJUSA SEKTIONSBAKGRUNDER ── */
+  .section-bg {
+    isolation: isolate;
+  }
+  .section-bg::before,
+  .section-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .section-bg::before {
+    z-index: 0;
+    background-image: var(--section-bg);
+    background-size: cover;
+    background-position: var(--section-bg-position, center);
+    background-repeat: no-repeat;
+    opacity: var(--section-bg-opacity, 0.24);
+  }
+  .section-bg::after {
+    z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(250,248,244,0.86), rgba(250,248,244,0.92)),
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,0.86), transparent 40%),
+      radial-gradient(circle at 82% 80%, rgba(244,241,235,0.78), transparent 42%);
+  }
+  .section-bg > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  #sammanfattning {
+    --section-bg: url('./bg-summary-noder-karta.png');
+    --section-bg-opacity: 0.34;
+    --section-bg-position: center;
+  }
+  #fenomenet {
+    --section-bg: url('./bg-monopol-satellitritning.png');
+    --section-bg-opacity: 0.30;
+    --section-bg-position: center;
+  }
+  #techoligarker {
+    --section-bg: url('./bg-tech-datacenter-ljust.png');
+    --section-bg-opacity: 0.30;
+    --section-bg-position: center;
+  }
+  #palantir-europa {
+    --section-bg: url('./bg-palantir-europa-noder.png');
+    --section-bg-opacity: 0.34;
+    --section-bg-position: center;
+  }
+  #satelliter {
+    --section-bg: url('./bg-earth-observation-hamn.png');
+    --section-bg-opacity: 0.30;
+    --section-bg-position: center;
+  }
+  #arktis {
+    --section-bg: url('./bg-arktisk-markstation.png');
+    --section-bg-opacity: 0.34;
+    --section-bg-position: center;
+  }
+  #andoya {
+    --section-bg: url('./bg-andoya-kust-satellit.png');
+    --section-bg-opacity: 0.32;
+    --section-bg-position: center;
+  }
+  #datamaklare {
+    --section-bg: url('./bg-datamaklare-rorelsespar.png');
+    --section-bg-opacity: 0.34;
+    --section-bg-position: center;
+  }
+  #heist {
+    --section-bg: url('./bg-heist-kabelrutter.png');
+    --section-bg-opacity: 0.38;
+    --section-bg-position: center;
+  }
+  #sverige {
+    --section-bg: url('./bg-norden-infrastruktur.png');
+    --section-bg-opacity: 0.36;
+    --section-bg-position: center;
+  }
+  #slutsatser {
+    --section-bg: url('./bg-slutsats-sammanvavt-nat.png');
+    --section-bg-opacity: 0.32;
+    --section-bg-position: center;
+  }
+
   .article-section:last-child { border-bottom: none; }
   .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 14px; border-bottom: 2px solid #0d0d0d; }
   .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: #c41e24; min-width: 24px; flex-shrink: 0; }
@@ -606,7 +720,7 @@
 <div class="content-wrapper">
 
 <!-- SAMMANFATTNING -->
-<section id="sammanfattning" class="article-section">
+<section id="sammanfattning" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">—</span>
     <h2 class="section-title">Sammanfattning</h2>
@@ -635,7 +749,7 @@
 </section>
 
 <!-- 01 HUR MONOPOLET FÖRSVANN -->
-<section id="fenomenet" class="article-section">
+<section id="fenomenet" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">01</span>
     <h2 class="section-title">Hur statens gamla monopol försvann</h2>
@@ -673,7 +787,7 @@
 </section>
 
 <!-- 02 TECHOLIGARKER -->
-<section id="techoligarker" class="article-section">
+<section id="techoligarker" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">02</span>
     <h2 class="section-title">Techmiljardärer som nya underrättelseaktörer</h2>
@@ -698,7 +812,7 @@
 </section>
 
 <!-- 03 PALANTIR I EUROPA -->
-<section id="palantir-europa" class="article-section">
+<section id="palantir-europa" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">03</span>
     <h2 class="section-title">Palantir i Europa: växande beroende och försök att bryta det</h2>
@@ -729,7 +843,7 @@
 </section>
 
 <!-- 04 SATELLITER -->
-<section id="satelliter" class="article-section">
+<section id="satelliter" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">04</span>
     <h2 class="section-title">Kommersiella jordobservationssatelliter: Kapaciteten som förändrat spelreglerna</h2>
@@ -744,7 +858,7 @@
 </section>
 
 <!-- 05 ARKTIS -->
-<section id="arktis" class="article-section">
+<section id="arktis" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">05</span>
     <h2 class="section-title">Arktisk rymdinfrastruktur: Varför polarnärbanan är strategisk</h2>
@@ -766,7 +880,7 @@
 </section>
 
 <!-- 06 ANDØYA-KLUSTRET -->
-<section id="andoya" class="article-section">
+<section id="andoya" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">06</span>
     <h2 class="section-title">Andøya-klustret: Fyra operationer under 90 dagar</h2>
@@ -810,7 +924,7 @@
 </section>
 
 <!-- 07 DATAMÄKLARE -->
-<section id="datamaklare" class="article-section">
+<section id="datamaklare" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">07</span>
     <h2 class="section-title">Datamäklare: Den tredje dimensionen</h2>
@@ -842,7 +956,7 @@
 <div class="content-wrapper">
 
 <!-- 08 HEIST -->
-<section id="heist" class="article-section">
+<section id="heist" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">08</span>
     <h2 class="section-title">HEIST: redundans när undervattenskablar skadas</h2>
@@ -862,7 +976,7 @@
 </section>
 
 <!-- 09 SVERIGE -->
-<section id="sverige" class="article-section">
+<section id="sverige" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">09</span>
     <h2 class="section-title">Sverige och Norden</h2>
@@ -880,7 +994,7 @@
 </section>
 
 <!-- 10 SLUTSATSER -->
-<section id="slutsatser" class="article-section">
+<section id="slutsatser" class="article-section section-bg">
   <div class="section-header">
     <span class="section-num">10</span>
     <h2 class="section-title">Slutsatser</h2>
