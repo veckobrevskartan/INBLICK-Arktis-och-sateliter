@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
-<title>INBLICK · Privata underrättelsebolag, satellitövervakning, Arktis och HEIST</title>
+<title>INBLICK · Privata underrättelsebolag, satellitövervakning och Arktis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -121,6 +121,32 @@
   .scale-levels { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
   .scale-level { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border: 1px solid #e0dbd0; color: #888; }
   .scale-level.active { background: #c41e24; color: white; border-color: #c41e24; }
+
+  /* ── FÖRSVARSMAKTENS SANNOLIKHETSUTTRYCK – två staplade bedömningar ── */
+  .assessment-duo { display: flex; flex-direction: column; gap: 1px; background: #e0dbd0; border: 1px solid #e0dbd0; margin-bottom: 24px; }
+  .assessment-duo .confidence-visual { margin-bottom: 0; border: none; }
+  .conf-band { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #888; margin-top: 3px; }
+  .fm-verdict { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #0d0d0d; line-height: 1.2; margin-bottom: 12px; }
+  .fm-verdict span { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: #c41e24; letter-spacing: 0.04em; }
+  .conf-ring-fill.troligen { stroke: #9a7100; }
+  .conf-pct.troligen { color: #9a7100; }
+  .verdict-badge.del { background-color: #9a7100; }
+
+  /* FM-skala (Tveksam / Möjligen / Troligen / Sannolik) */
+  .fm-scale { background: white; border: 1px solid #e0dbd0; padding: 22px 24px; }
+  .fm-scale-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #888; margin-bottom: 14px; }
+  .fm-scale-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  @media (max-width: 560px) { .fm-scale-row { grid-template-columns: repeat(2, 1fr); } }
+  .fm-band { border: 1px solid #e0dbd0; padding: 10px 12px; text-align: center; }
+  .fm-band .fm-band-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #555; line-height: 1.2; }
+  .fm-band .fm-band-pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #888; margin-top: 4px; }
+  .fm-band.active-main { background: #c41e24; border-color: #c41e24; }
+  .fm-band.active-main .fm-band-name, .fm-band.active-main .fm-band-pct { color: white; }
+  .fm-band.active-sub { background: #fdf8e8; border-color: #9a7100; }
+  .fm-band.active-sub .fm-band-name { color: #9a7100; }
+  .fm-band.active-sub .fm-band-pct { color: #9a7100; }
+  .fm-note { font-size: 13px; line-height: 1.65; color: #555; margin-top: 16px; }
+  .fm-note strong { color: #2c2c2c; }
 
   .assessment-body p { font-size: 17px; line-height: 1.84; color: #2c2c2c; margin-bottom: 20px; }
   .assessment-body p:last-child { margin-bottom: 0; }
@@ -389,6 +415,7 @@
   .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: #c41e24; min-width: 24px; flex-shrink: 0; }
   .section-title { font-family: 'Playfair Display', serif; font-size: clamp(21px, 3vw, 28px); font-weight: 700; line-height: 1.22; color: #0d0d0d; }
   .subsection-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; color: #0d0d0d; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid #e0dbd0; }
+  .layer-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #c41e24; border: 1px solid rgba(196,30,36,0.3); padding: 3px 10px; margin-bottom: 16px; }
 
   p { margin-bottom: 20px; font-size: 17.5px; line-height: 1.82; color: #2c2c2c; }
   p:last-child { margin-bottom: 0; }
@@ -668,7 +695,7 @@
     </div>
     <div class="inlaga-sep"></div>
     <div class="inlaga-text">
-      <strong>Denna analys ingår i Svensk OSINTs analyskatalog INBLICK</strong> — ett fristående projekt med fokus på säkerhetspolitik, hybridhot, kritisk infrastruktur och underrättelseanalys i öppna källor. Detta kapitel behandlar privatiseringen av underrättelseförmåga, kommersiell satellitövervakning, Arktis rymdinfrastruktur och datamäklarnätverk. Bedömningar presenteras med konfidensgrad och källhänvisningar. <em>Analysen är inte en myndighetspublikation och speglar inte officiella svenska ståndpunkter.</em>
+      <strong>Denna analys ingår i Svensk OSINTs analyskatalog INBLICK</strong> — ett fristående projekt med fokus på säkerhetspolitik, hybridhot, kritisk infrastruktur och underrättelseanalys i öppna källor. Detta kapitel behandlar privatiseringen av underrättelseförmåga, kommersiell satellitövervakning, Arktis rymdinfrastruktur och datamäklarnätverk. Bedömningar presenteras med sannolikhetsuttryck enligt Försvarsmaktens skala och källhänvisningar. <em>Analysen är inte en myndighetspublikation och speglar inte officiella svenska ståndpunkter.</em>
     </div>
   </div>
 </div>
@@ -698,40 +725,60 @@
   <div class="assessment-inner">
     <div class="assessment-label">Bedömningsfråga</div>
     <blockquote class="assessment-question">
-      Hur sannolikt är det att NATO-staters underrättelseförmåga före 2030 hamnar i ett praktiskt oåterkalleligt beroende av privata satellit-, data- och analysaktörer, utan att staterna samtidigt har etablerat tillräcklig regulatorisk kontroll, demokratisk tillsyn och operativ förmåga att styra beroendet?
+      Hur sannolikt är det att NATO-staters underrättelseförmåga fram till 2036 fortfarande vilar på ett praktiskt oåterkalleligt beroende av privata satellit-, data- och analysaktörer, utan att staterna samtidigt har etablerat tillräcklig regulatorisk kontroll, demokratisk tillsyn och operativ förmåga att styra beroendet?
     </blockquote>
 
-    <!-- CONFIDENCE VISUALISATION -->
-    <div class="confidence-visual" id="conf-block">
-      <div class="conf-ring-wrap">
-        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-          <circle class="conf-ring-bg" cx="70" cy="70" r="54"/>
-          <circle class="conf-ring-fill" id="conf-arc" cx="70" cy="70" r="54"/>
-        </svg>
-        <div class="conf-ring-text">
-          <div class="conf-pct" id="conf-pct-num">0</div>
-          <div class="conf-label">procent</div>
-        </div>
-      </div>
-      <div class="conf-meta">
-        <div class="verdict-badge">Bedömning: Sannolikt — 90 %</div>
-        <p style="font-size:15px;color:#555;line-height:1.6;margin-bottom:14px;">Beroendet är inte ett framtida tillstånd – det är ett pågående faktum som accelererar längs tre parallella spår: analyslagret (Palantir Maven), transportlagret (SpaceX Starlink/Starshield) och datainsamlingslagret (kommersiella satelliter och datamäklare). Ingen av USA:s NATO-allierade kan i dag genomföra ett fullskaligt underrättelseuppdrag utan privata aktörers medverkan. Frågan är om de politiska och regulatoriska systemen hinner ikapp innan beroendet övergår ett tröskel bortom vilket det inte längre är reversibelt. Bedömningen är att de inte gör det, med hög konfidens.</p>
-        <div class="conf-scale">
-          <div class="conf-scale-track">
-            <div class="conf-scale-fill" id="conf-scale-fill"></div>
-            <div class="conf-scale-marker" id="conf-scale-marker"></div>
-          </div>
-          <div class="conf-scale-labels">
-            <span>Osannolikt</span><span>Möjligt</span><span>Troligt</span><span>Sannolikt</span>
+    <!-- SANNOLIKHETSBEDÖMNING – Försvarsmaktens uttryck, två delar -->
+    <div class="assessment-duo">
+
+      <!-- Huvudbedömning: beroendet kvarstår -->
+      <div class="confidence-visual" id="conf-block">
+        <div class="conf-ring-wrap">
+          <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <circle class="conf-ring-bg" cx="70" cy="70" r="54"/>
+            <circle class="conf-ring-fill" id="conf-arc-1" cx="70" cy="70" r="54"/>
+          </svg>
+          <div class="conf-ring-text">
+            <div class="conf-pct" id="conf-pct-1">0</div>
+            <div class="conf-label">sannolikhet</div>
           </div>
         </div>
-        <div class="scale-levels">
-          <div class="scale-level">Osannolikt &lt;30%</div>
-          <div class="scale-level">Möjligt 30–60%</div>
-          <div class="scale-level">Troligt 60–90%</div>
-          <div class="scale-level active">Sannolikt 90%</div>
+        <div class="conf-meta">
+          <div class="verdict-badge">Huvudbedömning</div>
+          <div class="fm-verdict">Sannolik <span>(&gt;80 %)</span></div>
+          <p style="font-size:15px;color:#555;line-height:1.6;margin:0;">NATO-staters underrättelseförmåga vilar 2036 fortfarande i praktiken på privata aktörer för själva förmågan. Beroendet är inte ett framtida tillstånd att förhindra – det är ett pågående faktum som befästs till 2030 och kvarstår till 2036. Europa kommer ikapp delvis, men förmågan förblir privat. Bedömningen stöds av flera oberoende källor och dokumenterade fall, och innebörden kan tolkas entydigt.</p>
         </div>
       </div>
+
+      <!-- Delbedömning: tillsynsluckan -->
+      <div class="confidence-visual" id="conf-block-2">
+        <div class="conf-ring-wrap">
+          <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <circle class="conf-ring-bg" cx="70" cy="70" r="54"/>
+            <circle class="conf-ring-fill troligen" id="conf-arc-2" cx="70" cy="70" r="54"/>
+          </svg>
+          <div class="conf-ring-text">
+            <div class="conf-pct troligen" id="conf-pct-2">0</div>
+            <div class="conf-label">sannolikhet</div>
+          </div>
+        </div>
+        <div class="conf-meta">
+          <div class="verdict-badge del">Delbedömning</div>
+          <div class="fm-verdict">Troligen <span style="color:#9a7100;">(55–75 %)</span></div>
+          <p style="font-size:15px;color:#555;line-height:1.6;margin:0;">Tillräcklig regulatorisk kontroll och demokratisk tillsyn hinner <em>inte</em> etableras till 2036. Detta ben är ärligt mer osäkert: ett decennium ger reellt utrymme för EU och NATO att komma ikapp. Bedömningen stöds av flera faktorer men innebörden kan inte tolkas entydigt, vilket placerar den i övre delen av Troligen, strax under tröskeln för Sannolik.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Försvarsmaktens sannolikhetsskala -->
+    <div class="fm-scale">
+      <div class="fm-scale-row">
+        <div class="fm-band"><div class="fm-band-name">Tveksam</div><div class="fm-band-pct">&lt;20 %</div></div>
+        <div class="fm-band"><div class="fm-band-name">Möjligen</div><div class="fm-band-pct">25–50 %</div></div>
+        <div class="fm-band active-sub"><div class="fm-band-name">Troligen</div><div class="fm-band-pct">55–75 %</div></div>
+        <div class="fm-band active-main"><div class="fm-band-name">Sannolik</div><div class="fm-band-pct">&gt;80 %</div></div>
+      </div>
+      <p class="fm-note"><strong>Sannolik (&gt;80 %)</strong> = huvudbedömning · <strong style="color:#9a7100;">Troligen (55–75 %)</strong> = delbedömning. <em>Bekräftad</em> ingår inte i skalan: en bekräftad uppgift betraktas som fakta och används inte som prognos. Skalan är Försvarsmaktens sannolikhetsuttryck (R UND 2022), som motsvarar AJP-2.1: Sannolik ≈ <em>highly likely / almost certain</em>, Troligen ≈ <em>likely</em>. Uttrycken är subjektiva underrättelsebedömningar, inte matematiskt framräknad sannolikhet.</p>
     </div>
 
     <div class="assessment-body">
@@ -741,7 +788,9 @@
 
       <p>Insamlingslagret är kommersiella satelliter och datamäklare. <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">CENTCOM bekräftade i maj 2026</a> att motståndare köper kommersiell platsdata och använder den mot aktiv militärpersonal i fält. <a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">Duke University visade att militärpersonal kan spåras för 0,12 dollar per post</a> via en .asia-domän – utan att säljaren reagerade. Palantirs Gotham-plattform kopplar ihop insamlingslagret med analyslagret. Samma logik kan varje välfinansierad motståndare nu replikera kommersiellt.</p>
 
-      <p>De tre lagrens sammankoppling innebär att ett avbrott i ett av dem ger systemeffekter i hela underrättelsekedjan. Konfidensnivån höjs till 90 procent av tre faktorer: (1) <a href="https://en.wikipedia.org/wiki/Starlink_in_the_Russo-Ukrainian_war">Starlinks roll i Ukrainakriget är empiriskt dokumenterad</a>, med episoder där tjänsten begränsats eller stängts ned för specifika geografier och aktörer; (2) <a href="https://www.aljazeera.com/economy/2026/6/4/elon-musks-spacex-eyes-1-77tn-valuation-ahead-of-historic-ipo">SpaceX börsnotering cementerar militärinfrastrukturrollen i globalt kapital</a> och gör regulatorisk omprövning politiskt kostsam; (3) det finns i dag ingen parallell statlig eller europeisk förmåga som kan ersätta alla tre lager simultant – och de tidsramar som krävs för att bygga en sträcker sig med hög sannolikhet förbi 2030.</p>
+      <p>De tre lagren hänger ihop, och ett avbrott i ett av dem ger systemeffekter i hela kedjan. Men lagren har olika tidslinjer fram till 2036, och det är därför bedömningen delas i två. Transportlagret är segast: även ett fullt utbyggt <a href="https://eu-space.europa.eu/news/observer-what-iris2">IRIS²</a> – cirka 290 satelliter för statlig kommunikation, i full drift tidigast kring 2030–2031 – ersätter inte Starlink i full skala, som redan har flera tusen satelliter. Insamlingslagret av kommersiella satelliter och datamäklare växer strukturellt och går inte i retur. Analyslagret är mest påverkbart: en europeisk plattform kan nå NATO-certifiering inom fönstret. En sådan förskjutning byter dock bara ut vilken privat aktör förmågan vilar på. Den tar inte bort själva det privata beroendet.</p>
+
+      <p>Tre faktorer bär huvudbedömningen Sannolik (&gt;80 %). För det första är <a href="https://www.reuters.com/world/europe/starlink-used-by-russian-forces-deactivated-battlefield-ukraine-says-2026-02-05/">Starlinks roll i Ukrainakriget empiriskt dokumenterad</a>, med episoder där tjänsten begränsats eller stängts ned för specifika geografier och aktörer. För det andra <a href="https://www.aljazeera.com/economy/2026/6/4/elon-musks-spacex-eyes-1-77tn-valuation-ahead-of-historic-ipo">cementerar SpaceX börsnotering militärinfrastrukturrollen i globalt kapital</a> och gör regulatorisk omprövning politiskt kostsam. För det tredje kommer de europeiska alternativen delvis ikapp till 2036, men ingen av dem för förmågan tillbaka i statlig regi. Vad som skulle kunna få bedömningen att brista redovisas i osäkerhetsrutan nedan.</p>
 
       <p>Medan regleringsfrågan diskuteras i Bryssel och Stockholm agerar motståndare redan mot den infrastruktur som beroendet bygger på. Händelserna i Norge och vid rymdstationen är ett observandum att ta på allvar.</p>
 
@@ -751,8 +800,9 @@
     </div>
 
     <div class="uncertainty-box">
-      <div class="uncertainty-label">⚠ Osäkerhetsfaktor</div>
-      <p>Det europeiska suveränitetsinitiativet kan röra sig snabbare än bedömningen förutsätter. <a href="https://www.heise.de/en/news/Digital-Sovereignty-BfV-Buys-European-Palantir-Alternative-11293717.html">Tysklands BfV valde i maj 2026 franska ChapsVision och ArgonOS framför Palantir</a>. Om en likvärdig europeisk plattform når NATO-certifiering och om IRIS² levererar i tid, förskjuts analyslagrets beroende – men löser inte tillsynsproblemet, det förflyttar det. Den djupare frågan är inte om plattformen är amerikanskt eller europeiskt ägd, utan om det finns demokratisk insyn i hur den används. Den frågan har varken NATO, EU eller någon enskild allierad stat svarat på. Transportlagrets beroende av SpaceX Starshield förblir dessutom opåverkat av en europeisk Palantir-substitution, vilket innebär att en delvis suveränitetsvinst i analyslagret inte förändrar den strukturella bedömningen.</p>
+      <div class="uncertainty-label">⚠ Vad skulle få bedömningen att brista</div>
+      <p>Huvudbedömningen (Sannolik) skulle försvagas om förmågan fördes tillbaka i statlig eller mellanstatlig regi. Det kräver tre saker samtidigt fram till 2036: att <a href="https://eu-space.europa.eu/news/observer-what-iris2">IRIS²</a> levererar i tid och i tillräcklig skala, att en europeisk analysplattform når NATO-certifiering, och att medlemsstaterna bygger egen uppskjutnings- och satellitförmåga. Delbedömningen (Troligen) skulle försvagas om EU reglerade datamäklarmarknaden och om NATO eller EU etablerade en gemensam tillsynsmodell för kommersiella underrättelseplattformar. Inget av detta har i dag en fastställd tidsplan.</p>
+      <p>Även om allt detta inträffar kvarstår dock kärnan: <a href="https://www.heise.de/en/news/Digital-Sovereignty-BfV-Buys-European-Palantir-Alternative-11293717.html">Tysklands BfV valde i maj 2026 franska ChapsVision och ArgonOS framför Palantir</a>, men en sådan förskjutning byter ägare på beroendet, inte bort det. Den djupare frågan är inte om plattformen är amerikanskt eller europeiskt ägd, utan om det finns demokratisk insyn i hur den används. Den frågan har varken NATO, EU eller någon enskild allierad stat svarat på. Transportlagrets beroende av SpaceX Starshield påverkas dessutom inte av en europeisk Palantir-substitution. En delvis suveränitetsvinst i analyslagret förändrar därför inte den strukturella bedömningen.</p>
     </div>
   </div>
 </section>
@@ -765,10 +815,12 @@
     <a href="#techoligarker">Techoligarker</a>
     <a href="#palantir-europa">Palantir i Europa</a>
     <a href="#satelliter">Satelliter</a>
-    <a href="#arktis">Arktis</a>
     <a href="#datamaklare">Datamäklare</a>
+    <a href="#arktis">Arktis</a>
     <a href="#andoya">Andøya-klustret</a>
     <a href="#heist">HEIST</a>
+    <a href="#motrorelse">Motrörelse</a>
+    <a href="#tillsyn">Tillsyn</a>
     <a href="#sverige">Sverige</a>
     <a href="#slutsatser">Slutsatser</a>
     <a href="#referenser">Källor</a>
@@ -784,7 +836,7 @@
     <h2 class="section-title">Sammanfattning</h2>
   </div>
   <div class="reveal">
-  <p>NATO-stater befinner sig redan i ett djupt beroende av privata satellit-, data- och analysföretag – utan att ha etablerat tillräcklig regulatorisk kontroll eller demokratisk tillsyn. Bedömningen är att detta beroende med 90 procents sannolikhet är praktiskt oåterkalleligt före 2030.</p>
+  <p>NATO-stater befinner sig redan i ett djupt beroende av privata satellit-, data- och analysföretag, utan att ha etablerat tillräcklig regulatorisk kontroll eller demokratisk tillsyn. Beroendet är ett pågående faktum som befästs till 2030. Bedömningen görs i två delar enligt Försvarsmaktens sannolikhetsuttryck. Det är <strong>sannolikt (&gt;80 %)</strong> att förmågan ännu 2036 vilar på privata aktörer, eftersom Europa då bara kommit ikapp delvis. Att staterna <em>inte</em> hinner etablera tillräcklig tillsyn och reglering till 2036 bedöms som <strong>troligen (55–75 %)</strong>. Det är ett ärligt mer osäkert ben, eftersom ett decennium ger reellt utrymme för politiken att komma ikapp.</p>
   <p>Rapporten analyserar tre sammanflätade dimensioner av problemet: privata underrättelseföretag med förmågor som tidigare tillhörde stater, kampen om arktisk rymdinfrastruktur, och datamäklarindustrins förmåga att kartlägga individer och militär personal i realtid. Tillsammans skapar de en gråzon där kommersiell och statlig säkerhetsinfrastruktur flyter ihop utan anpassning i myndigheter och regelverk.</p>
   <p>De norska händelserna under 2026 är inte ett undantag – de är ett mönster. De bekräftar att motståndare redan agerar i denna gråzon, och att den politiska responsen är strukturellt eftersläpande i förhållande till teknologins utvecklingstakt.</p>
   </div>
@@ -819,6 +871,7 @@
     <div class="stat-cell"><div class="stat-val" id="s3">0<span> mdr $</span></div><div class="stat-lbl">Satellitövervakning 2033 (prognos)</div></div>
     <div class="stat-cell"><div class="stat-val" id="s4">0<span> %</span></div><div class="stat-lbl">Tillväxt per år (CAGR)</div></div>
   </div>
+  <p style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.04em; line-height:1.6; color:#888; margin:12px 0 0;">Marknadskurvan pekar uppåt genom hela bedömningsperioden. Den prognos som sträcker sig till 2033 fortsätter strukturellt mot 2036-horisonten och fördjupar beroendet av kommersiella aktörer i stället för att motverka det.</p>
 
   <div class="sat-video-panel reveal">
     <div class="sat-video-copy">
@@ -846,6 +899,7 @@
 
 <!-- 02 TECHOLIGARKER -->
 <section id="techoligarker" class="article-section">
+  <div class="layer-tag">Transportlagret</div>
   <div class="section-header">
     <h2 class="section-title">Techmiljardärer som nya underrättelseaktörer</h2>
   </div>
@@ -890,6 +944,7 @@
 
 <!-- 03 PALANTIR I EUROPA -->
 <section id="palantir-europa" class="article-section">
+  <div class="layer-tag">Analyslagret</div>
   <div class="section-header">
     <h2 class="section-title">Palantir i Europa: växande beroende och försök att bryta det</h2>
   </div>
@@ -920,6 +975,7 @@
 
 <!-- 04 SATELLITER -->
 <section id="satelliter" class="article-section">
+  <div class="layer-tag">Insamlingslagret</div>
   <div class="section-header">
     <h2 class="section-title">Kommersiella jordobservationssatelliter: Kapaciteten som förändrat spelreglerna</h2>
   </div>
@@ -932,6 +988,36 @@
   <p>Sensortillväxten förstärks av AI-verktyg som kortar tiden från observation till operativ underrättelse. <a href="https://cset.georgetown.edu/publication/chinas-military-ai-wish-list/">CSET:s genomgång av kinesiska försvarsupphandlingar</a> visar hur Folkets befrielsearmé efterfrågar AI-system för beslutstöd, sensorförstärkning och datafusion. <a href="https://nylatechnologysolutions.com/ai-in-satellite-image-analysis-for-military-use/">AI-baserad bildanalys</a> kan samtidigt automatisera detektion av militära installationer, fartygsrörelser och fordonsmönster, medan EU:s försvarsfond via <a href="https://www.gmv.com/en-es/communication/press-room/press-releases/myriad-new-european-defence-fund-initiative-revolutionizing">MYRIAD-projektet</a> utvecklar fusion av optiska och radarbaserade satellitdata. Därmed krymper tidsfönstret mellan datainsamling och handling från dagar till timmar eller minuter.</p>
 
   <p>Den avgörande frågan är därför vem som kontrollerar förmågorna och när de kan riktas mot civila mål. Marknaden är till stor del statligt finansierad, men en betydande del av kommersiell jordobservation är tillgänglig för andra välfinansierade aktörer.</p>
+  </div>
+</section>
+
+<!-- DATAMÄKLARE -->
+<section id="datamaklare" class="article-section">
+  <div class="layer-tag">Insamlingslagret</div>
+  <div class="section-header">
+    <h2 class="section-title">Datamäklare: Den tredje dimensionen</h2>
+  </div>
+  <div class="reveal">
+  <p>Datamäklarbranschen utgör ett mångmiljarders nätverk av bolag som samlar in, aggregerar och säljer data om enskilda individer med i princip obefintlig tillsyn.</p>
+
+  <p><a href="https://www.lemonde.fr/pixels/article/2025/02/12/donnees-personnelles-en-vente-libre-les-data-brokers-une-industrie-hors-de-controle">Le Mondes granskning Data Brokers Files</a> och den parallella tyska undersökningen från <a href="https://netzpolitik.org/2025/databroker-files-targeting-the-eu/">Netzpolitik.org</a> visar att samma marknad redan används på ett sätt som har direkt underrättelsevärde. Med hjälp av kommersiellt köpt annonsdata kunde reportrar kartlägga rörelsemönster för franska underrättelseoperatörer, elitpoliser och militär personal, inklusive hemadresser, arbetsplatser och regelbundna resvägar.</p>
+  <p>I den tyska delen av undersökningen gick det att identifiera NATO-baser, fängelser, kärnkraftverk och högt uppsatta EU-tjänstemäns rörelser utifrån samma typ av data. ANSSI-chefen <a href="https://www.lemonde.fr/pixels/article/2025/12/10/dans-certaines-missions-la-simple-geolocalisation-a-une-sensibilite-toute-particuliere">Vincent Strubel</a> konstaterade att enbart geolokalisering av känslig personal i sig är underrättelsematerial av högsta relevans.</p>
+
+  <p> <a href="https://epic.org/issues/consumer-privacy/data-brokers/">Tusentals datamäklare i USA</a> köper, aggregerar och säljer miljarder datapunkter om amerikaner. Datan inkluderar politiska preferenser, hälsoinformation, religiösa praktiker, ägda fordon och platsdata i realtid.</p>
+
+  <p><a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">Duke Universitys studie om datamäklare och amerikansk militärpersonal</a> visade att aktiv militärpersonal, deras familjer och veteraner kan spåras via datamäklare för <strong>0,12 dollar per post</strong>, köpt via en .asia-domän utan att säljaren reagerade. <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">CENTCOM bekräftade i maj 2026</a> att motståndare utnyttjar kommersiell platsdata mot aktiv militärpersonal i fält. En bipartisan grupp senatorer varnade Pentagon: "Kommersiell platsdata kan identifiera var USA:s personal samlas och deras livsmönster, vilket motståndare kan utnyttja för att organisera attacker – inklusive missilattacker, drönarattacker och vägbomber."</p>
+
+  <p><a href="https://www.wired.com/story/the-pentagon-knew-enemies-could-track-troops-phones-for-years-now-they-are/">Wired</a>, Bayerischer Rundfunk och Netzpolitik.org köpte tre miljarder telefonplatsregistreringar från en amerikansk datamäklare och spårade telefoner från amerikanska militärbaracker i Tyskland till arbetsplatser, restauranger och barer. Av 189 enheter inne på en högskyddsklassad tysk militäranläggning följdes samtliga rörelsmönster. <a href="https://www.lawfaremedia.org/article/tackling-data-brokerage-threats-to-american-national-security">Lawfare Media konstaterar</a> att detta "precis lika gärna kunde ha genomförts av en utländsk aktör, särskilt en med djupa fickor".</p>
+
+  <p>GPS-spårningsmarknaden för fordon värderades till <a href="https://www.imarcgroup.com/gps-tracking-device-market">3,2 miljarder dollar år 2024 och förväntas växa till 8,2 miljarder dollar år 2033</a>. Dagens fordon fungerar i praktiken som rullande sensorsystem. Det gäller inte bara var bilen befinner sig, utan också när den startar, hur den körs och vilka digitala tjänster som används under färden. Kameror och mikrofoner kan dessutom registrera körstil, destination, medpassagerare och biologiska mätvärden. Kombinationen av kommersiell satellitbild, GPS-platsdata och AI-analys – vad Palantirs Gotham-plattform redan gör i statlig tjänst – är vad varje aktör med tillräckliga resurser och rätt datamäklarkontakter kan replikera.</p>
+
+  <div class="fact-box">
+    <div class="fact-box-label">Cariad visar hur fordonsdata kan bli underrättelsematerial</div>
+    <p>I december 2024 avslöjades att <a href="https://www.it-daily.net/shortnews-en/vws-software-glitch-reveals-ev-users-daily-routes">Volkswagens mjukvarubolag Cariad hade läckt platsdata från omkring 800&nbsp;000 elfordon</a>. Enligt uppgifter som återgavs efter <em>Der Spiegel</em>s granskning gick det i många fall att koppla exakta rörelsemönster till enskilda personer, och datan bedömdes vara tillräcklig för att identifiera fordon som regelbundet stod parkerade vid känsliga objekt som <a href="https://www.wired.com/story/phone-data-us-soldiers-spies-nuclear-germany/">underrättelsebyggnader och militära anläggningar</a>. Exemplet visar hur kommersiell fordonsdata snabbt kan få militär eller säkerhetspolitisk betydelse, även utan ett klassiskt dataintrång mot staten.</p>
+  </div>
+
+  <h3 class="subsection-title">Från spårning till kognitiv påverkan</h3>
+  <p><a href="https://innovationhub-act.org/wp-content/uploads/2023/12/20210113_CW-Final-v2-.pdf">NATO ACT beskriver kognitiv krigföring</a> som påverkan mot perception, beslutsfattande och samhällelig motståndskraft. Kombinationen av detaljerad målgruppsdata, psykologisk profilering och AI-genererat innehåll gör det möjligt att rikta kampanjer mot enskilda individer och nyckelpersoner. Det visar både <a href="https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2024.1452129/full">akademiska genomgångar av NATO ACT:s koncept</a> och <a href="https://sofsupport.org/cognitive-warfare-to-dominate-and-redefine-adversary-realities-implications-for-u-s-special-operations-forces/">litteraturen om amerikanska specialstyrkor</a>. Samma datamäklare som säljer plats- och beteendedata om militär personal kan alltså användas både för kinetisk målinriktning och för långsiktig psykologisk påverkan mot befälhavare, underrättelseanalytiker och beslutsfattare.</p>
   </div>
 </section>
 
@@ -963,42 +1049,13 @@
   </div>
 </section>
 
-<!-- DATAMÄKLARE -->
-<section id="datamaklare" class="article-section">
-  <div class="section-header">
-    <h2 class="section-title">Datamäklare: Den tredje dimensionen</h2>
-  </div>
-  <div class="reveal">
-  <p>Datamäklarbranschen utgör ett mångmiljarders nätverk av bolag som samlar in, aggregerar och säljer data om enskilda individer med i princip obefintlig tillsyn. Tusentals datamäklare i USA köper, aggregerar och säljer miljarder datapunkter om amerikaner. Datan inkluderar politiska preferenser, hälsoinformation, religiösa praktiker, ägda fordon och platsdata i realtid.</p>
-
-  <p><a href="https://www.lemonde.fr/pixels/article/2025/02/12/donnees-personnelles-en-vente-libre-les-data-brokers-une-industrie-hors-de-controle">Le Mondes granskning Data Brokers Files</a> och den parallella tyska undersökningen från <a href="https://netzpolitik.org/2025/databroker-files-targeting-the-eu/">Netzpolitik.org</a> visar att samma marknad redan används på ett sätt som har direkt underrättelsevärde. Med hjälp av kommersiellt köpt annonsdata kunde reportrar kartlägga rörelsemönster för franska underrättelseoperatörer, elitpoliser och militär personal, inklusive hemadresser, arbetsplatser och regelbundna resvägar.</p>
-  <p>I den tyska delen av undersökningen gick det att identifiera NATO-baser, fängelser, kärnkraftverk och högt uppsatta EU-tjänstemäns rörelser utifrån samma typ av data. ANSSI-chefen <a href="https://www.lemonde.fr/pixels/article/2025/12/10/dans-certaines-missions-la-simple-geolocalisation-a-une-sensibilite-toute-particuliere">Vincent Strubel</a> konstaterade att enbart geolokalisering av känslig personal i sig är underrättelsematerial av högsta relevans.</p>
-
-  <p> <a href="https://epic.org/issues/consumer-privacy/data-brokers/">Tusentals datamäklare i USA</a> köper, aggregerar och säljer miljarder datapunkter om amerikaner. Datan inkluderar politiska preferenser, hälsoinformation, religiösa praktiker, ägda fordon och platsdata i realtid.</p>
-
-  <p><a href="https://techpolicy.sanford.duke.edu/data-brokers-and-the-sale-of-data-on-us-military-personnel/">Duke Universitys studie om datamäklare och amerikansk militärpersonal</a> visade att aktiv militärpersonal, deras familjer och veteraner kan spåras via datamäklare för <strong>0,12 dollar per post</strong>, köpt via en .asia-domän utan att säljaren reagerade. <a href="https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/">CENTCOM bekräftade i maj 2026</a> att motståndare utnyttjar kommersiell platsdata mot aktiv militärpersonal i fält. En bipartisan grupp senatorer varnade Pentagon: "Kommersiell platsdata kan identifiera var USA:s personal samlas och deras livsmönster, vilket motståndare kan utnyttja för att organisera attacker – inklusive missilattacker, drönarattacker och vägbomber."</p>
-
-  <p><a href="https://www.wired.com/story/the-pentagon-knew-enemies-could-track-troops-phones-for-years-now-they-are/">Wired</a>, Bayerischer Rundfunk och Netzpolitik.org köpte tre miljarder telefonplatsregistreringar från en amerikansk datamäklare och spårade telefoner från amerikanska militärbaracker i Tyskland till arbetsplatser, restauranger och barer. Av 189 enheter inne på en högskyddsklassad tysk militäranläggning följdes samtliga rörelsmönster. <a href="https://www.lawfaremedia.org/article/tackling-data-brokerage-threats-to-american-national-security">Lawfare Media konstaterar</a> att detta "precis lika gärna kunde ha genomförts av en utländsk aktör, särskilt en med djupa fickor".</p>
-
-  <p>GPS-spårningsmarknaden för fordon värderades till <a href="https://www.imarcgroup.com/gps-tracking-device-market">3,2 miljarder dollar år 2024 och förväntas växa till 8,2 miljarder dollar år 2033</a>. Dagens fordon fungerar i praktiken som rullande sensorsystem. Det gäller inte bara var bilen befinner sig, utan också när den startar, hur den körs och vilka digitala tjänster som används under färden. Kameror och mikrofoner kan dessutom registrera körstil, destination, medpassagerare och biologiska mätvärden. Kombinationen av kommersiell satellitbild, GPS-platsdata och AI-analys – vad Palantirs Gotham-plattform redan gör i statlig tjänst – är vad varje aktör med tillräckliga resurser och rätt datamäklarkontakter kan replikera.</p>
-
-  <div class="fact-box">
-    <div class="fact-box-label">Cariad visar hur fordonsdata kan bli underrättelsematerial</div>
-    <p>I december 2024 avslöjades att <a href="https://www.it-daily.net/shortnews-en/vws-software-glitch-reveals-ev-users-daily-routes">Volkswagens mjukvarubolag Cariad hade läckt platsdata från omkring 800&nbsp;000 elfordon</a>. Enligt uppgifter som återgavs efter <em>Der Spiegel</em>s granskning gick det i många fall att koppla exakta rörelsemönster till enskilda personer, och datan bedömdes vara tillräcklig för att identifiera fordon som regelbundet stod parkerade vid känsliga objekt som <a href="https://www.wired.com/story/phone-data-us-soldiers-spies-nuclear-germany/">underrättelsebyggnader och militära anläggningar</a>. Exemplet visar hur kommersiell fordonsdata snabbt kan få militär eller säkerhetspolitisk betydelse, även utan ett klassiskt dataintrång mot staten.</p>
-  </div>
-
-  <h3 class="subsection-title">Från spårning till kognitiv påverkan</h3>
-  <p><a href="https://innovationhub-act.org/wp-content/uploads/2023/12/20210113_CW-Final-v2-.pdf">NATO ACT beskriver kognitiv krigföring</a> som påverkan mot perception, beslutsfattande och samhällelig motståndskraft. Kombinationen av detaljerad målgruppsdata, psykologisk profilering och AI-genererat innehåll gör det möjligt att rikta kampanjer mot enskilda individer och nyckelpersoner. Det visar både <a href="https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2024.1452129/full">akademiska genomgångar av NATO ACT:s koncept</a> och <a href="https://sofsupport.org/cognitive-warfare-to-dominate-and-redefine-adversary-realities-implications-for-u-s-special-operations-forces/">litteraturen om amerikanska specialstyrkor</a>. Samma datamäklare som säljer plats- och beteendedata om militär personal kan alltså användas både för kinetisk målinriktning och för långsiktig psykologisk påverkan mot befälhavare, underrättelseanalytiker och beslutsfattare.</p>
-  </div>
-</section>
-
 <!-- ANDØYA-KLUSTRET -->
 <section id="andoya" class="article-section">
   <div class="section-header">
-    <h2 class="section-title">Andøya-klustret: Fyra operationer under 90 dagar</h2>
+    <h2 class="section-title">Andøya-klustret: Fyra händelser under 90 dagar</h2>
   </div>
   <div class="reveal">
-  <p>De tre hottyperna framträder var för sig som abstrakta sårbarheter. I Andøya–Bodø-regionen möts de i ett dokumenterat händelseförlopp. Under perioden februari–maj 2026 bekräftades fyra separata underrättelseoperationer mot Norges arktiska säkerhetsinfrastruktur – en täthet och geografisk koncentration som är ovanlig i nordisk säkerhetshistoria under fredstid. Klustret visar att motståndare betraktar Andøya–Bodø-regionen som ett integrerat strategiskt mål, inte som separata objekt.</p>
+  <p>De tre hottyperna framträder var för sig som abstrakta sårbarheter. I Andøya–Bodø-regionen möts de i ett dokumenterat händelseförlopp. Under perioden februari–maj 2026 inträffade fyra händelser mot Norges arktiska säkerhetsinfrastruktur: två bekräftade underrättelsefall (Salt Typhoon-intrånget och den beslagtagna satellitmottagaren på Andøya) och två indikatorer som ännu inte är statligt bekräftade som underrättelseoperationer (gripandet vid Bodø, där PST uppger att inget formellt samband fastställts, och spårningsbrickan i Northsafe-fallet). Tätheten och den geografiska koncentrationen är ovanlig i nordisk säkerhetshistoria under fredstid. Mönstret pekar mot att motståndare betraktar Andøya–Bodø-regionen som ett integrerat strategiskt mål, inte som separata objekt.</p>
 
   <h3 class="subsection-title">Nordland som indikatorområde</h3>
   <p><a href="https://www.linkedin.com/posts/svensk-osint_nordland-trusselvurdering-2026-activity-7468020693277007872-qx-Q">Nordland politidistrikts hotbedömning för 2026</a> beskriver ett i grunden stabilt kriminalitetsläge, men i ett tydligt skärpt säkerhetspolitiskt sammanhang. Rapporten pekar ut försvarsrelaterade platser vid Evenes, Bjerkvik, Andøya, Bodø, Sortland och Drevjamoen, hamnar för allierat mottagande, rymdinfrastruktur, energi, telekommunikation och IT som strategiskt relevanta. Järnvägen i Narvik lyfts särskilt fram: den fraktar malm till Europa och understödjer samtidigt NATO:s logistik i Norge, Sverige och Finland. Sedan 2022 har polisen registrerat drygt 1&nbsp;000 misstänkta händelser i distriktet. De flesta har haft naturliga förklaringar – ofta okunskap om foto- och drönarförbud – men rapporten betonar att händelserna ändå måste följas upp för att identifiera de fall som kan vara allvarliga.</p>
@@ -1074,6 +1131,42 @@
   </div>
 </section>
 
+<!-- EUROPAS MOTRÖRELSE -->
+<section id="motrorelse" class="article-section">
+  <div class="section-header">
+    <h2 class="section-title">Europas motrörelse och dess gränser</h2>
+  </div>
+  <div class="reveal">
+  <p>Det avgörande för 2036-bedömningen är om de europeiska motrörelserna hinner föra förmågan tillbaka i statlig eller mellanstatlig regi. Fyra spår pekar åt det hållet, men inget av dem stänger beroendet helt inom fönstret.</p>
+
+  <p><strong>Transportlagret.</strong> EU:s <a href="https://eu-space.europa.eu/news/observer-what-iris2">IRIS²</a> ska nå full drift kring 2030–2031, men omfattar cirka 290 satelliter för statlig kommunikation. Det är en bråkdel av Starlinks flera tusen satelliter, och systemet drivs dessutom av ett privat konsortium med Eutelsat, SES och Hispasat samt Airbus och Thales Alenia Space som huvudleverantörer. IRIS² minskar det statliga beroendet av amerikanska bolag, men byter delvis ut det mot ett beroende av ett fåtal europeiska industrikoncerner.</p>
+
+  <p><strong>Analyslagret.</strong> <a href="https://www.heise.de/en/news/Digital-Sovereignty-BfV-Buys-European-Palantir-Alternative-11293717.html">Tysklands BfV valde i maj 2026 franska ChapsVision och ArgonOS</a> framför Palantir, och Bundeswehr har uteslutit Palantir ur sin militära molnupphandling. Detta är den mest påverkbara delen: en europeisk plattform kan nå NATO-certifiering före 2036. Men ChapsVision saknar ännu den driftsmognad och skalbarhet som krävs för alliansomfattande adoption, och NATO vilar fortfarande på Palantir.</p>
+
+  <p><strong>Insamlings- och uppskjutningslagret.</strong> Sverige bygger egen förmåga genom <a href="https://www.fmv.se/aktuellt--press/aktuella-handelser/fmv-tecknar-avtal-om-satellituppsandningsformaga-fran-esrange/">FMV:s avtal om uppskjutning från Esrange</a> (operativt 2028), egna spaningssatelliter med SAR- och elektrooptiska sensorer via <a href="https://europeanspaceflight.com/sweden-to-acquire-10-surveillance-satellites-for-e121-million/">ICEYE och Planet Labs</a>, och <a href="https://europeanspaceflight.com/ssc-space-opens-orbital-launch-control-center-at-esrange/">SSC:s orbitala kontrollcenter</a>. Det ger nationell kontroll vid marginalen, men tar inte bort den kommersiella datamäklarmarknaden eller motståndarens möjlighet att köpa kommersiell data.</p>
+
+  <p>Summan är att Europa kommer ikapp delvis till 2036, framför allt i analyslagret. Men ingen av rörelserna för förmågan tillbaka i statlig regi i alla tre lager samtidigt, och flera byter bara ut vilken privat aktör beroendet vilar på. Det är därför huvudbedömningen stannar i Sannolik: beroendet av privata aktörer kvarstår, även om dess sammansättning förskjuts.</p>
+  </div>
+</section>
+
+<!-- TILLSYN OCH REGLERING -->
+<section id="tillsyn" class="article-section">
+  <div class="section-header">
+    <h2 class="section-title">Tillsyns- och regleringsläget: varför delbedömningen stannar i Troligen</h2>
+  </div>
+  <div class="reveal">
+  <p>Delbedömningen vilar på att tillräcklig tillsyn och reglering inte hinner etableras till 2036. Den bedöms som Troligen (55–75 %) just därför att regleringen faktiskt rör sig, men ojämnt och med begränsad räckvidd. Tre åtgärder illustrerar både rörelsen och dess gränser.</p>
+
+  <p>EU:s <a href="https://digital-strategy.ec.europa.eu/en/policies/data-act">Data Act</a> (förordning 2023/2854) tillämpas sedan den 12 september 2025 och ger användare rätt till data från uppkopplade produkter och rätt att byta databehandlingstjänst. Men den riktar sig mot datadelning och inlåsning, inte mot datamäklarmarknaden eller kommersiella underrättelseplattformar, och flera medlemsstater har ännu inte utsett tillsynsmyndigheter eller fastställt sanktioner.</p>
+
+  <p>I USA trädde justitiedepartementets regel under <a href="https://www.federalregister.gov/documents/2025/01/08/2024-31486/preventing-access-to-us-sensitive-personal-data-and-government-related-data-by-countries-of-concern">Executive Order 14117</a> i kraft den 8 april 2025 och började tillämpas den 8 juli 2025. Den begränsar bulköverföring av amerikaners känsliga persondata till sex utpekade länder, bland andra Kina och Ryssland. Det träffar exakt den mekanism rapporten beskriver, att motståndare köper kommersiell data, men bara för en jurisdiktion, sex namngivna länder och över vissa tröskelvärden.</p>
+
+  <p>Kaliforniens <a href="https://cppa.ca.gov/data_brokers">Delete Act</a> öppnade sin centrala raderingsplattform DROP för invånare den 1 januari 2026, och datamäklare måste börja efterleva raderingsbegäran från den 1 augusti 2026. Det är det första verktyget i sitt slag i USA, men det är delstatligt och inriktat på konsumenters radering, inte på nationell tillsyn av de plattformar som statens egen förmåga vilar på.</p>
+
+  <p>Mönstret är genomgående: regleringen växer, men styckevis och nationellt. Ingen av åtgärderna etablerar en gemensam, demokratiskt förankrad tillsyn på NATO- eller EU-nivå över de kommersiella satellit-, analys- och datamäklarplattformar som underrättelseförmågan i praktiken bygger på. Eftersom ett decennium ändå ger reellt utrymme för att täppa till luckan stannar bedömningen i Troligen, inte Sannolik.</p>
+  </div>
+</section>
+
 <section id="sverige" class="article-section">
   <div class="section-header">
     <h2 class="section-title">Sverige och Norden</h2>
@@ -1093,7 +1186,7 @@
 
   <p>Det skapar ett dilemma utan enkel utväg. En civil underrättelsetjänst som ska producera strategiska bedömningar om politiska processer, ekonomiska flöden och utländsk kapacitetsutveckling är i dag operativt beroende av precis de kommersiella verktyg som denna rapport identifierar som kärnan i problemet: satellitbilder från Planet Labs och ICEYE, AI-driven datafusion från plattformar i Palantirs klass, och GDELT-baserad medieanalys. Att UND breddar sin OSINT-förmåga är inte ett misstag – det är det enda rationella valet för en myndighet som ska leverera relevant underrättelse från dag ett. Men det innebär att Sverige inte kan begränsa beroendet utan att samtidigt begränsa sin egen förmåga.</p>
 
-  <p>Beroendet av SpaceX tillkommer som en separat dimension. <a href="https://www.satellitetoday.com/government-military/2024/11/21/spacexs-starshield-has-received-most-task-orders-for-space-force-pleo-program/">SpaceX dominerar den militära satellitkommunikationen i USA:s PLEO-program</a>. Starlink är det transportlager som NATO:s analytiska plattformar i dag använder. <a href="https://europeanspaceflight.com/sweden-to-acquire-10-surveillance-satellites-for-e121-million/">Försvarsmaktens anskaffning av tio spaningssatelliter via ICEYE och Planet Labs</a> integrerar Sverige ytterligare i den kommersiella konstellation som i Ukraina visats vara geopolitiskt styrd av en enskild privat aktör. <a href="https://www.fmv.se/aktuellt--press/aktuella-handelser/fmv-tecknar-avtal-om-satellituppsandningsformaga-fran-esrange/">FMV:s avtal om uppskjutningsförmåga från Esrange</a> och <a href="https://sscspace.com/news/agreement-with-fmv-on-satellite-launch-capability/">SSC:s orbitala kontrollcenter</a> pekar mot ökad nationell kontroll på sikt – men inte före 2030.</p>
+  <p>Beroendet av SpaceX tillkommer som en separat dimension. <a href="https://www.satellitetoday.com/government-military/2024/11/21/spacexs-starshield-has-received-most-task-orders-for-space-force-pleo-program/">SpaceX dominerar den militära satellitkommunikationen i USA:s PLEO-program</a>. Starlink är det transportlager som NATO:s analytiska plattformar i dag använder. <a href="https://europeanspaceflight.com/sweden-to-acquire-10-surveillance-satellites-for-e121-million/">Försvarsmaktens anskaffning av tio spaningssatelliter via ICEYE och Planet Labs</a> integrerar Sverige ytterligare i den kommersiella konstellation som i Ukraina visats vara geopolitiskt styrd av en enskild privat aktör. <a href="https://www.fmv.se/aktuellt--press/aktuella-handelser/fmv-tecknar-avtal-om-satellituppsandningsformaga-fran-esrange/">FMV:s avtal om uppskjutningsförmåga från Esrange</a> och <a href="https://sscspace.com/news/agreement-with-fmv-on-satellite-launch-capability/">SSC:s orbitala kontrollcenter</a> pekar mot ökad nationell kontroll på sikt. En del av den kommer inom fönstret till 2036 – Esrange ska vara operativt 2028 – men den når inte full skala och löser inte transportlagrets beroende av SpaceX.</p>
 
   <p>För UND avgörs handlingsfriheten på tre nivåer. Den politiska: vill Sverige delta i Maven, Starlink/Starshield och kommersiella OSINT-plattformar? Den tekniska: kan Sverige snabbt växla till europeiska alternativ vid avbrott? Idag kan det inte. Den finansiella: <a href="https://www.nytimes.com/2026/06/03/technology/spacex-ipo-pricing.html">SpaceX börsnotering i juni 2026</a> knyter svenska pensionsfonder till de bolag som gör staten beroende – vilket gör det politiskt dyrare att utmana dem. Satsningarna på Esrange, egna SAR-satelliter och ett eventuellt deltagande i IRIS² är rätt åtgärder. Men de sker i ett landskap där SpaceX redan sätter teknologiska standarder och prisbilder, och där UND:s operativa verklighet från dag ett kommer att se annorlunda ut än vad myndighetens regelstyrning förutsätter.</p>
   </div>
@@ -1113,7 +1206,7 @@
       <div class="conclusion-num">1</div>
       <div class="conclusion-body">
         <strong>Beroendet är redan oåterkalleligt i praktiken – frågan är om det kan regleras före tröskelpassagen.</strong>
-        <p>Ingen av USA:s NATO-allierade kan i dag genomföra ett fullskaligt underrättelseuppdrag utan att förlita sig på kommersiella satellitförmågor, privata analysplattformar eller datamäklarnätverk. <a href="https://defensescoop.com/2025/04/14/nato-palantir-maven-smart-system-contract/">Maven Smart System NATO</a> är nu den plattform som alliansens underrättelsearbete vilar på i analyslagret. <a href="https://www.satellitetoday.com/government-military/2024/11/21/spacexs-starshield-has-received-most-task-orders-for-space-force-pleo-program/">SpaceX Starshield</a> dominerar transportlagret. Kommersiella satelliter och datamäklare styr insamlingslagret. <a href="https://www.nytimes.com/2026/06/03/technology/spacex-ipo-pricing.html">SpaceX börsnotering till 1,77 biljoner USD</a> har cementerat militärinfrastrukturrollen i globalt pensionskapital, vilket gör regulatorisk omprövning politiskt kostsam för europeiska regeringar. Den politiska systemets förmåga att reglera detta beroende innan det passerar den praktiska punkten för återvändo är den avgörande variabeln. Bedömningen är att den förmågan inte är tillräcklig före 2030. Konfidens: 90 procent.</p>
+        <p>Ingen av USA:s NATO-allierade kan i dag genomföra ett fullskaligt underrättelseuppdrag utan att förlita sig på kommersiella satellitförmågor, privata analysplattformar eller datamäklarnätverk. <a href="https://defensescoop.com/2025/04/14/nato-palantir-maven-smart-system-contract/">Maven Smart System NATO</a> är nu den plattform som alliansens underrättelsearbete vilar på i analyslagret. <a href="https://www.satellitetoday.com/government-military/2024/11/21/spacexs-starshield-has-received-most-task-orders-for-space-force-pleo-program/">SpaceX Starshield</a> dominerar transportlagret. Kommersiella satelliter och datamäklare styr insamlingslagret. <a href="https://www.nytimes.com/2026/06/03/technology/spacex-ipo-pricing.html">SpaceX börsnotering till 1,77 biljoner USD</a> har cementerat militärinfrastrukturrollen i globalt pensionskapital, vilket gör regulatorisk omprövning politiskt kostsam för europeiska regeringar. Det politiska systemets förmåga att reglera beroendet innan det passerar den praktiska punkten för återvändo är den avgörande variabeln. Att förmågan ännu 2036 vilar på privata aktörer bedöms som <strong>sannolikt (&gt;80 %)</strong>. Att tillräcklig tillsyn och reglering inte hinner på plats till 2036 bedöms som <strong>troligen (55–75 %)</strong>.</p>
       </div>
     </li>
     <li>
@@ -1238,13 +1331,16 @@
 
       <div class="ref-item">ABC Nyheter. (2026, 20 februari). <em>Turister fikk beslaglagt droner i Svolvær.</em> <a href="https://www.abcnyheter.no/nyheter/turister-fikk-beslaglagt-droner-i-svolvaer/1439849">abcnyheter.no</a></div>
       <div class="ref-item">Avinor. (2026). <em>Dronekart.</em> <a href="https://lnkd.in/dSNxA39J">avinor.no</a></div>
-      <div class="ref-item">BBC News. (2026, 18 februari). <em>Musk cuts Starlink access for Russian forces, giving Ukraine advantage.</em> <a href="https://www.realcleardefense.com/2026/02/20/musk_cuts_starlink_for_russian_forces_giving_ukraine_edge_1166141.html">bbc.com</a></div>
+      <div class="ref-item">RealClearDefense. (2026, 20 februari). <em>Musk cuts Starlink for Russian forces, giving Ukraine edge.</em> <a href="https://www.realcleardefense.com/2026/02/20/musk_cuts_starlink_for_russian_forces_giving_ukraine_edge_1166141.html">realcleardefense.com</a></div>
       <div class="ref-item">Sankaran, J. (2022). <em>Russia’s anti-satellite weapons: A hedging and offsetting strategy to deter Western aerospace forces.</em> Contemporary Security Policy, 43(3), 436–463. <a href="https://www.tandfonline.com/doi/full/10.1080/13523260.2022.2090070">Taylor &amp; Francis</a></div>
       <div class="ref-item"><em>Cognitive warfare: A conceptual analysis of the NATO ACT cognitive warfare exploratory concept.</em> (2024). Frontiers in Big Data. <a href="https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2024.1452129/full">frontiersin.org</a></div>
       <div class="ref-item">CEPS. (2026, 4 mars). <em>It’s time to get ready for Europe’s space moment.</em> <a href="https://www.ceps.eu/its-time-to-get-ready-for-europes-space-moment/">ceps.eu</a></div>
       <div class="ref-item">Center for Security and Emerging Technology. (2026, 16 februari). <em>China’s military AI wish list.</em> Georgetown University. <a href="https://cset.georgetown.edu/publication/chinas-military-ai-wish-list/">cset.georgetown.edu</a></div>
       <div class="ref-item">Emerging Europe. (2025, 13 mars). <em>Ukraine’s Starlink dependency: Satellite salvation and strategic risk.</em> <a href="https://emerging-europe.com/analysis/ukraines-starlink-dependency-satellite-salvation-and-strategic-risk/">emerging-europe.com</a></div>
       <div class="ref-item">European Commission. (2024, 16 december). <em>IRIS²: Europe’s secure connectivity programme.</em> <a href="https://defence-industry-space.ec.europa.eu/eu-space/iris2-secure-connectivity_en">ec.europa.eu</a></div>
+      <div class="ref-item">European Commission. (2025). <em>Data Act</em> (förordning (EU) 2023/2854, tillämplig från 12 september 2025). Shaping Europe’s digital future. <a href="https://digital-strategy.ec.europa.eu/en/policies/data-act">digital-strategy.ec.europa.eu</a></div>
+      <div class="ref-item">U.S. Department of Justice. (2025, 8 januari). <em>Preventing access to U.S. sensitive personal data and government-related data by countries of concern or covered persons</em> (slutlig regel under Executive Order 14117, i kraft 8 april 2025). Federal Register. <a href="https://www.federalregister.gov/documents/2025/01/08/2024-31486/preventing-access-to-us-sensitive-personal-data-and-government-related-data-by-countries-of-concern">federalregister.gov</a></div>
+      <div class="ref-item">California Privacy Protection Agency. (2026). <em>Data brokers och Delete Request and Opt-out Platform (DROP)</em> (Delete Act, SB 362; DROP öppen för invånare 1 januari 2026, efterlevnad från 1 augusti 2026). <a href="https://cppa.ca.gov/data_brokers">cppa.ca.gov</a></div>
       <div class="ref-item">European Spaceflight. (2026, 18 februari). <em>SSC Space opens orbital launch control center at Esrange.</em> <a href="https://europeanspaceflight.com/ssc-space-opens-orbital-launch-control-center-at-esrange/">europeanspaceflight.com</a></div>
       <div class="ref-item">EU Agency for the Space Programme. (2025, 24 april). <em>IRIS².</em> <a href="https://eu-space.europa.eu/news/observer-what-iris2">euspa.europa.eu</a></div>
       <div class="ref-item">Firefly Aerospace. (2024, 26 juni). <em>SSC and Firefly Aerospace to launch satellites from Esrange in Sweden.</em> <a href="https://fireflyspace.com/news/ssc-and-firefly-aerospace-to-launch-satellites-from-esrange-in-sweden/">fireflyspace.com</a></div>
@@ -1253,7 +1349,7 @@
       <div class="ref-item">Institut de relations internationales et stratégiques. (2026). <em>Building a European geospatial intelligence capability.</em> IRIS Policy Paper. <a href="https://www.iris-france.org/wp-content/uploads/2026/01/ARES_2026_01_122_European_Spatial_Intelligence_PolicyPaper.pdf">iris-france.org</a></div>
       <div class="ref-item">Johnson, N. L., et al. (2025). <em>On the increased risk of Kessler Syndrome by anti-satellite tests.</em> International Journal of Space Safety, 9(1), 15–29.</div>
       <div class="ref-item">Koren, M. (2026, 20 mars). <em>Starlink has privatized geopolitics.</em> Foreign Policy. <a href="https://foreignpolicy.com/2026/03/20/starlink-spacex-musk-geopolitics-war-ukraine-russia-iran/">foreignpolicy.com</a></div>
-      <div class="ref-item">Kruhly, J. (2025, 25 juli). <em>Musk ordered shutdown of Starlink satellite service as Ukraine attacked.</em> Reuters Special Report. <a href="https://kyivindependent.com/musk-ordered-starlink-shutdown-over-kherson-during-ukraines-2022-counteroffensive-reuters-reports/">reuters.com</a></div>
+      <div class="ref-item">The Kyiv Independent. (2025, 25 juli). <em>Musk ordered Starlink shutdown over Kherson during Ukraine's 2022 counteroffensive, Reuters reports.</em> <a href="https://kyivindependent.com/musk-ordered-starlink-shutdown-over-kherson-during-ukraines-2022-counteroffensive-reuters-reports/">kyivindependent.com</a></div>
       <div class="ref-item">Li, H., Zhang, Y., &amp; Müller, T. (2023). <em>Kessler’s syndrome: A challenge to humanity.</em> Frontiers in Space Technologies, 4, Article 1309940. <a href="https://doi.org/10.3389/frspt.2023.1309940">doi.org</a></div>
       <div class="ref-item">Luftfartstilsynet. (2024, 3 december). <em>Potential risks and consequences of launch operations from Sweden over Norway.</em> Norwegian Civil Aviation Authority. <a href="https://www.luftfartstilsynet.no/globalassets/dokumenter/romfart/report_orbital-launches-from-esrange-space-center.pdf">luftfartstilsynet.no</a></div>
       <div class="ref-item">du Cluzel, F. (2021). <em>Cognitive Warfare.</em> NATO Allied Command Transformation Innovation Hub. <a href="https://innovationhub-act.org/wp-content/uploads/2023/12/20210113_CW-Final-v2-.pdf">innovationhub-act.org</a></div>
@@ -1313,51 +1409,47 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-// ── CONFIDENCE RING + SCALE ANIMATION ──
+// ── SANNOLIKHETSRINGAR (Försvarsmaktens uttryck) ──
+function animateRing(arcId, pctId, target, delay) {
+  const arc = document.getElementById(arcId);
+  const pctEl = document.getElementById(pctId);
+  if (!arc || !pctEl) return;
+  const C = 339.29; // 2*PI*54
+  const offset = C * (1 - target / 100);
+  setTimeout(() => {
+    arc.style.strokeDasharray = C.toFixed(2);
+    arc.style.strokeDashoffset = C.toFixed(2);
+    arc.style.transition = 'stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1)';
+    requestAnimationFrame(() => { arc.style.strokeDashoffset = offset.toFixed(2); });
+  }, delay);
+  let count = 0;
+  const timer = setInterval(() => {
+    count = Math.min(count + 2, target);
+    pctEl.textContent = count;
+    if (count >= target) { pctEl.textContent = target; clearInterval(timer); }
+  }, 40);
+}
+
 const confBlock = document.getElementById('conf-block');
 let confAnimated = false;
 const confObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting && !confAnimated) {
       confAnimated = true;
-      // Ring: r=54, circumference = 2*PI*54 = 339.29
-      // For 90%: dashoffset = 339.29 * (1 - 0.90) = 33.93
-      const arc = document.getElementById('conf-arc');
-      setTimeout(() => {
-        arc.style.strokeDasharray = '339.29';
-        arc.style.strokeDashoffset = '339.29';
-        arc.style.transition = 'stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1)';
-        arc.style.strokeDashoffset = '33.93';
-      }, 200);
-
-      // Counter 0 → 90
-      let count = 0;
-      const pctEl = document.getElementById('conf-pct-num');
-      const timer = setInterval(() => {
-        count = Math.min(count + 2, 90);
-        pctEl.textContent = count;
-        if (count >= 90) clearInterval(timer);
-      }, 40);
-
-      // Scale bar
-      setTimeout(() => {
-        document.getElementById('conf-scale-fill').style.width = '90%';
-        document.getElementById('conf-scale-marker').style.left = '90%';
-      }, 300);
-
+      animateRing('conf-arc-1', 'conf-pct-1', 80, 200); // Sannolik (>80 %)
+      animateRing('conf-arc-2', 'conf-pct-2', 75, 500); // Troligen (55–75 %)
       confObs.disconnect();
     }
   });
 }, { threshold: 0.4 });
 if (confBlock) confObs.observe(confBlock);
 
-// Fix SVG dasharray for r=54
+// Initiera ringarna som tomma
 document.addEventListener('DOMContentLoaded', () => {
-  const arc = document.getElementById('conf-arc');
-  if (arc) {
-    arc.style.strokeDasharray = '339.29';
-    arc.style.strokeDashoffset = '339.29';
-  }
+  ['conf-arc-1', 'conf-arc-2'].forEach(id => {
+    const arc = document.getElementById(id);
+    if (arc) { arc.style.strokeDasharray = '339.29'; arc.style.strokeDashoffset = '339.29'; }
+  });
 });
 
 // ── STATS COUNTER ──
